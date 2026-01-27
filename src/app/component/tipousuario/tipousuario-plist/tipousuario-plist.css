@@ -1,0 +1,15 @@
+.container{
+  height: 80vh;
+}
+
+.table td {
+    white-space: normal;
+    word-wrap: break-word;
+    vertical-align: middle;
+}
+
+th {
+  background-color: #333;
+  color: #fff;
+  font-weight: 500;
+}
