@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { IPage } from '../../model/plist';
@@ -26,7 +26,7 @@ export class TipoarticuloPlist implements OnInit {
   rellenaError: string = '';
   totalElementsCount: number = 0;
 
-  constructor(private oTipoarticuloService: TipoarticuloService) {}
+  constructor(private oTipoarticuloService: TipoarticuloService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.getPage();
@@ -37,6 +37,7 @@ export class TipoarticuloPlist implements OnInit {
       next: (data: IPage<ITipoarticulo>) => {
         this.oPage = data;
         this.totalElementsCount = data.totalElements ?? 0;
+        this.cdr.markForCheck();
         if (this.numPage > 0 && this.numPage >= data.totalPages) {
           this.numPage = data.totalPages - 1;
           this.getPage();
