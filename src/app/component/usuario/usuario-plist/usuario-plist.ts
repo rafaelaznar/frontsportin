@@ -1,32 +1,9 @@
 ﻿import { CommonModule } from '@angular/common';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { serverURL } from '../../../environment/environment';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { IPage } from '../../../model/plist';
-
-type UsuarioRelacion = {
-  id: number;
-  descripcion?: string;
-  nombre?: string;
-};
-
-type UsuarioItem = {
-  id: number;
-  nombre: string;
-  apellido1: string;
-  apellido2: string;
-  username: string;
-  fechaAlta: string;
-  genero: number;
-  tipousuario: UsuarioRelacion;
-  rolusuario: UsuarioRelacion;
-  club: UsuarioRelacion;
-  comentarios: number;
-  puntuaciones: number;
-  comentarioarts: number;
-  carritos: number;
-  facturas: number;
-};
+import { IUsuario } from '../../../model/usuario';
+import { UsuarioService } from '../../../service/usuarioService';
 
 @Component({
   selector: 'app-usuario-plist',
@@ -35,8 +12,8 @@ type UsuarioItem = {
   styleUrl: './usuario-plist.css',
   standalone: true
 })
-export class UsuarioPlist {
-  oPage: IPage<UsuarioItem> | null = null;
+export class UsuarioPlist implements OnInit {
+  oPage: IPage<IUsuario> | null = null;
   numPage: number = 0;
   numRpp: number = 10;
   filtro: string = '';
@@ -48,7 +25,10 @@ export class UsuarioPlist {
   fillAmount: number = 25;
   rppOptions: number[] = [5, 10, 20, 50, 100];
 
-  constructor(private oHttp: HttpClient, private cdr: ChangeDetectorRef) { }
+  constructor(
+    private oUsuarioService: UsuarioService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
     this.getPage();
@@ -58,14 +38,9 @@ export class UsuarioPlist {
     this.isLoading = true;
     this.errorMessage = '';
     this.cdr.markForCheck();
-    const filterValue = this.filtro.trim();
-    let url = `${serverURL}/usuario?page=${this.numPage}&size=${this.numRpp}&sort=id,asc`;
-    if (filterValue) {
-      url += `&nombre=${encodeURIComponent(filterValue)}`;
-    }
 
-    this.oHttp.get<IPage<UsuarioItem>>(url).subscribe({
-      next: (data: IPage<UsuarioItem>) => {
+    this.oUsuarioService.getPage(this.numPage, this.numRpp, 'id', 'asc', this.filtro.trim()).subscribe({
+      next: (data: IPage<IUsuario>) => {
         this.oPage = data;
         this.totalElementsCount = data.totalElements ?? 0;
         if (this.numPage > 0 && this.numPage >= data.totalPages) {
@@ -105,8 +80,8 @@ export class UsuarioPlist {
     this.isFilling = true;
     this.fillErrorMessage = '';
     this.cdr.markForCheck();
-    const url = `${serverURL}/usuario/fill/${this.fillAmount}`;
-    this.oHttp.post<number>(url, null).subscribe({
+
+    this.oUsuarioService.fill(this.fillAmount).subscribe({
       next: () => {
         this.isFilling = false;
         this.getPage();
@@ -139,7 +114,7 @@ export class UsuarioPlist {
     this.getPage();
   }
 
-  trackById(index: number, usuario: UsuarioItem) {
+  trackById(index: number, usuario: IUsuario) {
     return usuario.id;
   }
 
