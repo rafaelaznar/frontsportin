@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
-import { IArticulo } from '../../../model/articulo';
+import { ICategoria } from '../../../model/categoria';
 import { IPage } from '../../../model/plist';
-import { ArticuloService } from '../../../service/articulo';
+import { CategoriaService } from '../../../service/categoria';
 import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Paginacion } from "../../shared/paginacion/paginacion";
 import { BotoneraRpp } from "../../shared/botonera-rpp/botonera-rpp";
 
 @Component({
-  selector: 'app-articulo-plist',
+  selector: 'app-categoria-plist',
   imports: [Paginacion, BotoneraRpp],
-  templateUrl: './articulo-plist.html',
-  styleUrl: './articulo-plist.css',
+  templateUrl: './categoria-plist.html',
+  styleUrl: './categoria-plist.css',
 })
 export class AdminPlist {
 
-  oPage: IPage<IArticulo> | null = null;
+  oPage: IPage<ICategoria> | null = null;
   numPage: number = 0;
   numRpp: number = 5;
   rellenaCantidad: number = 10;
@@ -34,7 +34,7 @@ export class AdminPlist {
   orderField: string = 'id';
   orderDirection: 'asc' | 'desc' = 'asc';
 
-  constructor(private oArticuloService: ArticuloService, private route: ActivatedRoute) { }
+  constructor(private oCategoriaService: CategoriaService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     const msg = this.route.snapshot.queryParamMap.get('msg');
@@ -56,8 +56,8 @@ export class AdminPlist {
   }
 
   getPage() {
-    this.oArticuloService.getPage(this.numPage, this.numRpp, this.orderField, this.orderDirection).subscribe({
-      next: (data: IPage<IArticulo>) => {
+    this.oCategoriaService.getPage(this.numPage, this.numRpp, this.orderField, this.orderDirection).subscribe({
+      next: (data: IPage<ICategoria>) => {
         this.oPage = data;
         this.totalRecords = data?.totalElements ?? 0;
         if (this.numPage > 0 && this.numPage >= data.totalPages) {
