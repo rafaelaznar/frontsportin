@@ -1,0 +1,82 @@
+<div class="plist-equipo container">
+  <h3>Listado de Equipos</h3>
+
+  <div class="controls">
+    <input placeholder="Buscar por nombre" type="text" (input)="onSearchChange($event)" />
+
+    <label>Mostrar
+      <select (change)="onSizeChange($event.target.value)" value="{{pageSize}}">
+        @for (size of rpp; track $index) {
+        <option value="{{size}}">{{size}}</option>
+        }
+      </select>
+    </label>
+  </div>
+
+  @if (loading) {
+  <div>Cargando...</div>
+  } @if (error) {
+  <div class="alert alert-danger">{{error}}</div>
+  }
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Categoría</th>
+        <th>Entrenador</th>
+        <th>Jugadores</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (equipo of aEquipos; track $index) {
+      <tr>
+        <td>{{equipo.id}}</td>
+        <td>{{equipo.nombre}}</td>
+        <td>{{equipo.categoria?.nombre}}</td>
+        <td>{{equipo.entrenador?.nombre}} {{equipo.entrenador?.apellido1}}</td>
+        <td>{{equipo.jugadores}}</td>
+        <td>
+          <a href="javascript:void(0)" (click)="view(equipo.id)">Ver</a>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <nav>
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="pageNumber==0">
+  <a class="page-link" (click)="onPageChange(pageNumber-1)" href="javascript:void(0)">Previous</a>
+      </li>
+
+      @for (p of getPages(); track $index) {
+        <li class="page-item" [class.active]="p==pageNumber">
+        <a class="page-link" (click)="onPageChange(p)" href="javascript:void(0)">{{p + 1}}</a>
+      </li>
+      }
+
+      <li class="page-item" [class.disabled]="pageNumber+1==totalPages">
+  <a class="page-link" (click)="onPageChange(pageNumber+1)" href="javascript:void(0)">Next</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="summary">Página {{pageNumber + 1}} de {{totalPages}} — Total: {{totalElements}}</div>
+
+  @if (selectedEquipo) {
+  <div class="card mt-3">
+    <div class="card-body">
+      <h5 class="card-title">Detalle: {{selectedEquipo.nombre}}</h5>
+      <p><strong>Id:</strong> {{selectedEquipo.id}}</p>
+      <p><strong>Categoría:</strong> {{selectedEquipo.categoria?.nombre}}</p>
+      <p><strong>Entrenador:</strong> {{selectedEquipo.entrenador?.nombre}} {{selectedEquipo.entrenador?.apellido1}}</p>
+      <p><strong>Jugadores:</strong> {{selectedEquipo.jugadores}}</p>
+      <button class="btn btn-secondary" (click)="closeDetail()">Cerrar</button>
+    </div>
+  </div>
+  }
+
+</div>

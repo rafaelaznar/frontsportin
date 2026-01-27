@@ -1,0 +1,14 @@
+.plist-equipo .controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.plist-equipo .summary {
+  margin-top: 0.5rem;
+}
+
+.plist-equipo table td, .plist-equipo table th {
+  vertical-align: middle;
+}
