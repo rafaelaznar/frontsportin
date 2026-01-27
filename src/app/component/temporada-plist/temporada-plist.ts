@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-
 import { RouterLink } from '@angular/router';
-import { IPage, ITemporada } from '../../model/temporada';
-//import { IPage } from '../../../model/plist';
+import { ITemporada } from '../../model/temporada';
+import { IPage } from '../../model/plist';
 import { TemporadaService } from '../../service/temporada';
 import { HttpErrorResponse } from '@angular/common/http';
 

@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { ITemporada, IPage } from "../model/temporada";
+import { ITemporada } from "../model/temporada";
+import { IPage } from "../model/plist";
 import { serverURL } from '../environment/environment';
 
 @Injectable({
