@@ -1,7 +1,7 @@
 export interface ILiga {
     id: number;
     nombre: string;
-    equipo: IEquipo[];
+    equipo: IEquipo;
 }
 
 export interface IEquipo {
