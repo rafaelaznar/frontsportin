@@ -39,6 +39,14 @@
                             <i class="bi bi-caret-down-fill ms-1" aria-hidden="true"></i>
                             } }</span>
                     </th>
+                    <th scope="col" (click)="onOrder('partidos')" style="cursor: pointer; width: 40%">
+                        <span class="header-inline">Partido @if (orderField === 'partidos') { @if (orderDirection ===
+                            'asc') {
+                            <i class="bi bi-caret-up-fill ms-1" aria-hidden="true"></i>
+                            } @if (orderDirection === 'desc') {
+                            <i class="bi bi-caret-down-fill ms-1" aria-hidden="true"></i>
+                            } }</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -47,6 +55,7 @@
                     <th scope="row">{{ oLiga.id }}</th>
                     <td>{{ oLiga.nombre }}</td>
                     <td>{{ oLiga.equipo.id}}</td>
+                    <td>{{ oLiga.partidos }}</td>
                 </tr>
                 }
             </tbody>
