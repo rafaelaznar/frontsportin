@@ -7,4 +7,5 @@ export interface ILiga {
 
 export interface IEquipo {
     id: number;
+    nombre?: string; // añadido: nombre del equipo (opcional si el backend no lo manda)
 }

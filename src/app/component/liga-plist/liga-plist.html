@@ -54,7 +54,7 @@
                 <tr>
                     <th scope="row">{{ oLiga.id }}</th>
                     <td>{{ oLiga.nombre }}</td>
-                    <td>{{ oLiga.equipo.id}}</td>
+                    <td>{{ oLiga.equipo?.nombre }} ({{ oLiga.equipo?.id }})</td>
                     <td>{{ oLiga.partidos }}</td>
                 </tr>
                 }
