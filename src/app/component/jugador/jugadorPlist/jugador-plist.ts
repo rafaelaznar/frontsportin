@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Paginacion } from '../../paginacion/paginacion';
-import { BotoneraRpp } from '../../botonera-rpp/botonera-rpp';
-import { JugadorService, IJugadorPage } from '../../../../service/jugador-service';
+import { Paginacion } from '../../shared/paginacion/paginacion';
+import { BotoneraRpp } from '../../shared/botonera-rpp/botonera-rpp';
+import { JugadorService, IJugadorPage } from '../../../service/jugador-service';
 
 @Component({
   standalone: true,
