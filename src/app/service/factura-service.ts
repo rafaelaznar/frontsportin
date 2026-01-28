@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 import { Observable } from 'rxjs';
-import { IFactura } from '../../model/factura';
-import { IPage } from '../../model/plist';
-import { serverURL } from '../../environment/environment';
+import { IPage } from '../model/plist';
+import { IFactura } from '../model/factura';
+import { serverURL } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root',
