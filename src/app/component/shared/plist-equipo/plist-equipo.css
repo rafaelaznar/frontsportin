@@ -12,3 +12,80 @@
 .plist-equipo table td, .plist-equipo table th {
   vertical-align: middle;
 }
+
+.plist-equipo .card-header h3 small {
+  font-size: 0.85rem;
+}
+
+.plist-equipo .badge {
+  font-size: 0.85em;
+}
+
+/* Forzar color negro en los números/badges para que no aparezcan en blanco */
+.plist-equipo .badge,
+.plist-equipo .badge * {
+  color: #000 !important;
+}
+
+.plist-equipo .card {
+  border-radius: 0.5rem;
+}
+
+.plist-equipo .controls label {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Top bar layout */
+.plist-equipo .top-bar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Pagination small spacing */
+.plist-equipo .top-pager .pagination {
+  margin: 0;
+}
+
+/* RPP button group */
+.plist-equipo .rpp-btn .btn {
+  border: 1px solid #dee2e6;
+  background: #fff;
+  color: #000;
+  padding: 0.25rem 0.6rem;
+}
+.plist-equipo .rpp-btn .btn.active {
+  background-color: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
+}
+
+/* Badges: fondo claro y texto negro (forzar) */
+.plist-equipo .badge,
+.plist-equipo .id-badge,
+.plist-equipo .count-badge {
+  background-color: #e9ecef;
+  color: #000 !important;
+  font-weight: 600;
+  padding: 0.35em 0.55em;
+}
+
+/* Table compact and aligned */
+.plist-equipo table th,
+.plist-equipo table td {
+  vertical-align: middle;
+}
+.plist-equipo table tbody tr td { color: #222; }
+
+/* Smaller summary */
+.plist-equipo .summary { font-size: 0.9rem; color:#444; }
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .plist-equipo .top-bar { flex-direction: column; gap: 0.5rem; align-items: stretch; }
+  .plist-equipo .top-pager { order: 1; }
+  .plist-equipo .flex-fill { order: 2; }
+  .plist-equipo .rpp-btn { order: 3; text-align: right; }
+}
