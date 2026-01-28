@@ -35,7 +35,7 @@
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
-          <th scope="col" (click)="onOrder('id')" style="cursor:pointer; width:10%">
+          <th scope="col" (click)="onOrder('id')" style="text-align:center; cursor:pointer; width:10%">
             <span class="header-inline">ID
               @if (orderField === 'id') {
                 @if (orderDirection === 'asc') {
@@ -46,7 +46,7 @@
               }
             </span>
           </th>
-          <th scope="col" (click)="onOrder('nombre')" style="cursor:pointer; width:45%">
+          <th scope="col" (click)="onOrder('nombre')" style="text-align:center; cursor:pointer; width:45%">
             <span class="header-inline">Nombre
               @if (orderField === 'nombre') {
                 @if (orderDirection === 'asc') {
@@ -57,9 +57,20 @@
               }
             </span>
           </th>
-          <th scope="col" (click)="onOrder('temporada')" style="cursor:pointer; width:20%">
+          <th scope="col" (click)="onOrder('temporada')" style="text-align:center; cursor:pointer; width:20%">
             <span class="header-inline">Temporada
               @if (orderField === 'temporada') {
+                @if (orderDirection === 'asc') {
+                  <i class="bi bi-caret-up-fill ms-1" aria-hidden="true"></i>
+                } @if (orderDirection === 'desc') {
+                  <i class="bi bi-caret-down-fill ms-1" aria-hidden="true"></i>
+                }
+              }
+            </span>
+          </th>
+          <th scope="col" (click)="onOrder('equipos')" style="text-align:center; cursor:pointer; width:20%">
+            <span class="header-inline">Equipos
+              @if (orderField === 'equipos') {
                 @if (orderDirection === 'asc') {
                   <i class="bi bi-caret-up-fill ms-1" aria-hidden="true"></i>
                 } @if (orderDirection === 'desc') {
@@ -73,9 +84,10 @@
       <tbody>
         @for (oCategoria of oPage?.content; track oCategoria.id ) {
         <tr>
-          <th scope="row">{{ oCategoria.id }}</th>
-          <td>{{ oCategoria.nombre }}</td>
-          <td>{{ oCategoria.temporada }}</td>
+          <th style="text-align:center;" scope="row">{{ oCategoria.id }}</th>
+          <td style="text-align:center;">{{ oCategoria.nombre }}</td>
+          <td style="text-align:center;">{{ oCategoria.temporada }}</td>
+          <td style="text-align:center;">{{ oCategoria.equipos }}</td>
         </tr>
         }
       </tbody>

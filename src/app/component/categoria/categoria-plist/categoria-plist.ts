@@ -13,7 +13,7 @@ import { BotoneraRpp } from "../../shared/botonera-rpp/botonera-rpp";
   templateUrl: './categoria-plist.html',
   styleUrl: './categoria-plist.css',
 })
-export class AdminPlist {
+export class CategoriaAdminPlist {
 
   oPage: IPage<ICategoria> | null = null;
   numPage: number = 0;
