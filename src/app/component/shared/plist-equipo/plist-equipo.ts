@@ -24,7 +24,6 @@ export class PlistEquipo {
   sort: string = 'id,asc';
 
   // filtros
-  txtSearch: string = '';
   selCategoriaId?: number = undefined; // se enviará como idCuota por inconsistencia del backend
   selEntrenadorId?: number = undefined;
 
@@ -32,7 +31,7 @@ export class PlistEquipo {
 
   loading: boolean = false;
   error: string | null = null;
-  selectedEquipo: IEquipo | null = null;
+  
 
   ngOnInit() {
     this.loadPage();
@@ -42,7 +41,7 @@ export class PlistEquipo {
     this.loading = true;
     this.error = null;
     try {
-      const res: IPageEquipo = await EquipoService.getPage({ page, size: this.pageSize, sort: this.sort, description: this.txtSearch, idCuota: this.selCategoriaId, idUsuario: this.selEntrenadorId });
+      const res: IPageEquipo = await EquipoService.getPage({ page, size: this.pageSize, sort: this.sort, idCuota: this.selCategoriaId, idUsuario: this.selEntrenadorId });
       this.aEquipos = res.content || [];
       this.pageNumber = res.number || 0;
       this.pageSize = res.size || this.pageSize;
@@ -75,29 +74,6 @@ export class PlistEquipo {
     this.loadPage(0);
   }
 
-  onSearchChange(ev: any) {
-    this.txtSearch = ev.target.value;
-    // debounce mínimo: simple timeout
-    if ((this as any)._debounce) clearTimeout((this as any)._debounce);
-    (this as any)._debounce = setTimeout(() => this.loadPage(0), 400);
-  }
-
-  // acción (ver) - muestra detalle inline
-  async view(id?: number) {
-    if (!id) return;
-    this.loading = true;
-    this.error = null;
-    try {
-      const equipo = await EquipoService.getOne(id);
-      this.selectedEquipo = equipo;
-    } catch (err: any) {
-      this.error = err?.message || ('Error ' + err?.status || 'Unknown');
-    } finally {
-      this.loading = false;
-      try { this.cd.detectChanges(); } catch (e) {}
-    }
-  }
-
-  closeDetail() { this.selectedEquipo = null; }
+  
 
 }

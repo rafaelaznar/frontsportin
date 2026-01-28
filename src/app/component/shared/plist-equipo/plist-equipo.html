@@ -2,12 +2,10 @@
   <h3>Listado de Equipos</h3>
 
   <div class="controls">
-    <input placeholder="Buscar por nombre" type="text" (input)="onSearchChange($event)" />
-
     <label>Mostrar
-      <select (change)="onSizeChange($event.target.value)" value="{{pageSize}}">
+      <select (change)="onSizeChange($any($event).target.value)">
         @for (size of rpp; track $index) {
-        <option value="{{size}}">{{size}}</option>
+        <option value="{{size}}" [selected]="size==pageSize">{{size}}</option>
         }
       </select>
     </label>
@@ -27,7 +25,7 @@
         <th>Categoría</th>
         <th>Entrenador</th>
         <th>Jugadores</th>
-        <th>Acciones</th>
+        
       </tr>
     </thead>
     <tbody>
@@ -38,9 +36,6 @@
         <td>{{equipo.categoria?.nombre}}</td>
         <td>{{equipo.entrenador?.nombre}} {{equipo.entrenador?.apellido1}}</td>
         <td>{{equipo.jugadores}}</td>
-        <td>
-          <a href="javascript:void(0)" (click)="view(equipo.id)">Ver</a>
-        </td>
       </tr>
       }
     </tbody>
@@ -66,17 +61,6 @@
 
   <div class="summary">Página {{pageNumber + 1}} de {{totalPages}} — Total: {{totalElements}}</div>
 
-  @if (selectedEquipo) {
-  <div class="card mt-3">
-    <div class="card-body">
-      <h5 class="card-title">Detalle: {{selectedEquipo.nombre}}</h5>
-      <p><strong>Id:</strong> {{selectedEquipo.id}}</p>
-      <p><strong>Categoría:</strong> {{selectedEquipo.categoria?.nombre}}</p>
-      <p><strong>Entrenador:</strong> {{selectedEquipo.entrenador?.nombre}} {{selectedEquipo.entrenador?.apellido1}}</p>
-      <p><strong>Jugadores:</strong> {{selectedEquipo.jugadores}}</p>
-      <button class="btn btn-secondary" (click)="closeDetail()">Cerrar</button>
-    </div>
-  </div>
-  }
+  
 
 </div>
