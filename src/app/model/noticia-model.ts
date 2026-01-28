@@ -3,7 +3,23 @@ export interface noticiaModel{
   titulo: string;
   contenido: string;
   fecha: Date;
-  imagen: string | null;
-  id_club?: number;
-  club?: { id: number; nombre?: string }
+  imagen: any | null;
+  id_club: number;
+}
+
+// Temporales
+
+export interface IClubModel {
+  id: number;
+  nombre?: string;
+}
+
+export interface IPuntuacionModel {
+  id: number;
+  puntuacion: number;
+}
+
+export interface IComentarioModel {
+  id: number;
+  contenido: string;
 }
