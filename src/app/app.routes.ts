@@ -5,5 +5,7 @@ import { UsuarioPlist } from './component/usuario/usuario-plist/usuario-plist';
 export const routes: Routes = [
     { path: '', component: Home },
     { path: 'usuario', component: UsuarioPlist },
-    { path: 'usuario?:id_tipousuario', component: UsuarioPlist }, // pte filtro
+    { path: 'usuario/tipousuario/:tipousuario', component: UsuarioPlist },
+    { path: 'usuario/rol/:rol', component: UsuarioPlist },
+    { path: 'usuario/club/:club', component: UsuarioPlist },
 ];
