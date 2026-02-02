@@ -25,7 +25,7 @@ import { PuntuacionPlistAdminRouted } from './component/puntuacion/plist-admin-r
 
 
 export const routes: Routes = [
-    
+
     { path: '', component: Home },
     { path: 'usuario', component: UsuarioPlist },
     { path: 'usuario/tipousuario/:tipousuario', component: UsuarioPlist },
@@ -47,8 +47,8 @@ export const routes: Routes = [
     { path: 'compra', component: CompraPlistAdminRouted },
     { path: 'compra/articulo/:articulo', component: CompraPlistAdminRouted },
     { path: 'compra/factura/:factura', component: CompraPlistAdminRouted },
-    { path: 'rolusuario', component: RolusuarioPlist },  
-    { path: 'tipoarticulo', component : TipoarticuloPlistAdminRouted}, 
+    { path: 'rolusuario', component: RolusuarioPlist },
+    { path: 'tipoarticulo', component : TipoarticuloPlistAdminRouted},
     { path: 'tipoarticulo/:club', component : TipoarticuloPlistAdminRouted},
     { path: 'jugador', component: JugadorPlisComponent},
     { path: 'jugador/usuario/:id', component: JugadorPlisComponent},
