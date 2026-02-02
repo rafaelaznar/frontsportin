@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Home } from './component/shared/home/home';
 import { ArticuloPlistAdminRouted } from './component/articulo/plist-admin-routed/articulo-plist';
+import { JugadorPlisComponent } from './component/jugador/jugadorPlist/jugador-plist';
 import { LigaPlistAdminRouted } from './component/liga/plist-admin-routed/liga-plist';
 import { NoticiaPlistAdminRouted } from './component/noticia/plist-admin-routed/noticia-plist';
 import { ClubPlistAdminRouted } from './component/club/plist-admin-routed/club-plist';
@@ -17,6 +18,9 @@ export const routes: Routes = [
     { path: 'liga/:equipo', component: LigaPlistAdminRouted },
     { path: 'articulo', component: ArticuloPlistAdminRouted},
     { path: 'articulo/:tipoarticulo', component: ArticuloPlistAdminRouted},
+    { path: 'jugador', component: JugadorPlisComponent},
+    { path: 'jugador/usuario/:id', component: JugadorPlisComponent},
+    { path: 'jugador/equipo/:id', component: JugadorPlisComponent}
     { path: 'noticia', component: NoticiaPlistAdminRouted},
     { path: 'noticia/:club', component: NoticiaPlistAdminRouted}
     { path: 'club/plist', component: ClubPlistAdminRouted}    
