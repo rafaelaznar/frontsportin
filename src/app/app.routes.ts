@@ -33,6 +33,7 @@ export const routes: Routes = [
     { path: 'liga/:equipo', component: LigaPlistAdminRouted },
     { path: 'articulo', component: ArticuloPlistAdminRouted},
     { path: 'articulo/:tipoarticulo', component: ArticuloPlistAdminRouted},
+    { path: 'usuario/:id', component: UsuarioViewRouted},
     { path: 'categoria', component: CategoriaPlistAdminRouted},
     { path: 'categoria/:temporada', component: CategoriaPlistAdminRouted},
     { path: 'partido', component: PartidoPlistAdminRouted},
