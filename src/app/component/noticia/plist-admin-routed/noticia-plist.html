@@ -156,7 +156,7 @@
               @if (!oNoticia.comentarios || oNoticia.comentarios === 0) {
                 <i class="bi bi-ban" aria-hidden="true"></i>
               } @else {
-                <a [routerLink]="['/comentario', oNoticia.id]">
+                <a [routerLink]="['/comentario/noticia', oNoticia.id]">
                   {{ oNoticia.comentarios }}
                 </a>
               }
