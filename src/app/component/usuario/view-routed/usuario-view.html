@@ -77,7 +77,7 @@
                 @if (oUsuario()?.club?.nombre) {
                   <a
                     [routerLink]="['/club/view', oUsuario()?.club?.id]"
-                    class="text-decoration-none text-reset"
+                    class="text-decoration-underline text-reset"
                     title="Ver club"
                   >
                     {{ oUsuario()?.club?.nombre }} ({{ oUsuario()?.club?.id }})
@@ -91,7 +91,7 @@
                 @if (oUsuario()?.tipousuario) {
                   <a
                     [routerLink]="['/tipousuario/view', oUsuario()?.tipousuario?.id]"
-                    class="text-decoration-none text-reset"
+                    class="text-decoration-underline text-reset"
                     title="Ver tipo de usuario"
                   >
                     {{ oUsuario()?.tipousuario?.descripcion }} ({{ oUsuario()?.tipousuario?.id }})
@@ -105,7 +105,7 @@
                 @if (oUsuario()?.rolusuario) {
                   <a
                     [routerLink]="['/rolusuario/view', oUsuario()?.rolusuario?.id]"
-                    class="text-decoration-none text-reset"
+                    class="text-decoration-underline text-reset"
                     title="Ver rol de usuario"
                   >
                     {{ oUsuario()?.rolusuario?.descripcion }} ({{ oUsuario()?.rolusuario?.id }})
@@ -129,7 +129,7 @@
                   <div class="text-muted small text-uppercase">Comentarios</div>
                   <a
                     [routerLink]="['/comentario', 'usuario', oUsuario()?.id]"
-                    class="fw-bold text-decoration-none text-reset d-inline-block"
+                    class="fw-bold text-decoration-underline text-reset d-inline-block"
                     title="Ver comentarios del usuario"
                   >
                     {{ oUsuario()?.comentarios }}
@@ -141,7 +141,7 @@
                   <div class="text-muted small text-uppercase">Puntuaciones</div>
                   <a
                     [routerLink]="['/puntuacion', 'usuario', oUsuario()?.id]"
-                    class="fw-bold text-decoration-none text-reset d-inline-block"
+                    class="fw-bold text-decoration-underline text-reset d-inline-block"
                     title="Ver puntuaciones del usuario"
                   >
                     {{ oUsuario()?.puntuaciones }}
@@ -153,7 +153,7 @@
                   <div class="text-muted small text-uppercase">Coment. art.</div>
                   <a
                     [routerLink]="['/comentarioart', 'usuario', oUsuario()?.id]"
-                    class="fw-bold text-decoration-none text-reset d-inline-block"
+                    class="fw-bold text-decoration-underline text-reset d-inline-block"
                     title="Ver comentarios de artículos del usuario"
                   >
                     {{ oUsuario()?.comentarioarts }}
@@ -165,7 +165,7 @@
                   <div class="text-muted small text-uppercase">Carritos</div>
                   <a
                     [routerLink]="['/carrito', 'usuario', oUsuario()?.id]"
-                    class="fw-bold text-decoration-none text-reset d-inline-block"
+                    class="fw-bold text-decoration-underline text-reset d-inline-block"
                     title="Ver carritos del usuario"
                   >
                     {{ oUsuario()?.carritos }}
@@ -177,7 +177,7 @@
                   <div class="text-muted small text-uppercase">Facturas</div>
                   <a
                     [routerLink]="['/factura', oUsuario()?.id]"
-                    class="fw-bold text-decoration-none text-reset d-inline-block"
+                    class="fw-bold text-decoration-underline text-reset d-inline-block"
                     title="Ver facturas del usuario"
                   >
                     {{ oUsuario()?.facturas }}
@@ -200,7 +200,7 @@
                     <div class="text-muted small text-uppercase">Nombre</div>
                     <a
                       [routerLink]="['/club/view', oUsuario()?.club?.id]"
-                      class="fw-semibold text-decoration-none text-reset d-inline-block"
+                      class="fw-semibold text-decoration-underline text-reset d-inline-block"
                       title="Ver club"
                     >
                       {{ oUsuario()?.club?.nombre }}
@@ -212,7 +212,7 @@
                     <div class="text-muted small text-uppercase">Dirección</div>
                     <a
                       [routerLink]="['/club/view', oUsuario()?.club?.id]"
-                      class="fw-semibold text-decoration-none text-reset d-inline-block"
+                      class="fw-semibold text-decoration-underline text-reset d-inline-block"
                       title="Ver club"
                     >
                       {{ oUsuario()?.club?.direccion }}
@@ -224,7 +224,7 @@
                     <div class="text-muted small text-uppercase">Teléfono</div>
                     <a
                       [routerLink]="['/club/view', oUsuario()?.club?.id]"
-                      class="fw-semibold text-decoration-none text-reset d-inline-block"
+                      class="fw-semibold text-decoration-underline text-reset d-inline-block"
                       title="Ver club"
                     >
                       {{ oUsuario()?.club?.telefono }}
@@ -236,7 +236,7 @@
                     <div class="text-muted small text-uppercase">Fecha alta</div>
                     <a
                       [routerLink]="['/club/view', oUsuario()?.club?.id]"
-                      class="fw-semibold text-decoration-none text-reset d-inline-block"
+                      class="fw-semibold text-decoration-underline text-reset d-inline-block"
                       title="Ver club"
                     >
                       {{ oUsuario()?.club?.fechaAlta | datetime }}
@@ -248,7 +248,7 @@
                     <div class="text-muted small text-uppercase">Usuarios</div>
                     <a
                       [routerLink]="['/usuario', 'club', oUsuario()?.club?.id]"
-                      class="fw-semibold text-decoration-none text-reset d-inline-block"
+                      class="fw-semibold text-decoration-underline text-reset d-inline-block"
                       title="Ver usuarios del club"
                     >
                       {{ oUsuario()?.club?.usuarios }}
@@ -260,7 +260,7 @@
                     <div class="text-muted small text-uppercase">Temporadas</div>
                     <a
                       [routerLink]="['/temporada', oUsuario()?.club?.id]"
-                      class="fw-semibold text-decoration-none text-reset d-inline-block"
+                      class="fw-semibold text-decoration-underline text-reset d-inline-block"
                       title="Ver temporadas del club"
                     >
                       {{ oUsuario()?.club?.temporadas }}
@@ -272,7 +272,7 @@
                     <div class="text-muted small text-uppercase">Noticias</div>
                     <a
                       [routerLink]="['/noticia', oUsuario()?.club?.id]"
-                      class="fw-semibold text-decoration-none text-reset d-inline-block"
+                      class="fw-semibold text-decoration-underline text-reset d-inline-block"
                       title="Ver noticias del club"
                     >
                       {{ oUsuario()?.club?.noticias }}
@@ -284,7 +284,7 @@
                     <div class="text-muted small text-uppercase">Tipos artículos</div>
                     <a
                       [routerLink]="['/tipoarticulo', oUsuario()?.club?.id]"
-                      class="fw-semibold text-decoration-none text-reset d-inline-block"
+                      class="fw-semibold text-decoration-underline text-reset d-inline-block"
                       title="Ver tipos de artículos del club"
                     >
                       {{ oUsuario()?.club?.tipoarticulos }}
