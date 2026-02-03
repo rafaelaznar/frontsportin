@@ -17,6 +17,7 @@ import { CuotaPlistAdminRouted } from './component/cuota/plist-admin-routed/cuot
 import { TipousuarioPlistAdminRouted } from './component/tipousario/plist-admin-routed/tipousuario-plist';
 import { TemporadaPlist } from './component/temporada/temporada-plist/temporada-plist';
 import { PlistEquipo } from './component/equipo/equipo-plist';
+import { PagoPlistComponent } from './component/pago/plist-admin-routed/pago-plist';
 import { PuntuacionPlistAdminRouted } from './component/puntuacion/plist-admin-routed/puntuacion-plist';
 
 
@@ -54,6 +55,9 @@ export const routes: Routes = [
     { path: 'tipousuario', component: TipousuarioPlistAdminRouted},
     { path: 'equipo', component: PlistEquipo },
     { path: 'equipo/:categoria', component: PlistEquipo },
+    { path: 'pago', component: PagoPlistComponent},
+    { path: 'pago/cuota/:id', component: PagoPlistComponent},
+    { path: 'pago/jugador/:id', component: PagoPlistComponent},
     { path: 'puntuacion', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/noticia/:noticia', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/usuario/:usuario', component: PuntuacionPlistAdminRouted},
