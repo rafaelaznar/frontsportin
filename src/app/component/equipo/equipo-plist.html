@@ -149,7 +149,7 @@
             <td>{{ oEquipo.nombre }}</td>
             <td>
               @if (oEquipo.categoria) {
-                <a [routerLink]="['/categoria', '/view', oEquipo.categoria.id]">
+                <a [routerLink]="['/categoria', 'view', oEquipo.categoria.id]">
                   {{ (oEquipo.categoria.nombre ?? '') | trim: 20 }}
                   {{ ' (' + oEquipo.categoria.id + ')' }}
                 </a>
@@ -167,7 +167,7 @@
             </td>
             <td>
               @if (oEquipo.entrenador) {
-                <a [routerLink]="['/jugador', '/view', oEquipo.entrenador.id]">
+                <a [routerLink]="['/jugador', 'view', oEquipo.entrenador.id]">
                   {{ oEquipo.entrenador.nombre }} {{ oEquipo.entrenador.apellido1 }}
                   <small class="text-muted">({{ oEquipo.entrenador.id }})</small>
                 </a>
@@ -179,7 +179,7 @@
               @if (oEquipo.jugadores === 0) {
                 <i class="bi bi-ban" aria-hidden="true"></i>
               } @else {
-                <a [routerLink]="['/jugador', '/equipo', oEquipo.id]">
+                <a [routerLink]="['/jugador', 'equipo', oEquipo.id]">
                   {{ oEquipo.jugadores }}
                 </a>
               }

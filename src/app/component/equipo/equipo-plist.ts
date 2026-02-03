@@ -1,4 +1,4 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subject, Subscription } from 'rxjs';
@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './equipo-plist.html',
   styleUrl: './equipo-plist.css',
 })
-export class PlistEquipo {
+export class PlistEquipo implements OnInit, OnDestroy {
   // Datos originales del servidor (todos los registros)
   allEquipos = signal<IEquipo[]>([]);
   // Datos filtrados por búsqueda
