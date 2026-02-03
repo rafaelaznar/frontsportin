@@ -40,7 +40,7 @@ export class PlistEquipo implements OnInit, OnDestroy {
   orderDirection = signal<'asc' | 'desc'>('asc');
 
   // Variables de filtro
-  categoria = signal<number>(0);
+  id_categoria = signal<number>(0);
   id_usuario = signal<number>(0);
 
   // Variables de búsqueda
@@ -59,9 +59,9 @@ export class PlistEquipo implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('categoria');
+    const id = this.route.snapshot.paramMap.get('id_categoria');
     if (id) {
-      this.categoria.set(+id);
+      this.id_categoria.set(+id);
     }
 
     // Configurar el debounce para la búsqueda
@@ -95,7 +95,7 @@ export class PlistEquipo implements OnInit, OnDestroy {
         this.orderField(),
         this.orderDirection(),
         '',
-        this.categoria(),
+        this.id_categoria(),
         this.id_usuario(),
       )
       .subscribe({

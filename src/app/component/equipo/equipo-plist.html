@@ -13,7 +13,7 @@
   }
 
   <!-- Búsqueda por nombre y por ID -->
-  @if (categoria() <= 0) {
+  @if (id_categoria() <= 0) {
     <div class="d-flex justify-content-center my-2">
       <input
         class="form-control me-2"
@@ -45,8 +45,8 @@
   <!-- Total registros -->
   <div class="d-flex justify-content-center my-1">
     <small class="text-muted">Total registros: {{ totalRecords() || 0 }}</small>
-    @if (categoria() > 0) {
-      <small class="text-muted ms-3">Filtro: id de categoría = {{ categoria() }}</small>
+    @if (id_categoria() > 0) {
+      <small class="text-muted ms-3">Filtro: id de categoría = {{ id_categoria() }}</small>
       <!-- quitar el filtro -->
       <a class="ms-2" [routerLink]="['/equipo']" role="button" title="Quitar filtro"
         ><i class="bi bi-x-lg" aria-hidden="true"></i> Quitar filtro</a
