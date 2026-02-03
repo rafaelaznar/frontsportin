@@ -25,21 +25,18 @@ export class EquipoService {
     if (direction === '') {
       direction = 'asc';
     }
+    
+    let url = `${serverURL}/equipo?page=${page}&size=${rpp}&sort=${order},${direction}`;
+    
     if (id_categoria > 0) {
-      return this.oHttp.get<IPage<IEquipo>>(
-        serverURL +
-          `/equipo?page=${page}&size=${rpp}&sort=${order},${direction}&id_categoria=${id_categoria}`,
-      );
+      url += `&idCuota=${id_categoria}`;
     }
+    
     if (nombre && nombre.length > 0) {
-      return this.oHttp.get<IPage<IEquipo>>(
-        serverURL +
-          `/equipo?page=${page}&size=${rpp}&sort=${order},${direction}&nombre=${nombre}`,
-      );
+      url += `&description=${nombre}`;
     }
-    return this.oHttp.get<IPage<IEquipo>>(
-      serverURL + `/equipo?page=${page}&size=${rpp}&sort=${order},${direction}`,
-    );
+    
+    return this.oHttp.get<IPage<IEquipo>>(url);
   }
 
   // get(id: number): Observable<IEquipo> {

@@ -149,16 +149,16 @@
             <td>{{ oEquipo.nombre }}</td>
             <td>
               @if (oEquipo.categoria) {
-                <a [routerLink]="['/categoria', 'view', oEquipo.categoria.id]">
+                <a [routerLink]="['/categoria', oEquipo.categoria.id]">
                   {{ (oEquipo.categoria.nombre ?? '') | trim: 20 }}
-                  {{ ' (' + oEquipo.categoria.id + ')' }}
                 </a>
-                <!-- Botón alineado a la derecha para filtrar categoria -->
+                <small class="text-muted">({{ oEquipo.categoria.id }})</small>
+                <!-- Botón alineado a la derecha para filtrar equipos por esta categoría -->
                 <a
                   class="btn btn-warning btn-sm ms-2 float-end"
                   [routerLink]="['/equipo', oEquipo.categoria.id]"
                   role="button"
-                  title="Filtrar por categoría"
+                  title="Filtrar equipos por esta categoría"
                   ><i class="bi bi-funnel-fill" aria-hidden="true"></i
                 ></a>
               } @else {
@@ -167,10 +167,10 @@
             </td>
             <td>
               @if (oEquipo.entrenador) {
-                <a [routerLink]="['/jugador', 'view', oEquipo.entrenador.id]">
+                <a [routerLink]="['/usuario', 'view', oEquipo.entrenador.id]">
                   {{ oEquipo.entrenador.nombre }} {{ oEquipo.entrenador.apellido1 }}
-                  <small class="text-muted">({{ oEquipo.entrenador.id }})</small>
                 </a>
+                <small class="text-muted">({{ oEquipo.entrenador.id }})</small>
               } @else {
                 <i class="bi bi-ban" aria-hidden="true"></i>
               }
