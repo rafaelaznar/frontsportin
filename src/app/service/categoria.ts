@@ -45,4 +45,9 @@ export class CategoriaService {
       serverURL + `/categoria?page=${page}&size=${rpp}&sort=${order},${direction}`
     );
   }
+
+  // Get de categoría por id
+  get(id: number): Observable<ICategoria> {
+    return this.oHttp.get<ICategoria>(`${serverURL}/categoria/${id}`);
+  }
 }
