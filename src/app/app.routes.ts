@@ -22,7 +22,6 @@ import { CarritoPlistAdminRouted } from './component/carrito/plist-admin-routed/
 import { ComentarioPlistAdminRouted } from './component/comentario/plist-admin-routed/comentario-plist';
 import { PagoPlistComponent } from './component/pago/plist-admin-routed/pago-plist';
 import { PuntuacionPlistAdminRouted } from './component/puntuacion/plist-admin-routed/puntuacion-plist';
-import { ComentarioPlistAdminRouted } from './component/comentario/plist-admin-routed/comentario-plist';
 
 
 export const routes: Routes = [
@@ -50,11 +49,6 @@ export const routes: Routes = [
     { path: 'compra/factura/:factura', component: CompraPlistAdminRouted },
     { path: 'rolusuario', component: RolusuarioPlist },
     { path: 'tipoarticulo', component : TipoarticuloPlistAdminRouted},
-    { path: 'compra', component: CompraPlistAdminRouted },
-    { path: 'compra/:articulo', component: CompraPlistAdminRouted },
-    { path: 'compra/factura/:factura', component: CompraPlistAdminRouted },
-    { path: 'rolusuario', component: RolusuarioPlist },
-    { path: 'tipoarticulo', component : TipoarticuloPlistAdminRouted},
     { path: 'tipoarticulo/:club', component : TipoarticuloPlistAdminRouted},
     { path: 'jugador', component: JugadorPlisComponent},
     { path: 'jugador/usuario/:id', component: JugadorPlisComponent},
@@ -79,7 +73,4 @@ export const routes: Routes = [
     { path: 'puntuacion', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/noticia/:noticia', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/usuario/:usuario', component: PuntuacionPlistAdminRouted},
-    { path: 'comentario', component: ComentarioPlistAdminRouted },
-    { path: 'comentario/usuario/:usuario', component: ComentarioPlistAdminRouted},
-    { path: 'comentario/noticia/:noticia', component: ComentarioPlistAdminRouted},
 ];
