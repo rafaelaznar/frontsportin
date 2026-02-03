@@ -1,25 +1,46 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ComentarioartDetailAdminUnrouted } from '../detail-admin-unrouted/detail-admin-unrouted';
+import { Component, signal, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ComentarioartService } from '../../../service/comentarioart';
+import { comentarioartModel } from '../../../model/comentarioart';
 
 @Component({
   selector: 'app-comentarioart-view',
-  standalone: true,
-  imports: [ComentarioartDetailAdminUnrouted],
+  imports: [CommonModule, RouterLink],
   templateUrl: './comentarioart-view.html',
   styleUrl: './comentarioart-view.css',
 })
-export class ComentarioartViewRouted {
-  
-  id!: number;
+export class ComentarioartViewRouted implements OnInit {
+  private route = inject(ActivatedRoute);
+  private oComentarioartService = inject(ComentarioartService);
 
-  constructor(private route: ActivatedRoute) {
-
-  }
+  oComentarioart = signal<comentarioartModel | null>(null);
+  loading = signal(true);
+  error = signal<string | null>(null);
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.id = Number(params.get('id'));
+    const idParam = this.route.snapshot.paramMap.get('id');
+    const id = idParam ? Number(idParam) : NaN;
+    if (isNaN(id)) {
+      this.error.set('ID no valido');
+      this.loading.set(false);
+      return;
+    }
+    this.load(id);
+  }
+
+  private load(id: number) {
+    this.oComentarioartService.getById(id).subscribe({
+      next: (data: comentarioartModel) => {
+        this.oComentarioart.set(data);
+        this.loading.set(false);
+      },
+      error: (err: HttpErrorResponse) => {
+        this.error.set('Error cargando el comentario');
+        this.loading.set(false);
+        console.error(err);
+      },
     });
   }
 }
