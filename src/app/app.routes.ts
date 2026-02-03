@@ -83,5 +83,4 @@ export const routes: Routes = [
     { path: 'comentarioart/view/:id', component: ComentarioartViewRouted},
     { path: 'comentarioart/articulo/:id', component: ComentarioartPlistAdminRouted},
     { path: 'comentarioart/usuario/:id', component: ComentarioartPlistAdminRouted},
-
 ];
