@@ -149,10 +149,18 @@
             <td>{{ oEquipo.nombre }}</td>
             <td>
               @if (oEquipo.categoria) {
-                <a [routerLink]="['/equipo', oEquipo.categoria.id]">
+                <a [routerLink]="['/categoria', oEquipo.categoria.id]">
                   {{ (oEquipo.categoria.nombre ?? '') | trim: 20 }}
                 </a>
                 <small class="text-muted">({{ oEquipo.categoria.id }})</small>
+                <!-- Botón alineado a la derecha para filtrar equipos por esta categoría -->
+                <a
+                  class="btn btn-warning btn-sm ms-2 float-end"
+                  [routerLink]="['/equipo', oEquipo.categoria.id]"
+                  role="button"
+                  title="Filtrar equipos por esta categoría"
+                  ><i class="bi bi-funnel-fill" aria-hidden="true"></i
+                ></a>
               } @else {
                 <i class="bi bi-ban" aria-hidden="true"></i>
               }
