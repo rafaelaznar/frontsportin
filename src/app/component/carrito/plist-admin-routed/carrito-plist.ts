@@ -76,8 +76,8 @@ export class CarritoPlistAdminRouted {
 
     this.carritoService
       .getPage(
-        0, // siempre cargamos desde la primera página
-        1000, // lote grande para filtrar en cliente
+        this.numPage(),
+        this.numRpp(),
         this.orderField(),
         this.orderDirection(),
         this.filtro().trim(),
