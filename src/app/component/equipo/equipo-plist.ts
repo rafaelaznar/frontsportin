@@ -41,6 +41,7 @@ export class PlistEquipo implements OnInit, OnDestroy {
 
   // Variables de filtro
   categoria = signal<number>(0);
+  id_usuario = signal<number>(0);
 
   // Variables de búsqueda
   nombre = signal<string>('');
@@ -95,6 +96,7 @@ export class PlistEquipo implements OnInit, OnDestroy {
         this.orderDirection(),
         '',
         this.categoria(),
+        this.id_usuario(),
       )
       .subscribe({
         next: (data: IPage<IEquipo>) => {

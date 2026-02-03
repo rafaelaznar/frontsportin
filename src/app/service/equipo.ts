@@ -18,6 +18,7 @@ export class EquipoService {
     direction: string = '',
     nombre: string = '',
     id_categoria: number = 0,
+    id_usuario: number = 0,
   ): Observable<IPage<IEquipo>> {
     if (order === '') {
       order = 'id';
@@ -29,11 +30,15 @@ export class EquipoService {
     let url = `${serverURL}/equipo?page=${page}&size=${rpp}&sort=${order},${direction}`;
     
     if (id_categoria > 0) {
-      url += `&idCuota=${id_categoria}`;
+      url += `&id_categoria=${id_categoria}`;
+    }
+    
+    if (id_usuario > 0) {
+      url += `&id_usuario=${id_usuario}`;
     }
     
     if (nombre && nombre.length > 0) {
-      url += `&description=${nombre}`;
+      url += `&descripcion=${nombre}`;
     }
     
     return this.oHttp.get<IPage<IEquipo>>(url);
