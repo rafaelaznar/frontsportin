@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { IRolusuario } from '../../../model/rolusuario';
 import { RolusuarioService } from '../../../service/rolusuario';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { DatetimePipe } from '../../../pipe/datetime-pipe';
+
 
 
 @Component({
   selector: 'app-rolusuario-view',
-  imports: [CommonModule, RouterLink, DatetimePipe],
+  imports: [CommonModule, RouterLink],
   templateUrl: './rolusuario-view.html',
   styleUrl: './rolusuario-view.css',
 })
