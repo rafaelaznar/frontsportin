@@ -53,21 +53,25 @@
 
      <div class="col-lg-4">
         <div class="card border">
-            <div class="card-header bg-light small text-uppercase fw-semibold">Relaciones</div>
-            <div class="card-body p-2">
-            <div class="row g-1">
-                <div class="col-5 text-muted small text-uppercase">Usuarios</div>
-                <div class="col-7 fw-semibold small">
-                @if (oRolusuario()?.usuarios !== undefined && oRolusuario()!.usuarios > 0) {
+          <div class="card-header bg-light small text-uppercase fw-semibold">Actividad</div>
+          <div class="card-body p-2">
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="border rounded p-2 bg-white">
+                  <div class="text-muted small text-uppercase">Usuarios</div>
+                  <div class="fw-bold">
+                    @if (oRolusuario()?.usuarios !== undefined && oRolusuario()!.usuarios > 0) {
                     <a [routerLink]="['/usuario', 'rol', oRolusuario()?.id]" class="text-decoration-none">
                     {{ oRolusuario()?.usuarios }}
                     </a>
-                } @else {
+                    } @else {
                     Sin usuarios
-                }
+                    }
+                    </div>
                 </div>
+              </div>
             </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>
