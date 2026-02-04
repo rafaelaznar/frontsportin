@@ -9,7 +9,7 @@ import { DatetimePipe } from '../../../pipe/datetime-pipe';
 @Component({
   selector: 'app-view-routed',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, DatetimePipe],
   templateUrl: './puntuacion-view.html',
   styleUrls: ['./puntuacion-view.css'],
 })
