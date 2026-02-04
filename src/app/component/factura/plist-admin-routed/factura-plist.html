@@ -1,6 +1,6 @@
 <div class="container my-3">
   <div class="d-flex justify-content-center my-3">
-    <h1>Lista de Facturas</h1>
+    <h1>Facturas</h1>
   </div>
   <div class="d-flex justify-content-center my-1">
     <small class="text-muted">Total registros: {{ totalElementsCount() || 0 }}</small>
@@ -88,7 +88,7 @@
              @if (oFactura.compras === 0) {
                 <i class="bi bi-ban" aria-hidden="true"></i> 
               } @else {
-                <a [routerLink]="['/compra', oFactura.id]">
+                <a [routerLink]="['/compra/factura', oFactura.id]">
                   {{ oFactura.compras }}
                 </a>
               } 

@@ -1,6 +1,6 @@
 <div class="container my-2">
   <div class="d-flex justify-content-center my-3">
-    <h1>Lista de Artículos</h1>
+    <h1>Artículos</h1>
   </div>
 
   <!-- Aviso (mensaje desde queryParams) -->
@@ -162,7 +162,7 @@
               <!-- Botón alineado a la derecha para filtrar tipoarticulo -->
               <a
                 class="btn btn-warning btn-sm ms-2 float-end"
-                [routerLink]="['/articulo', oArticulo.tipoarticulo.id]"
+                [routerLink]="['/articulo/tipoarticulo', oArticulo.tipoarticulo.id]"
                 role="button"
                 title="Editar"
                 ><i class="bi bi-funnel-fill" aria-hidden="true"></i
@@ -172,7 +172,7 @@
               @if (oArticulo.comentarioarts === 0) {
                 <i class="bi bi-ban" aria-hidden="true"></i> 
               } @else {
-                <a [routerLink]="['/comentarioart', oArticulo.id]">
+                <a [routerLink]="['/comentarioart/articulo', oArticulo.id]">
                   {{ oArticulo.comentarioarts }}
                 </a>
               }
@@ -182,7 +182,7 @@
                 <!-- icono de vacío-->
                 <i class="bi bi-ban" aria-hidden="true"></i> 
               } @else {
-                <a [routerLink]="['/compra', oArticulo.id]">
+                <a [routerLink]="['/compra/articulo', oArticulo.id]">
                   {{ oArticulo.compras }}
                 </a>
               }
@@ -191,7 +191,7 @@
               @if (oArticulo.carritos === 0) {
                 <i class="bi bi-ban" aria-hidden="true"></i> 
               } @else {
-                <a [routerLink]="['/carrito', oArticulo.id]">
+                <a [routerLink]="['/carrito/articulo', oArticulo.id]">
                   {{ oArticulo.carritos }}
                 </a>
               }
