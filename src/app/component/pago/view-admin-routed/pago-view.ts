@@ -9,7 +9,7 @@ import { IPago } from '../../../model/pago';
 
 @Component({
   selector: 'app-pago-view',
-  imports: [CommonModule, RouterLink, DatetimePipe],
+  imports: [CommonModule, RouterLink],
   templateUrl: './pago-view.html',
   styleUrl: './pago-view.css',
 })
