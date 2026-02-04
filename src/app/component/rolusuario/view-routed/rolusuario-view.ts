@@ -13,7 +13,7 @@ import { DatetimePipe } from '../../../pipe/datetime-pipe';
   templateUrl: './rolusuario-view.html',
   styleUrl: './rolusuario-view.css',
 })
-export class RolusuarioViewRouted implements OnInit {
+export class RolusuarioViewAdminRouted implements OnInit {
   private route = inject(ActivatedRoute);
   private oRolusuarioService = inject(RolusuarioService);
   //private snackBar = inject(MatSnackBar);
