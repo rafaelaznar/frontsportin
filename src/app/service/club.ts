@@ -13,6 +13,10 @@ export class ClubService {
   private http = inject(HttpClient);
   private url = `${serverURL}/club`;
 
+  get(id: number): Observable<IClub> {
+    return this.http.get<IClub>(`${this.url}/${id}`);
+  }
+
   getPage(
     page: number,
     size: number,
@@ -22,5 +26,9 @@ export class ClubService {
     return this.http.get<IPage<IClub>>(
       `${this.url}?page=${page}&size=${size}&sort=${sort},${direction}`
     );
+  }
+
+  count(): Observable<number> {
+    return this.http.get<number>(`${this.url}/count`);
   }
 }

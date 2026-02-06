@@ -42,9 +42,9 @@ export class CuotaService {
     );
   }
 
-  // get(id: number): Observable<ICuota> {
-  //   return this.oHttp.get<ICuota>(serverURL + '/cuota/' + id);
-  // }
+  get(id: number): Observable<ICuota> {
+    return this.oHttp.get<ICuota>(serverURL + '/cuota/' + id);
+  }
 
   // create(cuota: Partial<ICuota>): Observable<number> {
   //   return this.oHttp.post<number>(serverURL + '/cuota', cuota);
@@ -61,4 +61,8 @@ export class CuotaService {
   // empty(): Observable<number> {
   //   return this.oHttp.delete<number>(serverURL + '/cuota/empty');
   // }
+
+  count(): Observable<number> {
+    return this.oHttp.get<number>(serverURL + '/cuota/count');
+  }
 }

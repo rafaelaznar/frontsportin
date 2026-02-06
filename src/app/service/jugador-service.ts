@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { serverURL } from '../environment/environment';
-import { IJugador, IUsuario, IEquipo } from '../model/jugador';
+import { IJugador } from '../model/jugador';
 import { IPage } from '../model/plist';
 
 @Injectable({
@@ -50,9 +50,9 @@ export class JugadorService {
     return this.http.get<IPage<IJugador>>(url);
   }
 
-  // getById(id: number): Observable<IJugador> {
-  //   return this.http.get<IJugador>(serverURL + '/jugador/' + id);
-  // }
+  getById(id: number): Observable<IJugador> {
+    return this.http.get<IJugador>(serverURL + '/jugador/' + id);
+  }
 
   // create(jugador: Partial<IJugador>): Observable<number> {
   //   return this.http.post<number>(serverURL + '/jugador', jugador);
@@ -69,4 +69,8 @@ export class JugadorService {
   // empty(): Observable<number> {
   //   return this.http.delete<number>(serverURL + '/jugador/empty');
   // }
+
+  count(): Observable<number> {
+    return this.http.get<number>(serverURL + '/jugador/count');
+  }
 }

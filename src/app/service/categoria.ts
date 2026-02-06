@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ICategoria, ITemporada } from '../model/categoria';
+import { ICategoria } from '../model/categoria';
 import { Observable } from 'rxjs';
 import { IPage } from '../model/plist';
 import { HttpClient } from '@angular/common/http';
@@ -44,5 +44,15 @@ export class CategoriaService {
     return this.oHttp.get<IPage<ICategoria>>(
       serverURL + `/categoria?page=${page}&size=${rpp}&sort=${order},${direction}`
     );
+  }
+
+  // Get de categoría por id
+  get(id: number): Observable<ICategoria> {
+    return this.oHttp.get<ICategoria>(`${serverURL}/categoria/${id}`);
+  }
+
+  // Obtener el conteo total de categorías
+  count(): Observable<number> {
+    return this.oHttp.get<number>(`${serverURL}/categoria/count`);
   }
 }

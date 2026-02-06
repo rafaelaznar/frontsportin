@@ -1,6 +1,6 @@
 <div class="container my-2">
   <div class="d-flex justify-content-center my-3">
-    <h1>Lista de Noticias</h1>
+    <h1>Noticias</h1>
   </div>
 
   <!-- Aviso (mensaje desde queryParams) -->
@@ -146,7 +146,7 @@
               <!-- Botón alineado a la derecha para filtrar club -->
               <a
                 class="btn btn-warning btn-sm ms-2 float-end"
-                [routerLink]="['/noticia', oNoticia.club.id]"
+                [routerLink]="['/noticia/club', oNoticia.club.id]"
                 role="button"
                 title="Filtrar por club"
                 ><i class="bi bi-funnel-fill" aria-hidden="true"></i

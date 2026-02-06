@@ -33,12 +33,19 @@ export class LigaService {
     }
     if (nombre && nombre.length > 0) {
       return this.oHttp.get<IPage<ILiga>>(
-        serverURL +
-          `/liga?page=${page}&size=${rpp}&sort=${order},${direction}&nombre=${nombre}`,
+        serverURL + `/liga?page=${page}&size=${rpp}&sort=${order},${direction}&nombre=${nombre}`,
       );
     }
     return this.oHttp.get<IPage<ILiga>>(
       serverURL + `/liga?page=${page}&size=${rpp}&sort=${order},${direction}`,
     );
+  }
+
+  count(): Observable<number> {
+    return this.oHttp.get<number>(serverURL + '/liga/count');
+  }
+
+  get(id: number): Observable<ILiga> {
+    return this.oHttp.get<ILiga>(serverURL + `/liga/${id}`);
   }
 }
