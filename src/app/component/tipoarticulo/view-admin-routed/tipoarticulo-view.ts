@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { DatetimePipe } from '../../../pipe/datetime-pipe';
 import { TipoarticuloService } from '../../../service/tipoarticulo';
 import { ITipoarticulo } from '../../../model/tipoarticulo';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tipoarticulo-view',
@@ -16,21 +16,22 @@ import { ITipoarticulo } from '../../../model/tipoarticulo';
 export class TipoarticuloViewAdminRouted implements OnInit {
   private route = inject(ActivatedRoute);
   private oTipoarticuloService = inject(TipoarticuloService);
-  //private snackBar = inject(MatSnackBar);
+  private snackBar = inject(MatSnackBar);
 
   oTipoarticulo = signal<ITipoarticulo | null>(null);
   loading = signal(true);
   error = signal<string | null>(null);
+  idTipoarticulo = signal<number>(0);
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
-    const id = idParam ? Number(idParam) : NaN;
-    if (isNaN(id)) {
+    this.idTipoarticulo.set(idParam ? Number(idParam) : NaN);
+    if (isNaN(this.idTipoarticulo())) {
       this.error.set('ID no válido');
       this.loading.set(false);
       return;
     }
-    this.load(id);
+    this.load(this.idTipoarticulo());
   }
 
   load(id: number) {
@@ -42,7 +43,7 @@ export class TipoarticuloViewAdminRouted implements OnInit {
       error: (err: HttpErrorResponse) => {
         this.error.set('Error cargando el tipo de artículo');
         this.loading.set(false);
-        //this.snackBar.open('Error cargando el tipo de artículo', 'Cerrar', { duration: 4000 });
+        this.snackBar.open('Error cargando el tipo de artículo', 'Cerrar', { duration: 4000 });
         console.error(err);
       },
     });
