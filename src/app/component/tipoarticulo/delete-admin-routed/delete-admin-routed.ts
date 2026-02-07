@@ -1,13 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
-import { TipoarticuloViewAdminRouted } from '../view-admin-routed/tipoarticulo-view';
 import { TipoarticuloService } from '../../../service/tipoarticulo';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { TipoarticuloDetailAdminUnrouted } from '../tipoarticulo-detail/tipoarticulo-detail';
 
 @Component({
   selector: 'app-delete-admin-routed',
-  imports: [TipoarticuloViewAdminRouted],
+  imports: [TipoarticuloDetailAdminUnrouted],
   templateUrl: './delete-admin-routed.html',
   styleUrl: './delete-admin-routed.css',
 })
