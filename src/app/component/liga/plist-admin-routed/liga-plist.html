@@ -103,8 +103,15 @@
                                 title="Ver"><i class="bi bi-eye" aria-hidden="true"></i></a>
                             <a class="btn btn-warning btn-sm" [routerLink]="['/liga/edit', oLiga.id]" role="button"
                                 title="Editar"><i class="bi bi-pencil" aria-hidden="true"></i></a>
+                            @if (oLiga.partidos === 0) {
                             <a class="btn btn-danger btn-sm" [routerLink]="['/liga/delete', oLiga.id]" role="button"
                                 title="Eliminar"><i class="bi bi-trash" aria-hidden="true"></i></a>
+                            } @else {
+                            <button class="btn btn-danger btn-sm" type="button" disabled
+                                title="No se puede eliminar una liga con partidos asociados">
+                                <i class="bi bi-trash" aria-hidden="true"></i>
+                            </button>
+                            }
                         </div>
                     </div>
                 </td>
