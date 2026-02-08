@@ -1,0 +1,95 @@
+<div class="container py-3">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded bg-light p-2 mb-3">
+    <div>
+      <div class="text-uppercase small text-muted fw-semibold">Ligas</div>
+      <div class="fw-bold">Edicion de Liga</div>
+      <div class="text-muted small">Panel administrativo</div>
+    </div>
+    <a class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2" (click)="doCancel()">
+      <i class="bi bi-arrow-left"></i>
+      Volver
+    </a>
+  </div>
+
+  @if (loading()) {
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center py-3">
+          <div class="spinner-border text-secondary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+          </div>
+          <p class="text-muted mt-2 mb-0">Cargando datos de la liga...</p>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (!loading() && oLigaForm) {
+    <form [formGroup]="oLigaForm" (ngSubmit)="onSubmit()">
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="card border h-100">
+            <div class="card-header bg-light small text-uppercase fw-semibold">Identificacion</div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="id" class="form-label text-muted small text-uppercase">ID</label>
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text bg-light">#</span>
+                  <input type="text" class="form-control" id="id" formControlName="id" readonly>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="nombre" class="form-label text-muted small text-uppercase">Nombre de la Liga</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre"
+                  [class.is-invalid]="oLigaForm.get('nombre')?.invalid && oLigaForm.get('nombre')?.touched">
+                @if (oLigaForm.get('nombre')?.invalid && oLigaForm.get('nombre')?.touched) {
+                  <div class="invalid-feedback">
+                    @if (oLigaForm.get('nombre')?.errors?.['required']) { El nombre es obligatorio. }
+                    @if (oLigaForm.get('nombre')?.errors?.['minlength']) { Minimo 3 caracteres. }
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card border h-100">
+            <div class="card-header bg-light small text-uppercase fw-semibold">Relaciones</div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="id_equipo" class="form-label text-muted small text-uppercase">ID de Equipo</label>
+                <input type="number" class="form-control" id="id_equipo" formControlName="id_equipo"
+                  [class.is-invalid]="oLigaForm.get('id_equipo')?.invalid && oLigaForm.get('id_equipo')?.touched">
+                @if (oLigaForm.get('id_equipo')?.invalid && oLigaForm.get('id_equipo')?.touched) {
+                  <div class="invalid-feedback">
+                    @if (oLigaForm.get('id_equipo')?.errors?.['required']) { El equipo es obligatorio. }
+                    @if (oLigaForm.get('id_equipo')?.errors?.['min']) { El ID del equipo debe ser mayor que 0. }
+                  </div>
+                }
+              </div>
+
+              <div class="mb-3">
+                <label for="partidos" class="form-label text-muted small text-uppercase">Partidos</label>
+                <input type="number" class="form-control" id="partidos" formControlName="partidos" readonly>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 text-center mt-4">
+          <div class="d-flex justify-content-center gap-2">
+            <button type="button" class="btn btn-secondary" (click)="doCancel()">
+              <i class="bi bi-x-circle me-1"></i> Cancelar
+            </button>
+
+            <button type="submit" class="btn btn-primary" [disabled]="oLigaForm.invalid">
+              <i class="bi bi-save me-1"></i> Guardar Cambios
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  }
+</div>

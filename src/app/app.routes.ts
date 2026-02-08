@@ -45,6 +45,7 @@ import { LigaViewRouted } from './component/liga/view-routed/liga-view';
 import { ComentarioartViewRouted } from './component/comentarioart/view-routed/comentarioart-view';
 import { PagoDeleteAdminRouted } from './component/pago/delete-admin-routed/pago-delete';
 import { LigaDeleteAdminRouted } from './component/liga/delete-admin-routed/liga-delete';
+import { LigaEditAdminRouted } from './component/liga/edit-admin-routed/liga-edit';
 
 
 export const routes: Routes = [
@@ -60,6 +61,7 @@ export const routes: Routes = [
     { path: 'temporada/view/:id', component: TemporadaViewAdminRouted },
     { path: 'liga', component: LigaPlistAdminRouted },
     { path: 'liga/view/:id', component: LigaViewRouted },
+    { path: 'liga/edit/:id', component: LigaEditAdminRouted },
     { path: 'liga/delete/:id', component: LigaDeleteAdminRouted },
     { path: 'liga/equipo/:id_equipo', component: LigaPlistAdminRouted },
     { path: 'articulo', component: ArticuloPlistAdminRouted},
