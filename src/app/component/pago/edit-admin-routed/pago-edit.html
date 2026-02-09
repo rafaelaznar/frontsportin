@@ -1,33 +1,127 @@
-<app-pago-detail-unrouted [id]="id_pago"></app-pago-detail-unrouted>
+<div class="container py-3">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded bg-light p-2 mb-3">
+        <div>
+            <div class="text-uppercase small text-muted fw-semibold">Pagos</div>
+            <div class="fw-bold">Editar pago</div>
+            <div class="text-muted small">Panel administrativo</div>
+        </div>
+        <a class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2" (click)="doCancel()">
+            <i class="bi bi-arrow-left"></i>
+            Volver
+        </a>
+    </div>
 
-@if (error()) {
-<div class="alert alert-danger text-center mt-3">{{ error() }}</div>
-}
-
-<h3 class="text-center mt-3">Editar pago</h3>
-<div class="container">
+    @if (loading()) {
     <div class="row justify-content-center">
-        <div class="col-12 col-md-6">
-            <form [formGroup]="pagoForm" (ngSubmit)="onSubmit()" novalidate>
-                <div class="mb-3">
-                    <label class="form-label">Abonado</label>
-                    <input formControlName="abonado" type="number" class="form-control" />
-                    @if (abonado?.touched && abonado?.invalid) {
-                    <small class="text-danger">Introduce un valor válido</small>
-                    }
+        <div class="col-lg-8">
+            <div class="text-center py-3">
+                <div class="spinner-border text-secondary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Fecha</label>
-                    <input formControlName="fecha" type="datetime-local" class="form-control" />
-                    @if (fecha?.touched && fecha?.invalid) {
-                    <small class="text-danger">Introduce una fecha válida</small>
-                    }
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary mx-2">Guardar cambios</button>
-                    <button type="button" class="btn btn-secondary mx-2" (click)="doCancel()">Cancelar</button>
-                </div>
-            </form>
+                <p class="text-muted mt-2 mb-0">Cargando datos...</p>
+            </div>
         </div>
     </div>
+    }
+
+    @if (error()) {
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="alert alert-danger d-flex align-items-center gap-2" role="alert">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <span>{{ error() }}</span>
+            </div>
+        </div>
+    </div>
+    }
+
+    @if (!loading() && !error()) {
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border">
+                <div class="card-header bg-light small text-uppercase fw-semibold">Formulario de edición</div>
+                <div class="card-body">
+                    <form [formGroup]="pagoForm" (ngSubmit)="onSubmit()" novalidate>
+
+                        <div class="mb-3">
+                            <label for="id" class="form-label small text-muted text-uppercase fw-semibold">ID del
+                                pago</label>
+                            <input type="text" class="form-control form-control-sm bg-light" id="id"
+                                formControlName="id" readonly />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="abonado" class="form-label small text-muted text-uppercase fw-semibold">Abonado
+                                (€) *</label>
+                            <select class="form-control form-control-sm" id="abonado" formControlName="abonado">
+                                <option [value]="0">0</option>
+                                <option [value]="1">1</option>
+                            </select>
+                            @if (abonado?.invalid && abonado?.touched) {
+                            <div class="invalid-feedback small">
+                                La cantidad abonada es obligatoria y debe ser mayor o igual a 0.
+                            </div>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fecha" class="form-label small text-muted text-uppercase fw-semibold">Fecha
+                                *</label>
+                            <input type="datetime-local" class="form-control form-control-sm"
+                                [class.is-invalid]="fecha?.invalid && fecha?.touched" id="fecha"
+                                formControlName="fecha" />
+                            @if (fecha?.invalid && fecha?.touched) {
+                            <div class="invalid-feedback small">
+                                La fecha es obligatoria.
+                            </div>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_cuota" class="form-label small text-muted text-uppercase fw-semibold">Cuota
+                                *</label>
+                            <div class="input-group input-group-sm">
+                                <input type="number" class="form-control bg-light" style="max-width: 100px;"
+                                    id="id_cuota" formControlName="id_cuota" readonly />
+                                @if (oCuota()) {
+                                <span class="input-group-text bg-white text-muted flex-grow-1">
+                                    {{ oCuota()?.descripcion }} ({{ oCuota()?.cantidad }}€)
+                                </span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_jugador"
+                                class="form-label small text-muted text-uppercase fw-semibold">Jugador *</label>
+                            <div class="input-group input-group-sm">
+                                <input type="number" class="form-control bg-light" style="max-width: 100px;"
+                                    id="id_jugador" formControlName="id_jugador" readonly />
+                                @if (oJugador()) {
+                                <span class="input-group-text bg-white text-muted flex-grow-1">
+                                    {{ oJugador()?.usuario?.nombre }} {{ oJugador()?.usuario?.apellido1 }}
+                                </span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <button type="button" class="btn btn-light btn-sm border" (click)="doCancel()">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-sm"
+                                [disabled]="submitting() || pagoForm.invalid">
+                                @if (submitting()) {
+                                <span class="spinner-border spinner-border-sm me-1" role="status"
+                                    aria-hidden="true"></span>
+                                }
+                                Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
 </div>
