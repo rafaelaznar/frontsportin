@@ -44,7 +44,9 @@ import { CategoriaViewAdminRouted } from './component/categoria/view-admin-route
 import { LigaViewRouted } from './component/liga/view-routed/liga-view';
 import { ComentarioartViewRouted } from './component/comentarioart/view-routed/comentarioart-view';
 import { PagoDeleteAdminRouted } from './component/pago/delete-admin-routed/pago-delete';
+import { PagoEditAdminRouted } from './component/pago/edit-admin-routed/pago-edit';
 import { ComentarioDeleteAdminRouted } from './component/comentario/delete-admin-routed/comentario-delete';
+import { TipoarticuloEditAdminRouted } from './component/tipoarticulo/edit-admin-routed/tipoarticulo-edit';
 
 
 export const routes: Routes = [
@@ -85,6 +87,7 @@ export const routes: Routes = [
     { path: 'tipoarticulo', component : TipoarticuloPlistAdminRouted},
     { path: 'tipoarticulo/club/:id_club', component : TipoarticuloPlistAdminRouted},
     { path: 'tipoarticulo/view/:id', component : TipoarticuloViewAdminRouted},
+    { path: 'tipoarticulo/edit/:id', component: TipoarticuloEditAdminRouted},
     { path: 'jugador', component: JugadorPlisComponent},
     { path: 'jugador/usuario/:id_usuario', component: JugadorPlisComponent},
     { path: 'jugador/equipo/:id_equipo', component: JugadorPlisComponent},
@@ -118,6 +121,7 @@ export const routes: Routes = [
     { path: 'pago/jugador/:id_jugador', component: PagoPlistComponent},
     { path: 'pago/view/:id', component: PagoViewAdminRouted},
     { path: 'pago/delete/:id', component: PagoDeleteAdminRouted},
+    { path: 'pago/edit/:id', component: PagoEditAdminRouted},
     { path: 'puntuacion', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/noticia/:id_noticia', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/usuario/:id_usuario', component: PuntuacionPlistAdminRouted},
