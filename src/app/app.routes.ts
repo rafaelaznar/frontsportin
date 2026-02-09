@@ -50,6 +50,7 @@ import { LigaViewRouted } from './component/liga/view-routed/liga-view';
 import { ComentarioartViewRouted } from './component/comentarioart/view-routed/comentarioart-view';
 import { ComentarioDeleteAdminRouted } from './component/comentario/delete-admin-routed/comentario-delete';
 import { PagoDeleteAdminRouted } from './component/pago/delete-admin-routed/pago-delete';
+import { PagoEditAdminRouted } from './component/pago/edit-admin-routed/pago-edit';
 import { PartidoDeleteAdminRouted } from './component/partido/delete-admin-routed/partido-delete';
 import { ClubDeleteAdminRouted } from './component/club/delete-admin-routed/club-delete';
 import { PuntuacionDeleteAdminRouted } from './component/puntuacion/delete-admin-routed/puntuacion-delete';
@@ -144,6 +145,7 @@ export const routes: Routes = [
     { path: 'pago/jugador/:id_jugador', component: PagoPlistComponent},
     { path: 'pago/view/:id', component: PagoViewAdminRouted},
     { path: 'pago/delete/:id', component: PagoDeleteAdminRouted},
+    { path: 'pago/edit/:id', component: PagoEditAdminRouted},
     { path: 'categoria/delete/:id', component: CategoriaDeleteAdminRouted},
     { path: 'puntuacion', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/noticia/:id_noticia', component: PuntuacionPlistAdminRouted},
