@@ -2,26 +2,29 @@ import { Component, signal, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CategoriaDetailAdminUnrouted } from '../detail-admin-unrouted/categoria-detail';
 import { CategoriaService } from '../../../service/categoria';
 import { ICategoria } from '../../../model/categoria';
-import { CategoriaDetailAdminUnrouted } from '../detail-admin-unrouted/categoria-detail';
 
 
 @Component({
-  selector: 'app-categoria-view',
+  selector: 'app-pago-view',
   imports: [CommonModule, CategoriaDetailAdminUnrouted],
-  templateUrl: './categoria-view.html',
-  styleUrl: './categoria-view.css',
+  templateUrl: './categoria-delete.html',
+  styleUrl: './categoria-delete.css',
 })
-export class CategoriaViewAdminRouted implements OnInit {
-  private route = inject(ActivatedRoute);
+
+export class CategoriaDeleteAdminRouted implements OnInit {
+
+  private route = inject(ActivatedRoute);  
   private oCategoriaService = inject(CategoriaService);
+  private snackBar = inject(MatSnackBar);
 
   oCategoria = signal<ICategoria | null>(null);
   loading = signal(true);
   error = signal<string | null>(null);
-
-   id_categoria = signal<number>(0);
+  id_categoria = signal<number>(0);
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -33,17 +36,26 @@ export class CategoriaViewAdminRouted implements OnInit {
     }    
   }
 
-  load(id: number) {
-    this.oCategoriaService.get(id).subscribe({
-      next: (data: ICategoria) => {
-        this.oCategoria.set(data);
-        this.loading.set(false);
+  doDelete() {
+    this.oCategoriaService.delete(this.id_categoria()).subscribe({
+      next: (data: any) => {
+        this.snackBar.open('Categoria eliminada', 'Cerrar', { duration: 4000 });
+        console.log('Categoria eliminada');
+        window.history.back();
       },
       error: (err: HttpErrorResponse) => {
-        this.error.set('Error cargando la categoría');
-        this.loading.set(false);
+        this.error.set('Error eliminando la categoria');
+        this.snackBar.open('Error eliminando la categoria', 'Cerrar', { duration: 4000 });
         console.error(err);
       },
     });
   }
+  
+  doCancel() {    
+    window.history.back();
+  }
+
+
+
+
 }
