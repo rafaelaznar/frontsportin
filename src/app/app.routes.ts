@@ -16,6 +16,7 @@ import { CompraDeleteAdminRouted } from './component/compra/delete-admin-routed/
 import { RolusuarioPlist } from './component/rolusuario/plist-admin-routed/rolusuario-plist';
 import { TipoarticuloPlistAdminRouted } from './component/tipoarticulo/plist-admin-routed/tipoarticulo-plist';
 import { TipoarticuloViewAdminRouted } from './component/tipoarticulo/view-admin-routed/tipoarticulo-view';
+import { TipoarticuloEditAdminRouted } from './component/tipoarticulo/edit-admin-routed/tipoarticulo-edit';
 import { JugadorPlisComponent } from './component/jugador/jugadorPlist/jugador-plist';
 import { JugadorViewRouted } from './component/jugador/view-routed/jugador-view';
 import { LigaPlistAdminRouted } from './component/liga/plist-admin-routed/liga-plist';
@@ -105,6 +106,7 @@ export const routes: Routes = [
     { path: 'tipoarticulo', component : TipoarticuloPlistAdminRouted},
     { path: 'tipoarticulo/club/:id_club', component : TipoarticuloPlistAdminRouted},
     { path: 'tipoarticulo/view/:id', component : TipoarticuloViewAdminRouted},
+    { path: 'tipoarticulo/edit/:id', component : TipoarticuloEditAdminRouted},
     { path: 'jugador', component: JugadorPlisComponent},
     { path: 'jugador/usuario/:id_usuario', component: JugadorPlisComponent},
     { path: 'jugador/equipo/:id_equipo', component: JugadorPlisComponent},
