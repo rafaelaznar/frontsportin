@@ -1,4 +1,3 @@
-
 import { Routes } from '@angular/router';
 import { Home } from './component/shared/home/home';
 import { UsuarioPlist } from './component/usuario/usuario-plist/usuario-plist';
@@ -21,7 +20,7 @@ import { NoticiaPlistAdminRouted } from './component/noticia/plist-admin-routed/
 import { ClubPlistAdminRouted } from './component/club/plist-admin-routed/club-plist';
 import { CuotaPlistAdminRouted } from './component/cuota/plist-admin-routed/cuota-plist';
 import { TipousuarioPlistAdminRouted } from './component/tipousario/plist-admin-routed/tipousuario-plist';
-import { TemporadaPlist } from './component/temporada/temporada-plist/temporada-plist';
+import { TemporadaPlist } from './component/temporada/plist-admin-routed/temporada-plist';
 import { PlistEquipo } from './component/equipo/equipo-plist';
 import { EquipoViewRouted } from './component/equipo/view-routed/equipo-view';
 import { CarritoPlistAdminRouted } from './component/carrito/plist-admin-routed/carrito-plist';
@@ -34,6 +33,7 @@ import { NoticiaViewAdminRouted } from './component/noticia/view-admin-routed/vi
 import { FacturaViewAdminRouted } from './component/factura/view-admin-routed/factura-view';
 import { ComentarioartPlistAdminRouted } from './component/comentarioart/comentarioart-plist';
 import { TemporadaViewAdminRouted } from './component/temporada/view-admin-routed/temporada-view';
+import { TemporadaDeleteAdminRouted } from './component/temporada/delete-admin-routed/temporada-delete';
 import { PagoViewAdminRouted } from './component/pago/view-admin-routed/pago-view';
 import { ClubViewAdminRouted } from './component/club/view-admin-routed/club-view';
 import { CuotaViewAdminRouted } from './component/cuota/view-admin-routed/cuota-view';
@@ -41,12 +41,11 @@ import { TipousuarioViewAdminRouted } from './component/tipousario/view-admin-ro
 import { CarritoViewAdminRouted } from './component/carrito/view-admin-routed/view-admin-routed';
 import { RolusuarioViewAdminRouted } from './component/rolusuario/view-routed/rolusuario-view';
 import { CategoriaViewAdminRouted } from './component/categoria/view-admin-routed/categoria-view';
+import { CategoriaEditAdminRouted } from './component/categoria/edit-admin-routed/categoria-edit';
 import { LigaViewRouted } from './component/liga/view-routed/liga-view';
 import { ComentarioartViewRouted } from './component/comentarioart/view-routed/comentarioart-view';
 import { PagoDeleteAdminRouted } from './component/pago/delete-admin-routed/pago-delete';
-import { PagoEditAdminRouted } from './component/pago/edit-admin-routed/pago-edit';
-import { ComentarioDeleteAdminRouted } from './component/comentario/delete-admin-routed/comentario-delete';
-import { TipoarticuloEditAdminRouted } from './component/tipoarticulo/edit-admin-routed/tipoarticulo-edit';
+import { FacturaDeleteAdminRouted } from './component/factura/delete-admin-routed/factura-delete';
 
 
 export const routes: Routes = [
@@ -60,6 +59,7 @@ export const routes: Routes = [
     { path: 'temporada', component: TemporadaPlist },
     { path: 'temporada/club/:id_club', component: TemporadaPlist },
     { path: 'temporada/view/:id', component: TemporadaViewAdminRouted },
+    { path: 'temporada/delete/:id', component: TemporadaDeleteAdminRouted },
     { path: 'liga', component: LigaPlistAdminRouted },
     { path: 'liga/view/:id', component: LigaViewRouted },
     { path: 'liga/equipo/:id_equipo', component: LigaPlistAdminRouted },
@@ -71,6 +71,7 @@ export const routes: Routes = [
     { path: 'categoria', component: CategoriaPlistAdminRouted},
     { path: 'categoria/temporada/:id_temporada', component: CategoriaPlistAdminRouted},
     { path: 'categoria/view/:id', component: CategoriaViewAdminRouted },
+    { path: 'categoria/edit/:id', component: CategoriaEditAdminRouted },
     { path: 'partido', component: PartidoPlistAdminRouted},
     { path: 'partido/liga/:id_liga', component: PartidoPlistAdminRouted},
     { path: 'partido/view/:id', component: PartidoViewAdminRouted},
@@ -78,6 +79,7 @@ export const routes: Routes = [
     { path: 'factura/:usuario', component: FacturaPlistAdminRouted },
     { path: 'factura/view/:id', component: FacturaViewAdminRouted },
     { path: 'factura/usuario/:id_usuario', component: FacturaPlistAdminRouted },
+    { path: 'factura/delete/:id', component: FacturaDeleteAdminRouted},
     { path: 'compra', component: CompraPlistAdminRouted },
     { path: 'compra/articulo/:id_articulo', component: CompraPlistAdminRouted },
     { path: 'compra/factura/:id_factura', component: CompraPlistAdminRouted },
@@ -87,7 +89,6 @@ export const routes: Routes = [
     { path: 'tipoarticulo', component : TipoarticuloPlistAdminRouted},
     { path: 'tipoarticulo/club/:id_club', component : TipoarticuloPlistAdminRouted},
     { path: 'tipoarticulo/view/:id', component : TipoarticuloViewAdminRouted},
-    { path: 'tipoarticulo/edit/:id', component: TipoarticuloEditAdminRouted},
     { path: 'jugador', component: JugadorPlisComponent},
     { path: 'jugador/usuario/:id_usuario', component: JugadorPlisComponent},
     { path: 'jugador/equipo/:id_equipo', component: JugadorPlisComponent},
@@ -115,13 +116,11 @@ export const routes: Routes = [
     { path: 'comentario/usuario/:id_usuario', component: ComentarioPlistAdminRouted},
     { path: 'comentario/noticia/:id_noticia', component: ComentarioPlistAdminRouted},
     { path: 'comentario/view/:id', component: ComentarioViewRouted},
-    { path: 'comentario/delete/:id', component: ComentarioDeleteAdminRouted},
     { path: 'pago', component: PagoPlistComponent},
     { path: 'pago/cuota/:id_cuota', component: PagoPlistComponent},
     { path: 'pago/jugador/:id_jugador', component: PagoPlistComponent},
     { path: 'pago/view/:id', component: PagoViewAdminRouted},
     { path: 'pago/delete/:id', component: PagoDeleteAdminRouted},
-    { path: 'pago/edit/:id', component: PagoEditAdminRouted},
     { path: 'puntuacion', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/noticia/:id_noticia', component: PuntuacionPlistAdminRouted},
     { path: 'puntuacion/usuario/:id_usuario', component: PuntuacionPlistAdminRouted},
