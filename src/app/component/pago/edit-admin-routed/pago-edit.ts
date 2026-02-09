@@ -64,30 +64,39 @@ export class PagoEditAdminRouted implements OnInit {
 
   onSubmit(): void {
     if (!this.pagoForm.valid) {
-      this.pagoForm.markAllAsTouched();
+      this.snackBar.open('Por favor, complete todos los campos correctamente', 'Cerrar', { duration: 4000 });
+      return;
+    }
+
+    const pago = this.oPago();
+    if (!pago || !pago.cuota || !pago.jugador) {
+      this.snackBar.open('Error: datos del pago no cargados correctamente', 'Cerrar', { duration: 4000 });
       return;
     }
 
     // Convertir "2026-01-27T10:30" a "2026-01-27 10:30:00" para el backend
     const fechaBackend = this.pagoForm.value.fecha.replace('T', ' ') + ':00';
 
-    const payload: any = {
-      id: this.id_pago(),
+    const pagoData: IPago = {
+      ...pago,  // Mantiene todas las propiedades originales (cuota y jugador completos)
       abonado: Number(this.pagoForm.value.abonado),
-      fecha: fechaBackend,
-      cuota: { id: this.oPago()?.cuota.id },
-      jugador: { id: this.oPago()?.jugador.id }
+      fecha: fechaBackend
     };
 
-    this.oPagoService.update(payload).subscribe({
-      next: () => {
-        this.snackBar.open('Pago guardado correctamente', 'Cerrar', { duration: 3000 });
-        window.history.back();
+    console.log('Payload a enviar:', pagoData);
+
+    this.oPagoService.update(pagoData).subscribe({
+      next: (id: number) => {
+        this.snackBar.open('Pago actualizado exitosamente', 'Cerrar', { duration: 4000 });
+        this.router.navigate(['/pago']);
       },
       error: (err: HttpErrorResponse) => {
-        this.error.set('Error al guardar el pago');
-        this.snackBar.open('Error al guardar el pago', 'Cerrar', { duration: 4000 });
-        console.error(err);
+        this.error.set('Error actualizando el pago');
+        console.error('Error completo:', err);
+        console.error('Error status:', err.status);
+        console.error('Error message:', err.message);
+        console.error('Error body:', err.error);
+        this.snackBar.open('Error actualizando el pago: ' + (err.error?.message || err.message), 'Cerrar', { duration: 4000 });
       },
     });
   }
