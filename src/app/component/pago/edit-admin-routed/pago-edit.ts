@@ -71,15 +71,12 @@ export class PagoEditAdminRouted implements OnInit {
     // Convertir "2026-01-27T10:30" a "2026-01-27 10:30:00" para el backend
     const fechaBackend = this.pagoForm.value.fecha.replace('T', ' ') + ':00';
 
-console.log('oPago antes de enviar:', this.oPago());
-console.log('cuota:', this.oPago()?.cuota);
-console.log('jugador:', this.oPago()?.jugador);
-
-
-    const payload: Partial<IPago> = {
+    const payload: any = {
       id: this.id_pago(),
       abonado: Number(this.pagoForm.value.abonado),
       fecha: fechaBackend,
+      cuota: { id: this.oPago()?.cuota.id },
+      jugador: { id: this.oPago()?.jugador.id }
     };
 
     this.oPagoService.update(payload).subscribe({
