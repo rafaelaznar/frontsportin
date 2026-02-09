@@ -27,6 +27,7 @@ import { EquipoViewRouted } from './component/equipo/view-routed/equipo-view';
 import { CarritoPlistAdminRouted } from './component/carrito/plist-admin-routed/carrito-plist';
 import { ComentarioPlistAdminRouted } from './component/comentario/plist-admin-routed/comentario-plist';
 import { ComentarioViewRouted } from './component/comentario/view-routed/comentario-view';
+import { ComentarioDeleteAdminRouted } from './component/comentario/delete-admin-routed/comentario-delete';
 import { PagoPlistComponent } from './component/pago/plist-admin-routed/pago-plist';
 import { PuntuacionPlistAdminRouted } from './component/puntuacion/plist-admin-routed/puntuacion-plist';
 import { PuntuacionViewRouted } from './component/puntuacion/view-routed/puntuacion-view';
@@ -119,6 +120,7 @@ export const routes: Routes = [
     { path: 'comentario/usuario/:id_usuario', component: ComentarioPlistAdminRouted},
     { path: 'comentario/noticia/:id_noticia', component: ComentarioPlistAdminRouted},
     { path: 'comentario/view/:id', component: ComentarioViewRouted},
+    { path: 'comentario/delete/:id', component: ComentarioDeleteAdminRouted},
     { path: 'pago', component: PagoPlistComponent},
     { path: 'pago/cuota/:id_cuota', component: PagoPlistComponent},
     { path: 'pago/jugador/:id_jugador', component: PagoPlistComponent},
