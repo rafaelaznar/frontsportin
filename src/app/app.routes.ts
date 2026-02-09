@@ -21,7 +21,7 @@ import { NoticiaPlistAdminRouted } from './component/noticia/plist-admin-routed/
 import { ClubPlistAdminRouted } from './component/club/plist-admin-routed/club-plist';
 import { CuotaPlistAdminRouted } from './component/cuota/plist-admin-routed/cuota-plist';
 import { TipousuarioPlistAdminRouted } from './component/tipousario/plist-admin-routed/tipousuario-plist';
-import { TemporadaPlist } from './component/temporada/temporada-plist/temporada-plist';
+import { TemporadaPlist } from './component/temporada/plist-admin-routed/temporada-plist';
 import { PlistEquipo } from './component/equipo/equipo-plist';
 import { EquipoViewRouted } from './component/equipo/view-routed/equipo-view';
 import { CarritoPlistAdminRouted } from './component/carrito/plist-admin-routed/carrito-plist';
