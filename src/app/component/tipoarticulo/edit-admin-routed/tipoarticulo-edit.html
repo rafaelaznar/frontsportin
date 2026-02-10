@@ -1,35 +1,48 @@
-<app-tipoarticulo-detail-unrouted [id]="id_tipoarticulo"></app-tipoarticulo-detail-unrouted>
-
-@if (error()) {
-<div class="alert alert-danger text-center mt-3">{{ error() }}</div>
-}
-
-<h3 class="text-center mt-3">Editar tipo de artículo</h3>
-<div class="container">
+<div class="container mt-4">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-6">
-            <form [formGroup]="tipoarticuloForm" (ngSubmit)="onSubmit()" novalidate>
-                <div class="mb-3">
-                    <label class="form-label">Descripción</label>
-                    <input formControlName="descripcion" type="text" class="form-control" />
-                    @if (descripcion?.touched && descripcion?.invalid) {
-                    <small class="text-danger">Introduce una descripción válida</small>
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header text-center">
+                    <h4 class="mb-0">Editar tipo de artículo</h4>
+                </div>
+                <div class="card-body">
+                    @if (error()) {
+                        <div class="alert alert-danger text-center mb-3">{{ error() }}</div>
                     }
+                    <form [formGroup]="tipoarticuloForm" (ngSubmit)="onSubmit()" novalidate autocomplete="off">
+                        <div class="mb-3">
+                            <label for="id" class="form-label">ID</label>
+                            <input id="id" type="number" formControlName="id" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <input id="descripcion" type="text" formControlName="descripcion" class="form-control" />
+                            @if (descripcion?.touched && descripcion?.invalid) {
+                                <div class="invalid-feedback d-block">
+                                    @if (descripcion?.errors?.['required']) { La descripción es obligatoria } 
+                                    @if (descripcion?.errors?.['minlength']) { Mínimo 3 caracteres }
+                                    @if (descripcion?.errors?.['maxlength']) { Máximo 255 caracteres }
+                                </div>
+                            }
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_club" class="form-label">ID Club</label>
+                            <input id="id_club" type="number" formControlName="id_club" class="form-control" />
+                            @if (id_club?.touched && id_club?.invalid) {
+                                <div class="invalid-feedback d-block">
+                                    @if (id_club?.errors?.['required']) { El club es obligatorio }
+                                </div>
+                            }
+                        </div>
+                        <div class="d-flex justify-content-center gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary px-4" [disabled]="submitting() || tipoarticuloForm.invalid">
+                                @if (submitting()) {<span class="spinner-border spinner-border-sm me-2"></span>}Guardar
+                            </button>
+                            <button type="button" class="btn btn-secondary px-4" (click)="doCancel()">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">ID Club</label>
-                    <input formControlName="id_club" type="number" class="form-control" />
-                    @if (id_club?.touched && id_club?.invalid) {
-                    <small class="text-danger">Introduce un ID de club válido</small>
-                    }
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary mx-2" [disabled]="submitting()">
-                        @if (submitting()) {<span class="spinner-border spinner-border-sm me-2"></span>}Guardar cambios
-                    </button>
-                    <button type="button" class="btn btn-secondary mx-2" (click)="doCancel()">Cancelar</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

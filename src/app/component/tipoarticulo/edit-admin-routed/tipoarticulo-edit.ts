@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -15,9 +15,9 @@ import { TipoarticuloDetailAdminUnrouted } from '../detail-admin-unrouted/tipoar
   styleUrl: './tipoarticulo-edit.css',
 })
 export class TipoarticuloEditAdminRouted implements OnInit {
-  private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private fb = inject(FormBuilder);
   private oTipoarticuloService = inject(TipoarticuloService);
   private snackBar = inject(MatSnackBar);
 
@@ -41,6 +41,7 @@ export class TipoarticuloEditAdminRouted implements OnInit {
 
   initForm(): void {
     this.tipoarticuloForm = this.fb.group({
+      id: [{ value: 0, disabled: true }],
       descripcion: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       id_club: ['', [Validators.required]],
     });
@@ -50,6 +51,7 @@ export class TipoarticuloEditAdminRouted implements OnInit {
     this.oTipoarticuloService.get(id).subscribe({
       next: (tipoarticulo: ITipoarticulo) => {
         this.tipoarticuloForm.patchValue({
+          id: tipoarticulo.id,
           descripcion: tipoarticulo.descripcion,
           id_club: tipoarticulo.club.id,
         });
@@ -71,7 +73,7 @@ export class TipoarticuloEditAdminRouted implements OnInit {
     const payload: Partial<ITipoarticulo> = {
       id: this.id_tipoarticulo(),
       descripcion: this.tipoarticuloForm.value.descripcion,
-      club: { id: Number(this.tipoarticuloForm.value.id_club) } as any,
+      club: { id: this.tipoarticuloForm.value.id_club } as any,
     };
 
     this.oTipoarticuloService.update(payload).subscribe({
@@ -93,7 +95,7 @@ export class TipoarticuloEditAdminRouted implements OnInit {
   }
 
   doCancel(): void {
-    window.history.back();
+    this.router.navigate(['/tipoarticulo']);
   }
 
   get descripcion() {

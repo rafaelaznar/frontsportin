@@ -19,10 +19,9 @@ import { IJugador } from '../../../model/jugador';
   styleUrl: './pago-edit.css',
 })
 export class PagoEditAdminRouted implements OnInit {
-    // ...existing code...
-  private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private fb = inject(FormBuilder);
   private oPagoService = inject(PagoService);
   private oCuotaService = inject(CuotaService);
   private oJugadorService = inject(JugadorService);
@@ -112,11 +111,6 @@ export class PagoEditAdminRouted implements OnInit {
   }
 
   onSubmit(): void {
-      // Depuración: mostrar los valores individuales y el objeto enviado
-      console.log('abonado:', this.pagoForm.value.abonado);
-      console.log('fecha:', this.pagoForm.value.fecha);
-      console.log('id_cuota:', this.pagoForm.value.id_cuota);
-      console.log('id_jugador:', this.pagoForm.value.id_jugador);
     if (this.pagoForm.invalid) {
       this.snackBar.open('Por favor, complete todos los campos correctamente', 'Cerrar', {
         duration: 4000,
@@ -131,13 +125,11 @@ export class PagoEditAdminRouted implements OnInit {
 
     const pagoData: any = {
       id: this.id_pago(),
-      abonado: Number(this.pagoForm.value.abonado),
+      abonado: this.pagoForm.value.abonado || 0,
       fecha: fechaBackend,
       cuota: { id: this.pagoForm.value.id_cuota },
       jugador: { id: this.pagoForm.value.id_jugador },
     };
-
-    console.log('Datos enviados a backend:', pagoData);
     this.oPagoService.update(pagoData).subscribe({
       next: (id: number) => {
         this.snackBar.open('Pago actualizado exitosamente', 'Cerrar', { duration: 4000 });
