@@ -1,127 +1,114 @@
-<div class="container py-3">
-    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 border rounded bg-light p-2 mb-3">
-        <div>
-            <div class="text-uppercase small text-muted fw-semibold">Pagos</div>
-            <div class="fw-bold">Editar pago</div>
-            <div class="text-muted small">Panel administrativo</div>
-        </div>
-        <a class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2" (click)="doCancel()">
-            <i class="bi bi-arrow-left"></i>
-            Volver
-        </a>
-    </div>
-
-    @if (loading()) {
+<div class="container my-4 edit-form">
     <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="text-center py-3">
-                <div class="spinner-border text-secondary" role="status">
-                    <span class="visually-hidden">Cargando...</span>
+        <div class="col-12 col-lg-8">
+            <div class="form-card">
+                <header class="mb-4">
+                    <h1 class="h3 mb-0">Editar pago</h1>
+                </header>
+
+                @if (loading()) {
+                <div class="d-flex justify-content-center my-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
                 </div>
-                <p class="text-muted mt-2 mb-0">Cargando datos...</p>
-            </div>
-        </div>
-    </div>
-    }
+                }
 
-    @if (error()) {
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="alert alert-danger d-flex align-items-center gap-2" role="alert">
-                <i class="bi bi-exclamation-triangle-fill"></i>
-                <span>{{ error() }}</span>
-            </div>
-        </div>
-    </div>
-    }
+                @if (error()) {
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-exclamation-triangle me-2"></i>{{ error() }}
+                </div>
+                }
 
-    @if (!loading() && !error()) {
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card border">
-                <div class="card-header bg-light small text-uppercase fw-semibold">Formulario de edición</div>
-                <div class="card-body">
-                    <form [formGroup]="pagoForm" (ngSubmit)="onSubmit()" novalidate>
+                @if (!loading() && !error()) {
+                <form [formGroup]="pagoForm" (ngSubmit)="onSubmit()" novalidate>
+                    <!-- ID (solo lectura) -->
+                    <div class="mb-4">
+                        <label for="id" class="form-label">ID del pago</label>
+                        <input type="text" class="form-control" id="id" formControlName="id" readonly />
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="id" class="form-label small text-muted text-uppercase fw-semibold">ID del
-                                pago</label>
-                            <input type="text" class="form-control form-control-sm bg-light" id="id"
-                                formControlName="id" readonly />
+                    <!-- Abonado -->
+                    <div class="mb-4">
+                        <label for="abonado" class="form-label">Abonado <span class="text-danger">*</span></label>
+                        <input type="number" min="0" max="1" step="1" class="form-control"
+                            [class.is-invalid]="abonado?.invalid && abonado?.touched"
+                            [class.is-valid]="abonado?.valid && abonado?.touched" id="abonado" formControlName="abonado"
+                            placeholder="0 o 1" />
+                        @if (abonado?.invalid && abonado?.touched) {
+                        <div class="invalid-feedback">
+                            <span>La cantidad abonada es obligatoria y debe ser mayor o igual a 0.</span>
                         </div>
+                        }
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="abonado" class="form-label small text-muted text-uppercase fw-semibold">Abonado
-                                (€) *</label>
-                            <select class="form-control form-control-sm" id="abonado" formControlName="abonado">
-                                <option [value]="0">0</option>
-                                <option [value]="1">1</option>
-                            </select>
-                            @if (abonado?.invalid && abonado?.touched) {
-                            <div class="invalid-feedback small">
-                                La cantidad abonada es obligatoria y debe ser mayor o igual a 0.
+                    <!-- Fecha -->
+                    <div class="mb-4">
+                        <label for="fecha" class="form-label">Fecha <span class="text-danger">*</span></label>
+                        <input type="datetime-local" class="form-control"
+                            [class.is-invalid]="fecha?.invalid && fecha?.touched"
+                            [class.is-valid]="fecha?.valid && fecha?.touched" id="fecha" formControlName="fecha" />
+                        @if (fecha?.invalid && fecha?.touched) {
+                        <div class="invalid-feedback">
+                            <span>La fecha es obligatoria.</span>
+                        </div>
+                        }
+                    </div>
+
+                    <!-- Sección: Cuota -->
+                    <div class="p-4 rounded mb-4" style="background-color: #f8f9fa; border-left: 4px solid #198754;">
+                        <label class="form-label fw-bold mb-3">Información de la Cuota</label>
+                        <div class="d-flex gap-3 align-items-end">
+                            <div style="width: 100px;">
+                                <label for="display_id_cuota" class="form-label">ID Cuota</label>
+                                <input type="text" class="form-control" id="display_id_cuota"
+                                    [value]="displayIdCuota() || ''" readonly />
                             </div>
-                            }
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="fecha" class="form-label small text-muted text-uppercase fw-semibold">Fecha
-                                *</label>
-                            <input type="datetime-local" class="form-control form-control-sm"
-                                [class.is-invalid]="fecha?.invalid && fecha?.touched" id="fecha"
-                                formControlName="fecha" />
-                            @if (fecha?.invalid && fecha?.touched) {
-                            <div class="invalid-feedback small">
-                                La fecha es obligatoria.
-                            </div>
-                            }
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="id_cuota" class="form-label small text-muted text-uppercase fw-semibold">Cuota
-                                *</label>
-                            <div class="input-group input-group-sm">
-                                <input type="number" class="form-control bg-light" style="max-width: 100px;"
-                                    id="id_cuota" formControlName="id_cuota" readonly />
-                                @if (oCuota()) {
-                                <span class="input-group-text bg-white text-muted flex-grow-1">
+                            @if (oCuota()) {
+                            <div class="flex-grow-1">
+                                <label class="form-label">Descripción</label>
+                                <p class="form-control-plaintext fw-semibold mb-0">
                                     {{ oCuota()?.descripcion }} ({{ oCuota()?.cantidad }}€)
-                                </span>
-                                }
+                                </p>
                             </div>
+                            }
                         </div>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="id_jugador"
-                                class="form-label small text-muted text-uppercase fw-semibold">Jugador *</label>
-                            <div class="input-group input-group-sm">
-                                <input type="number" class="form-control bg-light" style="max-width: 100px;"
-                                    id="id_jugador" formControlName="id_jugador" readonly />
-                                @if (oJugador()) {
-                                <span class="input-group-text bg-white text-muted flex-grow-1">
+                    <!-- Sección: Jugador -->
+                    <div class="p-4 rounded mb-4" style="background-color: #f8f9fa; border-left: 4px solid #ffc107;">
+                        <label class="form-label fw-bold mb-3">Información del Jugador</label>
+                        <div class="d-flex gap-3 align-items-end">
+                            <div style="width: 100px;">
+                                <label for="display_id_jugador" class="form-label">ID Jugador</label>
+                                <input type="text" class="form-control" id="display_id_jugador"
+                                    [value]="displayIdJugador() || ''" readonly />
+                            </div>
+                            @if (oJugador()) {
+                            <div class="flex-grow-1">
+                                <label class="form-label">Nombre del Jugador</label>
+                                <p class="form-control-plaintext fw-semibold mb-0">
                                     {{ oJugador()?.usuario?.nombre }} {{ oJugador()?.usuario?.apellido1 }}
-                                </span>
-                                }
+                                </p>
                             </div>
+                            }
                         </div>
+                    </div>
 
-                        <div class="d-flex justify-content-end gap-2 mt-4">
-                            <button type="button" class="btn btn-light btn-sm border" (click)="doCancel()">
-                                Cancelar
-                            </button>
-                            <button type="submit" class="btn btn-primary btn-sm"
-                                [disabled]="submitting() || pagoForm.invalid">
-                                @if (submitting()) {
-                                <span class="spinner-border spinner-border-sm me-1" role="status"
-                                    aria-hidden="true"></span>
-                                }
-                                Guardar Cambios
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    <!-- Botones -->
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <a (click)="doCancel()" class="btn btn-outline-secondary" style="cursor: pointer;"> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary" [disabled]="submitting() || pagoForm.invalid">
+                            @if (submitting()) {
+                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            }
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+                }
             </div>
         </div>
     </div>
-    }
 </div>
