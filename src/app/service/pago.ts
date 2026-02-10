@@ -59,4 +59,8 @@ export class PagoService {
   delete(id: number): Observable<number> {
     return this.http.delete<number>(serverURL + '/pago/' + id);
   }
+
+ update(pago: Partial<IPago>): Observable<number> {
+  return this.http.put<number>(`${serverURL}/pago`, pago);
+}
 }

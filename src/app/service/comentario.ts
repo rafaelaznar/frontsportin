@@ -54,4 +54,8 @@ export class ComentarioService {
     get(id: number): Observable<IComentario> {
         return this.oHttp.get<IComentario>(`${this.URL}/${id}`);
     }
+
+    delete(id: number): Observable<number> {
+        return this.oHttp.delete<number>(`${this.URL}/${id}`);
+    }
 }
