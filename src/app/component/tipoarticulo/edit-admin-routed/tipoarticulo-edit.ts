@@ -6,7 +6,8 @@ import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TipoarticuloService } from '../../../service/tipoarticulo';
 import { ITipoarticulo } from '../../../model/tipoarticulo';
-import { TipoarticuloDetailAdminUnrouted } from '../detail-admin-unrouted/tipoarticulo-detail';
+import { TipoarticuloDetailAdminUnrouted } from '../tipoarticulo-detail/tipoarticulo-detail';
+
 
 @Component({
   selector: 'app-tipoarticulo-edit',
