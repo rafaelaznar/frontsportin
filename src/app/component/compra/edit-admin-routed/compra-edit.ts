@@ -32,8 +32,8 @@ export class CompraEditAdminRouted implements OnInit {
   loading = signal(true);
   error = signal<string | null>(null);
   submitting = signal(false);
-  articulo = signal<IArticulo[]>([]);
-  factura = signal<IFactura[]>([])
+  articulos = signal<IArticulo[]>([]);
+  facturas = signal<IFactura[]>([])
 
 
   ngOnInit(): void {
@@ -95,7 +95,7 @@ export class CompraEditAdminRouted implements OnInit {
   private loadArticulo(): void {
     this.oArticuloService.getPage(0, 1000, 'descripcion', 'asc').subscribe({
       next: (page) => {
-        this.articulo.set(page.content);
+        this.articulos.set(page.content);
       },
       error: (err: HttpErrorResponse) => {
         this.snackBar.open('Error cargando  artículos', 'Cerrar', { duration: 4000 });
@@ -107,7 +107,7 @@ export class CompraEditAdminRouted implements OnInit {
   private loadFactura(): void {
     this.oFacturaService.getPage(0, 1000, 'id', 'asc').subscribe({
       next: (page) => {
-        this.factura.set(page.content);
+        this.facturas.set(page.content);
       },
       error: (err: HttpErrorResponse) => {
         this.snackBar.open('Error cargando  facturas', 'Cerrar', { duration: 4000 });

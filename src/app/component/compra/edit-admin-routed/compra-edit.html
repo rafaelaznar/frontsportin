@@ -100,8 +100,8 @@
               formControlName="id_articulo"
             >
               <option [value]="null" disabled>Selecciona un  artículo</option>
-              @for (tipo of articulo(); track tipo.id) {
-                <option [value]="tipo.id">{{ tipo.descripcion }} </option>
+              @for (articulo of articulos(); track articulo.id) {
+                <option [value]="articulo.id">{{ articulo.descripcion }} - {{ articulo.precio | currency: 'EUR' }} </option>
               }
             </select>
             @if (id_articulo?.invalid && id_articulo?.touched) {
@@ -123,8 +123,8 @@
               formControlName="id_factura"
             >
               <option [value]="null" disabled>Selecciona una factura</option>
-              @for (f of factura(); track f.id) {
-                <option [value]="f.id">{{ f.id }}  </option>
+              @for (factura of facturas(); track factura.id) {
+                <option [value]="factura.id">{{ factura.id }} - {{factura.fecha}} </option>
               }
             </select>
             @if (id_factura?.invalid && id_factura?.touched) {
