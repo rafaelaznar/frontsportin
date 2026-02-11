@@ -9,7 +9,7 @@ import { serverURL } from '../environment/environment';
   providedIn: 'root',
 })
 export class CuotaService {
-  constructor(private oHttp: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   getPage(
     page: number,
@@ -26,25 +26,34 @@ export class CuotaService {
       direction = 'asc';
     }
     if (id_equipo > 0) {
-      return this.oHttp.get<IPage<ICuota>>(
+      return this.http.get<IPage<ICuota>>(
         serverURL +
           `/cuota?page=${page}&size=${rpp}&sort=${order},${direction}&id_equipo=${id_equipo}`,
       );
     }
     if (descripcion && descripcion.length > 0) {
-      return this.oHttp.get<IPage<ICuota>>(
+      return this.http.get<IPage<ICuota>>(
         serverURL +
           `/cuota?page=${page}&size=${rpp}&sort=${order},${direction}&descripcion=${descripcion}`,
       );
     }
-    return this.oHttp.get<IPage<ICuota>>(
+    return this.http.get<IPage<ICuota>>(
       serverURL + `/cuota?page=${page}&size=${rpp}&sort=${order},${direction}`,
     );
   }
 
   get(id: number): Observable<ICuota> {
-    return this.oHttp.get<ICuota>(serverURL + '/cuota/' + id);
+    return this.http.get<ICuota>(serverURL + '/cuota/' + id);
   }
+
+  count(): Observable<number> {
+    return this.http.get<number>(serverURL + '/cuota/count');
+  }
+  
+  delete(id: number): Observable<number> {
+    return this.http.delete<number>(serverURL + '/cuota/' + id);
+  }
+
 
   // create(cuota: Partial<ICuota>): Observable<number> {
   //   return this.oHttp.post<number>(serverURL + '/cuota', cuota);
@@ -54,15 +63,9 @@ export class CuotaService {
   //   return this.oHttp.put<number>(serverURL + '/cuota', cuota);
   // }
 
-  // delete(id: number): Observable<number> {
-  //   return this.oHttp.delete<number>(serverURL + '/cuota/' + id);
-  // }
-
   // empty(): Observable<number> {
   //   return this.oHttp.delete<number>(serverURL + '/cuota/empty');
   // }
 
-  count(): Observable<number> {
-    return this.oHttp.get<number>(serverURL + '/cuota/count');
-  }
+
 }
