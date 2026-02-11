@@ -1,0 +1,35 @@
+<app-tipoarticulo-detail-unrouted [id]="id_tipoarticulo"></app-tipoarticulo-detail-unrouted>
+
+@if (error()) {
+<div class="alert alert-danger text-center mt-3">{{ error() }}</div>
+}
+
+<h3 class="text-center mt-3">Editar tipo de artículo</h3>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <form [formGroup]="tipoarticuloForm" (ngSubmit)="onSubmit()" novalidate>
+                <div class="mb-3">
+                    <label class="form-label">Descripción</label>
+                    <input formControlName="descripcion" type="text" class="form-control" />
+                    @if (descripcion?.touched && descripcion?.invalid) {
+                    <small class="text-danger">Introduce una descripción válida</small>
+                    }
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">ID Club</label>
+                    <input formControlName="id_club" type="number" class="form-control" />
+                    @if (id_club?.touched && id_club?.invalid) {
+                    <small class="text-danger">Introduce un ID de club válido</small>
+                    }
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary mx-2" [disabled]="submitting()">
+                        @if (submitting()) {<span class="spinner-border spinner-border-sm me-2"></span>}Guardar cambios
+                    </button>
+                    <button type="button" class="btn btn-secondary mx-2" (click)="doCancel()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

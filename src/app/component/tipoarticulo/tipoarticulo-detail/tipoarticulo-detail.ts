@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DatetimePipe } from '../../../pipe/datetime-pipe';
 
 @Component({
-  selector: 'app-tipoarticulo-detail',
+  selector: 'app-tipoarticulo-detail-unrouted',
   imports: [CommonModule, RouterLink, DatetimePipe],
   templateUrl: './tipoarticulo-detail.html',
   styleUrl: './tipoarticulo-detail.css',
