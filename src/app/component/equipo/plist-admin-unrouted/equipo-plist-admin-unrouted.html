@@ -79,6 +79,7 @@
           <th scope="col">Categoría</th>
           <th scope="col">Entrenador</th>
           <th scope="col">Jugadores</th>
+          <th scope="col">Cuotas</th>
           <th scope="col">Ligas</th>
           <th scope="col">
             <span class="header-inline">Acciones </span>
@@ -136,6 +137,19 @@
                 } @else {
                   <a [routerLink]="['/jugador/equipo', oEquipo.id]">
                     {{ oEquipo.jugadores }}
+                  </a>
+                }
+              }
+            </td>
+            <td style="text-align: center">
+              @if (isDialogMode()) {
+                {{ oEquipo.cuotas }}
+              } @else {
+                @if (oEquipo.cuotas === 0) {
+                  <i class="bi bi-ban" aria-hidden="true"></i>
+                } @else {
+                  <a [routerLink]="['/cuota/equipo', oEquipo.id]">
+                    {{ oEquipo.cuotas }}
                   </a>
                 }
               }
