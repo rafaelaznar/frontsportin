@@ -132,10 +132,10 @@
         @for (oComentario of oPage()?.content; track oComentario.id ) {
         <tr>
           <th scope="row">{{ oComentario.id }}</th>
-          <td>{{ oComentario.contenido }}</td>
+          <td>{{ oComentario.contenido | trim: 40 }}</td>
           <td>
             <a [routerLink]="['/usuario/view', oComentario.usuario.id]">
-              {{ oComentario.usuario.nombre }} {{ oComentario.usuario.apellido1 }} {{ oComentario.usuario.apellido2 | trim: 20 }}
+              {{ oComentario.usuario.nombre }} {{ oComentario.usuario.apellido1 }} {{ oComentario.usuario.apellido2 }}
               {{ ' (' + oComentario.usuario.id + ')' }}
             </a>
             <!-- Botón alineado a la derecha para filtrar usuario -->
