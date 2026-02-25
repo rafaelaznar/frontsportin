@@ -1,0 +1,8 @@
+.form-card {
+  padding: 1.5rem;
+}
+
+.edit-form .form-card {
+  background: #fff;
+  border-radius: 8px;
+}

@@ -6,6 +6,7 @@ import { ArticuloPlistAdminRouted } from './component/articulo/plist-admin-route
 import { ArticuloViewAdminRouted } from './component/articulo/view-admin-routed/articulo-view';
 import { ArticuloDeleteAdminRouted } from './component/articulo/delete-admin-routed/articulo-delete';
 import { ArticuloEditAdminRouted } from './component/articulo/edit-admin-routed/articulo-edit';
+import { ArticuloNewAdminRouted } from './component/articulo/new-admin-routed/articulo-new';
 import { UsuarioViewRouted } from './component/usuario/view-routed/usuario-view';
 import { CategoriaPlistAdminRouted } from './component/categoria/plist-admin-routed/categoria-plist';
 import { PartidoPlistAdminRouted } from './component/partido/plist-admin-routed/partido-plist';
@@ -112,6 +113,7 @@ export const routes: Routes = [
     { path: 'articulo', component: ArticuloPlistAdminRouted},
     { path: 'articulo/tipoarticulo/:id_tipoarticulo', component: ArticuloPlistAdminRouted},
     { path: 'usuario/:id', component: UsuarioViewRouted},
+    { path: 'articulo/new', component: ArticuloNewAdminRouted },
     { path: 'articulo/:tipoarticulo', component: ArticuloPlistAdminRouted},
     { path: 'articulo/view/:id', component: ArticuloViewAdminRouted},
     { path: 'articulo/delete/:id', component: ArticuloDeleteAdminRouted},

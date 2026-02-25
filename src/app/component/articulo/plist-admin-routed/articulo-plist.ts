@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ArticuloPlistAdminUnrouted } from '../plist-admin-unrouted/articulo-plist-admin-unrouted';
 
 @Component({
+  standalone: true,
   selector: 'app-articulo-plist',
-  imports: [ArticuloPlistAdminUnrouted],
+  imports: [ArticuloPlistAdminUnrouted, RouterLink],
   templateUrl: './articulo-plist.html',
   styleUrl: './articulo-plist.css',
 })
