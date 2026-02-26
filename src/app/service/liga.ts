@@ -52,7 +52,14 @@ export class LigaService {
   delete(id: number): Observable<number> {
     return this.oHttp.delete<number>(serverURL + '/liga/' + id);
   }
-  update(liga: Partial<ILiga>): Observable<number> {
-    return this.oHttp.put<number>(serverURL + '/liga', liga);
+
+  update(liga: Partial<ILiga>): Observable<ILiga> {
+    return this.oHttp.put<ILiga>(serverURL + '/liga', liga);
+  }
+
+  create(liga: Partial<ILiga>): Observable<ILiga> {
+    return this.oHttp.post<ILiga>(serverURL + '/liga', liga, {
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
