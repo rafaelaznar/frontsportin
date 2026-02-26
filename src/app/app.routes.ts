@@ -24,6 +24,7 @@ import { LigaPlistAdminRouted } from './component/liga/plist-admin-routed/liga-p
 import { NoticiaPlistAdminRouted } from './component/noticia/plist-admin-routed/noticia-plist';
 import { ClubPlistAdminRouted } from './component/club/plist-admin-routed/club-plist';
 import { CuotaPlistAdminRouted } from './component/cuota/plist-admin-routed/cuota-plist';
+import { CuotaNewAdminRouted } from './component/cuota/new-admin-routed/cuota-new';
 import { TipousuarioPlistAdminRouted } from './component/tipousario/plist-admin-routed/tipousuario-plist';
 import { PlistEquipo } from './component/equipo/plist-admin-routed/equipo-plist';
 import { EquipoViewRouted } from './component/equipo/view-admin-routed/equipo-view';
@@ -43,6 +44,7 @@ import { PuntuacionNewAdminRouted } from './component/puntuacion/new-admin-route
 import { NoticiaViewAdminRouted } from './component/noticia/view-admin-routed/view-admin-routed';
 import { FacturaViewAdminRouted } from './component/factura/view-admin-routed/factura-view';
 import { ComentarioartPlistAdminRouted } from './component/comentarioart/plist-admin-routed/comentarioart-plist';
+import { ComentarioartNewAdminRouted } from './component/comentarioart/new-admin-routed/comentarioart-new';
 import { TemporadaViewAdminRouted } from './component/temporada/view-admin-routed/temporada-view';
 import { TemporadaDeleteAdminRouted } from './component/temporada/delete-admin-routed/temporada-delete';
 import { PagoViewAdminRouted } from './component/pago/view-admin-routed/pago-view';
@@ -170,6 +172,7 @@ export const routes: Routes = [
   { path: 'club/delete/:id', component: ClubDeleteAdminRouted },
   { path: 'club/edit/:id', component: ClubEditAdminRouted },
   { path: 'cuota', component: CuotaPlistAdminRouted },
+  { path: 'cuota/new', component: CuotaNewAdminRouted },
   { path: 'cuota/equipo/:id_equipo', component: CuotaPlistAdminRouted },
   { path: 'cuota/view/:id', component: CuotaViewAdminRouted },
   { path: 'cuota/edit/:id', component: CuotaEditAdminRouted },
@@ -212,6 +215,7 @@ export const routes: Routes = [
   { path: 'puntuacion/edit/:id', component: PuntuacionEditAdminRouted },
   { path: 'puntuacion/delete/:id', component: PuntuacionDeleteAdminRouted },
   { path: 'comentarioart', component: ComentarioartPlistAdminRouted },
+  { path: 'comentarioart/new', component: ComentarioartNewAdminRouted },
   { path: 'comentarioart/articulo/:id_articulo', component: ComentarioartPlistAdminRouted },
   { path: 'comentarioart/usuario/:id_usuario', component: ComentarioartPlistAdminRouted },
   { path: 'comentarioart/view/:id', component: ComentarioartViewRouted },
