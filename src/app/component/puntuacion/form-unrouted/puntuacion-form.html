@@ -23,7 +23,9 @@
       }
 
       <div class="mb-4">
-        <label for="puntuacion" class="form-label">Puntuación <span class="text-danger">*</span></label>
+        <label for="puntuacion" class="form-label"
+          >Puntuación <span class="text-danger">*</span></label
+        >
         <input
           type="number"
           step="1"
@@ -51,7 +53,10 @@
         }
       </div>
 
-      <div class="p-4 rounded mb-4" style="background-color: #e4e4e4; border-left: 4px solid #0d6efd;">
+      <div
+        class="p-4 rounded mb-4"
+        style="background-color: #e4e4e4; border-left: 4px solid #0d6efd"
+      >
         <div class="mb-4">
           <label for="noticia" class="form-label">Noticia <span class="text-danger">*</span></label>
           <select
@@ -99,7 +104,10 @@
         </div>
       </div>
 
-      <div class="p-4 rounded mb-4" style="background-color: #e4e4e4; border-left: 4px solid #0d6efd;">
+      <div
+        class="p-4 rounded mb-4"
+        style="background-color: #e4e4e4; border-left: 4px solid #0d6efd"
+      >
         <div class="mb-4">
           <label for="usuario" class="form-label">Usuario <span class="text-danger">*</span></label>
           <select
@@ -113,7 +121,9 @@
             <option [value]="null" disabled>Selecciona un usuario</option>
             @for (usuario of usuarios(); track usuario.id) {
               <option [value]="usuario.id">
-                {{ usuario.nombre }} {{ usuario.apellido1 }} {{ usuario.apellido2 }} ({{ usuario.id }})
+                {{ usuario.nombre }} {{ usuario.apellido1 }} {{ usuario.apellido2 }} ({{
+                  usuario.id
+                }})
               </option>
             }
           </select>
@@ -151,10 +161,20 @@
       </div>
 
       <div class="d-flex justify-content-between align-items-center mt-4">
-        <button type="button" (click)="onCancel()" class="btn btn-outline-secondary"> Cancelar </button>
-        <button type="submit" class="btn btn-primary" [disabled]="submitting() || puntuacionForm.invalid">
+        <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="submitting() || puntuacionForm.invalid"
+        >
           @if (submitting()) {
-            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            <span
+              class="spinner-border spinner-border-sm me-2"
+              role="status"
+              aria-hidden="true"
+            ></span>
           }
           {{ mode === 'create' ? 'Crear Puntuación' : 'Guardar Cambios' }}
         </button>

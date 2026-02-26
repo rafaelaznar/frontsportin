@@ -19,7 +19,6 @@ export class PuntuacionService {
     id_noticia: number = 0,
     id_usuario: number = 0,
   ): Observable<IPage<IPuntuacion>> {
-
     if (order === '') {
       order = 'id';
     }
