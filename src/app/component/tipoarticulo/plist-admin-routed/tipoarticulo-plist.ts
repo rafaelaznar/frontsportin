@@ -1,12 +1,14 @@
 import { Component, signal, computed } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { IPage } from '../../../model/plist';
 import { ITipoarticulo } from '../../../model/tipoarticulo';
 import { Paginacion } from '../../shared/paginacion/paginacion';
 import { BotoneraRpp } from '../../shared/botonera-rpp/botonera-rpp';
 import { TipoarticuloService } from '../../../service/tipoarticulo';
 import { TrimPipe } from '../../../pipe/trim-pipe';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs/internal/Subject';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
@@ -16,7 +18,7 @@ import { TipoarticuloPlistAdminUnrouted } from '../plist-admin-unrouted/tipoarti
 
 @Component({
   selector: 'app-tipoarticulo-plist',
-  imports: [TipoarticuloPlistAdminUnrouted],
+  imports: [CommonModule, RouterModule, TipoarticuloPlistAdminUnrouted],
   templateUrl: './tipoarticulo-plist.html',
   styleUrl: './tipoarticulo-plist.css',
 })
