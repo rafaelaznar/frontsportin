@@ -63,7 +63,8 @@ export class JugadorFormAdminUnrouted implements OnInit {
       dorsal: [0, [Validators.required, Validators.min(0)]],
       capitan: [false],
       id_usuario: [null, Validators.required],
-      id_equipo: [null, Validators.required]
+      id_equipo: [null, Validators.required],
+      imagen: [null],
     });
   }
 
@@ -77,7 +78,8 @@ export class JugadorFormAdminUnrouted implements OnInit {
       dorsal: jugador.dorsal ?? 0,
       capitan: !!jugador.capitan,
       id_usuario: idUsuario,
-      id_equipo: idEquipo
+      id_equipo: idEquipo,
+      imagen: jugador.imagen || null,
     });
 
     if (idUsuario) {
@@ -172,23 +174,41 @@ export class JugadorFormAdminUnrouted implements OnInit {
     this.submitting.set(true);
 
     const payload: any = {
-      posicion: this.jugadorForm.value.posicion,
-      dorsal: this.jugadorForm.value.dorsal,
+      posicion: this.jugadorForm.value.posicion?.trim(),
+      dorsal: Number(this.jugadorForm.value.dorsal),
       capitan: !!this.jugadorForm.value.capitan,
-      usuario: { id: this.jugadorForm.value.id_usuario },
-      equipo: { id: this.jugadorForm.value.id_equipo }
+      usuario: { id: Number(this.jugadorForm.value.id_usuario) },
+      equipo: { id: Number(this.jugadorForm.value.id_equipo) },
+      id_usuario: Number(this.jugadorForm.value.id_usuario),
+      id_equipo: Number(this.jugadorForm.value.id_equipo),
+      imagen: this.jugadorForm.value.imagen || null,
+      pagos: [], // ensure backend list isn't null
     };
+
+    // sanity check for relational ids
+    if (!payload.id_usuario || payload.id_usuario <= 0) {
+      // should not happen due to validators, but guard anyway
+      delete payload.usuario;
+      delete payload.id_usuario;
+    }
+    if (!payload.id_equipo || payload.id_equipo <= 0) {
+      delete payload.equipo;
+      delete payload.id_equipo;
+    }
+
+    // debug information
+    console.log('Jugador payload', payload);
 
     if (this.mode === 'edit' && this.jugador?.id) {
       payload.id = this.jugador.id;
       this.oJugadorService.update(payload).subscribe({
         next: () => { this.submitting.set(false); this.snackBar.open('Jugador actualizado correctamente', 'Cerrar', { duration: 4000 }); this.formSuccess.emit(); },
-        error: (err: HttpErrorResponse) => { console.error(err); this.error.set('Error actualizando el jugador'); this.snackBar.open('Error al actualizar el jugador', 'Cerrar', { duration: 4000 }); this.submitting.set(false); }
+        error: (err: HttpErrorResponse) => { console.error('update error', err, err.error); this.error.set('Error actualizando el jugador'); this.snackBar.open('Error al actualizar el jugador', 'Cerrar', { duration: 4000 }); this.submitting.set(false); }
       });
     } else {
       this.oJugadorService.create(payload).subscribe({
         next: (id: number) => { this.submitting.set(false); this.snackBar.open('Jugador creado correctamente', 'Cerrar', { duration: 4000 }); this.formSuccess.emit(); },
-        error: (err: HttpErrorResponse) => { console.error(err); this.error.set('Error creando el jugador'); this.snackBar.open('Error al crear el jugador', 'Cerrar', { duration: 4000 }); this.submitting.set(false); }
+        error: (err: HttpErrorResponse) => { console.error('create error', err, err.error); this.error.set('Error creando el jugador'); this.snackBar.open('Error al crear el jugador', 'Cerrar', { duration: 4000 }); this.submitting.set(false); }
       });
     }
   }
