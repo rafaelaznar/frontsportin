@@ -13,6 +13,7 @@ export class Menu {
   activeRoute: string = '';
   isSessionActive: boolean = false;
   oTokenJWT: IJWT | null = null;
+  userName: string = '';
 
   constructor(
     private oRouter: Router,
@@ -26,6 +27,7 @@ export class Menu {
     this.isSessionActive = this.oSessionService.isSessionActive();
     if (this.isSessionActive) {
       this.oTokenJWT = this.oSessionService.parseJWT(this.oSessionService.getToken()!);
+      this.userName = this.oTokenJWT.username;      
     }
   }
 

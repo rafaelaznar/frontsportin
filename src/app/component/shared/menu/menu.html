@@ -1,9 +1,13 @@
 <div class="ms-auto d-flex align-items-center pe-3 top-actions">
   <div class="d-flex align-items-center ms-3">
+    @if (isSessionActive) {
+      <!-- mostrar el nombre del usuario en sesión username -->
+      <span class="navbar-text" style="color: rgb(206, 206, 206);">{{ userName }}</span>
+    }
     @if (!isSessionActive) {
       <a
         [routerLink]="['/login']"
-        class="btn btn-sm btn-outline-primary d-inline-flex align-items-center nav-login-btn"
+        class="btn btn-sm btn-outline-light d-inline-flex align-items-center nav-login-btn"
         [class.active]="activeRoute.startsWith('/login')"
         title="Acceder"
       >
@@ -17,7 +21,7 @@
       </a>
       <a
         [routerLink]="['/logout']"
-        class="btn btn-sm btn-outline-primary d-inline-flex align-items-center nav-login-btn mx-3"
+        class="btn btn-sm btn-outline-light d-inline-flex align-items-center nav-login-btn mx-3"
         [class.active]="activeRoute.startsWith('/logout')"
         title="Salir"
         >Salir</a
