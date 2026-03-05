@@ -5,3 +5,10 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Ensure Angular Material overlays (dialogs, menus, tooltips) render above Bootstrap sidebar */
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper,
+.cdk-overlay-backdrop {
+	z-index: 2050 !important;
+}
