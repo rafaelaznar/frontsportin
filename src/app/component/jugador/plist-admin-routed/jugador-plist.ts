@@ -5,7 +5,7 @@ import { BotoneraRpp } from '../../shared/botonera-rpp/botonera-rpp';
 import { JugadorService } from '../../../service/jugador-service';
 import { IJugador } from '../../../model/jugador';
 import { IPage } from '../../../model/plist';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TrimPipe } from '../../../pipe/trim-pipe';
 import { Subject, Subscription } from 'rxjs';
@@ -21,7 +21,6 @@ import { JugadorPlistAdminUnrouted } from '../plist-admin-unrouted/jugador-plist
   styleUrls: ['./jugador-plist.css'],
   imports: [
     CommonModule,JugadorPlistAdminUnrouted
-    ,RouterLink
   ]
 })
 export class JugadorPlist {

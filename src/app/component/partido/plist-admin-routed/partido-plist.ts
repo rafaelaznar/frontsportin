@@ -1,11 +1,11 @@
 import { Component, computed, OnDestroy, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { PartidoPlistAdminUnrouted } from "../plist-admin-unrouted/partido-plist-admin-unrouted";
 
 @Component({
   standalone: true,
   selector: 'app-partido-plist-admin-routed',
-  imports: [PartidoPlistAdminUnrouted, RouterLink],
+  imports: [PartidoPlistAdminUnrouted],
   templateUrl: './partido-plist.html',
   styleUrl: './partido-plist.css',
 })

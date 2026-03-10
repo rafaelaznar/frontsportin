@@ -8,13 +8,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { BotoneraRpp } from '../../shared/botonera-rpp/botonera-rpp';
 import { Paginacion } from '../../shared/paginacion/paginacion';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { BotoneraActionsPlist } from '../../shared/botonera-actions-plist/botonera-actions-plist';
 import { UsuarioService } from '../../../service/usuarioService';
 import { IUsuario } from '../../../model/usuario';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-usuario-plist-admin-unrouted',
-  imports: [BotoneraRpp, Paginacion, RouterLink],
+  imports: [BotoneraRpp, Paginacion, RouterLink, BotoneraActionsPlist],
   templateUrl: './usuario-plist-admin-unrouted.html',
   styleUrl: './usuario-plist-admin-unrouted.css',
 })
