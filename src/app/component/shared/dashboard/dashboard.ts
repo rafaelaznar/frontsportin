@@ -22,7 +22,10 @@ import { ComentarioartService } from '../../../service/comentarioart';
 import { UsuarioService } from '../../../service/usuarioService';
 import { TipousuarioService } from '../../../service/tipousuario';
 import { RolusuarioService } from '../../../service/rolusuario';
-import { forkJoin } from 'rxjs';
+import { SecurityService } from '../../../service/security.service';
+import { IPage } from '../../../model/plist';
+import { Observable, forkJoin, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 interface DashboardCard {
   title: string;
@@ -65,7 +68,8 @@ export class DashboardComponent implements OnInit {
     private comentarioartService: ComentarioartService,
     private usuarioService: UsuarioService,
     private tipousuarioService: TipousuarioService,
-    private rolusuarioService: RolusuarioService
+    private rolusuarioService: RolusuarioService,
+    private security: SecurityService
   ) {}
   cards: DashboardCard[] = [
     {
@@ -221,30 +225,71 @@ export class DashboardComponent implements OnInit {
     this.loadCounts();
   }
 
+  private countFromPage<T>(request$: Observable<IPage<T>>): Observable<number> {
+    return request$.pipe(
+      map((page) => page?.totalElements ?? page?.content?.length ?? 0),
+      catchError(() => of(0))
+    );
+  }
+
+  private buildCountRequests() {
+    if (!this.security.isClubAdmin()) {
+      return {
+        clubes: this.clubService.count(),
+        noticias: this.noticiaService.count(),
+        comentarios: this.comentarioService.count(),
+        puntuaciones: this.puntuacionService.count(),
+        temporadas: this.temporadaService.count(),
+        categorias: this.categoriaService.count(),
+        equipos: this.equipoService.count(),
+        ligas: this.ligaService.count(),
+        partidos: this.partidoService.count(),
+        jugadores: this.jugadorService.count(),
+        cuotas: this.cuotaService.count(),
+        pagos: this.pagoService.count(),
+        articulos: this.articuloService.count(),
+        tiposArticulo: this.tipoarticuloService.count(),
+        compras: this.compraService.count(),
+        facturas: this.facturaService.count(),
+        carritos: this.carritoService.count(),
+        comentariosArt: this.comentarioartService.count(),
+        usuarios: this.usuarioService.count(),
+        tiposUsuario: this.tipousuarioService.count(),
+        roles: this.rolusuarioService.count()
+      };
+    }
+
+    // For club admins (tipo 2), use paged endpoints that already enforce club scope.
+    return {
+      clubes: this.countFromPage(this.clubService.getPage(0, 1)),
+      noticias: this.countFromPage(this.noticiaService.getPage(0, 1)),
+      comentarios: this.countFromPage(this.comentarioService.getPage(0, 1)),
+      puntuaciones: this.countFromPage(this.puntuacionService.getPage(0, 1)),
+      temporadas: this.countFromPage(this.temporadaService.getPage(0, 1)),
+      categorias: this.countFromPage(this.categoriaService.getPage(0, 1)),
+      equipos: this.countFromPage(this.equipoService.getPage(0, 1)),
+      ligas: this.countFromPage(this.ligaService.getPage(0, 1)),
+      partidos: this.countFromPage(this.partidoService.getPage(0, 1)),
+      jugadores: this.countFromPage(this.jugadorService.getPage(0, 1)),
+      cuotas: this.countFromPage(this.cuotaService.getPage(0, 1)),
+      pagos: this.countFromPage(this.pagoService.getPage(0, 1)),
+      articulos: this.countFromPage(this.articuloService.getPage(0, 1)),
+      tiposArticulo: this.countFromPage(this.tipoarticuloService.getPage(0, 1)),
+      compras: this.countFromPage(this.compraService.getPage(0, 1)),
+      facturas: this.countFromPage(this.facturaService.getPage(0, 1)),
+      carritos: this.countFromPage(this.carritoService.getPage(0, 1)),
+      comentariosArt: this.countFromPage(this.comentarioartService.getPage(0, 1)),
+      usuarios: this.countFromPage(this.usuarioService.getPage(0, 1)),
+      tiposUsuario: this.tipousuarioService.getAll().pipe(
+        map((items) => items.length),
+        catchError(() => of(0))
+      ),
+      roles: this.countFromPage(this.rolusuarioService.getPage(0, 1))
+    };
+  }
+
   loadCounts() {
-    forkJoin({
-      clubes: this.clubService.count(),
-      noticias: this.noticiaService.count(),
-      comentarios: this.comentarioService.count(),
-      puntuaciones: this.puntuacionService.count(),
-      temporadas: this.temporadaService.count(),
-      categorias: this.categoriaService.count(),
-      equipos: this.equipoService.count(),
-      ligas: this.ligaService.count(),
-      partidos: this.partidoService.count(),
-      jugadores: this.jugadorService.count(),
-      cuotas: this.cuotaService.count(),
-      pagos: this.pagoService.count(),
-      articulos: this.articuloService.count(),
-      tiposArticulo: this.tipoarticuloService.count(),
-      compras: this.compraService.count(),
-      facturas: this.facturaService.count(),
-      carritos: this.carritoService.count(),
-      comentariosArt: this.comentarioartService.count(),
-      usuarios: this.usuarioService.count(),
-      tiposUsuario: this.tipousuarioService.count(),
-      roles: this.rolusuarioService.count()
-    }).subscribe({
+    forkJoin(this.buildCountRequests()).subscribe({
       next: (counts) => {
         this.cards = [
           { ...this.cards[0], count: counts.clubes },

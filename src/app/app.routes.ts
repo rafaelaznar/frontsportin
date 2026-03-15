@@ -110,7 +110,7 @@ export const publicRoutes: Routes = [
 ];
 
 const protectedRoutes: Routes = [
-  { path: '', component: Home },
+  { path: '', component: Home, data: { allowClubAdmin: true } },
   { path: 'usuario', component: UsuarioPlist, data: { allowClubAdmin: true } },
   { path: 'usuario/tipousuario/:id_tipousuario', component: UsuarioPlist, data: { allowClubAdmin: true } },
   { path: 'usuario/rol/:id_rol', component: UsuarioPlist, data: { allowClubAdmin: true } },
