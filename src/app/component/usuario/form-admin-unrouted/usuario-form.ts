@@ -15,8 +15,9 @@ import { IUsuario } from '../../../model/usuario';
 import { IClub } from '../../../model/club';
 import { ITipousuario } from '../../../model/tipousuario';
 import { IRolusuario } from '../../../model/rolusuario';
-import { ClubPlistAdminUnrouted } from '../../club/plist-admin-unrouted/club-plist-admin-unrouted';
+
 import { TipoUsuarioPlistAdminUnrouted } from '../../tipousario/plist-admin-unrouted/tipousuario-plist';
+import { ClubAdminPlist } from '../../club/admin/plist/plist';
 
 @Component({
   selector: 'app-usuario-form-unrouted',
@@ -302,7 +303,7 @@ export class UsuarioFormAdminUnrouted implements OnInit {
   }
 
   openClubFinderModal(): void {
-    const dialogRef = this.dialog.open(ClubPlistAdminUnrouted, {
+    const dialogRef = this.dialog.open(ClubAdminPlist, {
       height: '800px',
       width: '1300px',
       maxWidth: '95vw',

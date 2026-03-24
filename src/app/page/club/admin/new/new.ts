@@ -2,15 +2,15 @@ import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ClubFormUnrouted } from '../form-unrouted/club-form';
+import { ClubAdminForm } from '../../../../component/club/admin/form/form';
 
 @Component({
-  selector: 'app-club-new-admin-routed',
-  imports: [CommonModule, ClubFormUnrouted],
-  templateUrl: './club-new.html',
-  styleUrl: './club-new.css',
+  selector: 'app-club-new-admin',
+  imports: [CommonModule, ClubAdminForm],
+  templateUrl: './new.html',
+  styleUrl: './new.css',
 })
-export class ClubNewAdminRouted {
+export class ClubAdminNewPage {
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
 

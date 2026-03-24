@@ -69,11 +69,11 @@ export class TipoUsuarioPlistAdminUnrouted {
   }
 
   isDialogMode(): boolean {
-      return !!this.dialogRef;
-    }
-  
-    onSelect(tipousuario: ITipousuario): void {
-      this.dialogRef?.close(tipousuario);
-    }
+    return !!this.dialogRef;
+  }
+
+  onSelect(tipousuario: ITipousuario): void {
+    this.dialogRef?.close(tipousuario);
+  }
 
 }

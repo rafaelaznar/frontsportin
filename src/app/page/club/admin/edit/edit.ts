@@ -3,17 +3,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ClubService } from '../../../service/club';
-import { IClub } from '../../../model/club';
-import { ClubFormUnrouted } from '../../club/form-unrouted/club-form';
+import { ClubService } from '../../../../service/club';
+import { IClub } from '../../../../model/club';
+import { ClubAdminForm } from '../../../../component/club/admin/form/form';
 
 @Component({
-  selector: 'app-club-edit-routed',
-  imports: [CommonModule, ClubFormUnrouted],
-  templateUrl: './club-edit.html',
-  styleUrl: './club-edit.css',
+  selector: 'app-club-admin-edit-page',
+  imports: [CommonModule, ClubAdminForm],
+  templateUrl: './edit.html',
+  styleUrl: './edit.css',
 })
-export class ClubEditAdminRouted implements OnInit {
+export class ClubAdminEditPage implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private clubService = inject(ClubService);

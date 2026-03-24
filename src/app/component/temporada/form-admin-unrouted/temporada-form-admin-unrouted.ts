@@ -8,8 +8,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IClub } from '../../../model/club';
 import { MatDialog } from '@angular/material/dialog';
-import { ClubPlistAdminUnrouted } from '../../club/plist-admin-unrouted/club-plist-admin-unrouted';
+
 import { ClubService } from '../../../service/club';
+import { ClubAdminPlist } from '../../club/admin/plist/plist';
 
 @Component({
   selector: 'app-temporada-form-admin-unrouted',
@@ -141,7 +142,7 @@ export class TemporadaFormAdminUnrouted implements OnInit {
   }
 
   openClubFinderModal(): void {
-    const dialogRef = this.dialog.open(ClubPlistAdminUnrouted, {
+    const dialogRef = this.dialog.open(ClubAdminPlist, {
       height: '800px',
       width: '1100px',
       maxWidth: '95vw',

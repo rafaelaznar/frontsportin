@@ -1,17 +1,17 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ClubService } from '../../../service/club';
-import { IClub } from '../../../model/club';
-import { DetailAdminUnrouted } from '../detail-admin-unrouted/detail-admin-unrouted';
+import { ClubService } from '../../../../service/club';
+import { IClub } from '../../../../model/club';
+import { ClubAdminDetail } from '../../../../component/club/admin/detail/detail';
 
 @Component({
-  selector: 'app-club-view',
-  imports: [DetailAdminUnrouted],
-  templateUrl: './club-view.html',
-  styleUrl: './club-view.css',
+  selector: 'app-club-admin-view-page',
+  imports: [ClubAdminDetail],
+  templateUrl: './view.html',
+  styleUrl: './view.css',
 })
-export class ClubViewAdminRouted implements OnInit {
+export class ClubAdminViewPage implements OnInit {
   private route = inject(ActivatedRoute);
   private clubService = inject(ClubService);
 

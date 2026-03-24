@@ -1,14 +1,15 @@
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClubPlistAdminUnrouted } from '../plist-admin-unrouted/club-plist-admin-unrouted';
+import { ClubAdminPlist } from '../../../../component/club/admin/plist/plist';
+
 
 @Component({
-  selector: 'app-club-plist',
-  imports: [ClubPlistAdminUnrouted],
-  templateUrl: './club-plist.html',
-  styleUrl: './club-plist.css',
+  selector: 'app-club-admin-plist-page',
+  imports: [ClubAdminPlist],
+  templateUrl: './plist.html',
+  styleUrl: './plist.css',
 })
-export class ClubPlistAdminRouted {
+export class ClubAdminPlistPage {
   // No se necesita filtro por club en el plist de clubes
   // ya que club no tiene relación con otro club
   

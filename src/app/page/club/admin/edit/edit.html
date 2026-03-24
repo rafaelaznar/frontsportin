@@ -21,12 +21,12 @@
         }
 
         @if (!loading() && !error() && club()) {
-          <app-club-form-unrouted
+          <app-club-admin-form
             [club]="club()"
             [isEditMode]="true"
             (formSuccess)="onFormSuccess()"
             (formCancel)="onFormCancel()"
-          ></app-club-form-unrouted>
+          ></app-club-admin-form>
         }
       </div>
     </div>

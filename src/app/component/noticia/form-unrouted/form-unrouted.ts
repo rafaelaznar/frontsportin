@@ -9,7 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { INoticia } from '../../../model/noticia';
 import { IClub } from '../../../model/club';
 import { ClubService } from '../../../service/club';
-import { ClubPlistAdminUnrouted } from '../../club/plist-admin-unrouted/club-plist-admin-unrouted';
+import { ClubAdminPlist } from '../../club/admin/plist/plist';
+
 
 @Component({
   selector: 'app-noticia-form-unrouted',
@@ -180,7 +181,7 @@ export class NoticiaFormUnrouted implements OnInit {
   }
 
   openClubFinderModal(): void {
-    const dialogRef = this.dialog.open(ClubPlistAdminUnrouted, {
+    const dialogRef = this.dialog.open(ClubAdminPlist, {
       height: '800px',
       width: '1300px',
       maxWidth: '95vw',

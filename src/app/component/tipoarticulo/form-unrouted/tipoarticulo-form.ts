@@ -8,7 +8,8 @@ import { TipoarticuloService } from '../../../service/tipoarticulo';
 import { ClubService } from '../../../service/club';
 import { ITipoarticulo } from '../../../model/tipoarticulo';
 import { IClub } from '../../../model/club';
-import { ClubPlistAdminUnrouted } from '../../club/plist-admin-unrouted/club-plist-admin-unrouted';
+import { ClubAdminPlist } from '../../club/admin/plist/plist';
+
 
 @Component({
   selector: 'app-tipoarticulo-form-unrouted',
@@ -96,7 +97,7 @@ export class TipoarticuloFormAdminUnrouted implements OnInit {
     if (this.session.isClubAdmin()) {
       return; // club is fixed
     }
-    const dialogRef = this.dialog.open(ClubPlistAdminUnrouted, {
+    const dialogRef = this.dialog.open(ClubAdminPlist, {
       height: '800px',
       width: '1100px',
       maxWidth: '95vw',

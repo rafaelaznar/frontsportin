@@ -1,17 +1,17 @@
 import { Component, inject, input, Input, OnInit, Signal, signal } from '@angular/core';
-import { IClub } from '../../../model/club';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
-import { ClubService } from '../../../service/club';
-import { DatetimePipe } from '../../../pipe/datetime-pipe';
+import { IClub } from '../../../../model/club';
+import { DatetimePipe } from '../../../../pipe/datetime-pipe';
+import { ClubService } from '../../../../service/club';
 
 @Component({
-  selector: 'app-detail-admin-unrouted',
+  selector: 'app-club-admin-detail',
   imports: [DatetimePipe, RouterLink],
-  templateUrl: './detail-admin-unrouted.html',
-  styleUrl: './detail-admin-unrouted.css',
+  templateUrl: './detail.html',
+  styleUrl: './detail.css',
 })
-export class DetailAdminUnrouted implements OnInit {
+export class ClubAdminDetail implements OnInit {
   @Input() id: Signal<number> = signal(0);
 
   private oClubService = inject(ClubService);

@@ -1,18 +1,18 @@
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClubService } from '../../../service/club';
+import { ClubService } from '../../../../service/club';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { IClub } from '../../../model/club';
+import { IClub } from '../../../../model/club';
 import { HttpErrorResponse } from '@angular/common/http';
-import { DetailAdminUnrouted } from "../detail-admin-unrouted/detail-admin-unrouted";
+import { ClubAdminDetail } from '../../../../component/club/admin/detail/detail';
 
 @Component({
-  selector: 'app-club-delete',
-  imports: [DetailAdminUnrouted],
-  templateUrl: './club-delete.html',
-  styleUrl: './club-delete.css',
+  selector: 'app-club-admin-delete-page',
+  imports: [ClubAdminDetail],
+  templateUrl: './delete.html',
+  styleUrl: './delete.css',
 })
-export class ClubDeleteAdminRouted {
+export class ClubAdminDeletePage {
   
   private route = inject(ActivatedRoute);
   private oClubService = inject(ClubService);

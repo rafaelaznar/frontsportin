@@ -1,19 +1,19 @@
 import { Component, OnInit, Input, Output, EventEmitter, inject, signal } from '@angular/core';
-import { toIsoDateTime } from '../../../utils/date-utils';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ClubService } from '../../../service/club';
-import { IClub } from '../../../model/club';
+import { toIsoDateTime } from '../../../../utils/date-utils';
+import { ClubService } from '../../../../service/club';
+import { IClub } from '../../../../model/club';
 
 @Component({
-  selector: 'app-club-form-unrouted',
+  selector: 'app-club-admin-form',
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './club-form.html',
-  styleUrls: ['./club-form.css'],
+  templateUrl: './form.html',
+  styleUrls: ['./form.css'],
 })
-export class ClubFormUnrouted implements OnInit {
+export class ClubAdminForm implements OnInit {
   @Input() club: IClub | null = null;
   @Input() isEditMode: boolean = false;
   @Output() formSuccess = new EventEmitter<void>();
@@ -93,11 +93,11 @@ export class ClubFormUnrouted implements OnInit {
       ...(this.isEditMode
         ? {}
         : {
-            temporadas: [],
-            noticias: [],
-            tipoarticulos: [],
-            usuarios: [],
-          }),
+          temporadas: [],
+          noticias: [],
+          tipoarticulos: [],
+          usuarios: [],
+        }),
     };
 
     if (this.isEditMode) {
