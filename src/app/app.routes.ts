@@ -4,6 +4,7 @@ import { Logout } from './component/shared/logout/logout';
 import { LoginComponent } from './component/shared/login/login.component';
 import { UsuarioPlist } from './component/usuario/usuario-plist/usuario-plist';
 import { ArticuloPlistAdminRouted } from './component/articulo/plist-admin-routed/articulo-plist';
+import { ArticuloPlistTeamAdminRouted } from './component/articulo/plist-teamadmin-routed/articulo-plist-teamadmin-routed';
 import { ArticuloViewAdminRouted } from './component/articulo/view-admin-routed/articulo-view';
 import { ArticuloDeleteAdminRouted } from './component/articulo/delete-admin-routed/articulo-delete';
 import { ArticuloEditAdminRouted } from './component/articulo/edit-admin-routed/articulo-edit';
@@ -11,12 +12,16 @@ import { ArticuloNewAdminRouted } from './component/articulo/new-admin-routed/ar
 import { UsuarioViewRouted } from './component/usuario/view-routed/usuario-view';
 import { CategoriaPlistAdminRouted } from './component/categoria/plist-admin-routed/categoria-plist';
 import { PartidoPlistAdminRouted } from './component/partido/plist-admin-routed/partido-plist';
+import { PartidoPlistTeamAdminRouted } from './component/partido/plist-teamadmin-routed/partido-plist-teamadmin-routed';
 import { PartidoNewAdminRouted } from './component/partido/new-admin-routed/partido-new';
 import { PartidoViewAdminRouted } from './component/partido/view-admin-routed/partido-view';
 import { FacturaPlistAdminRouted } from './component/factura/plist-admin-routed/factura-plist';
+import { FacturaPlistTeamAdminRouted } from './component/factura/plist-teamadmin-routed/factura-plist-teamadmin-routed';
 import { CompraPlistAdminRouted } from './component/compra/plist-admin-routed/compra-plist';
+import { CompraPlistTeamAdminRouted } from './component/compra/plist-teamadmin-routed/compra-plist-teamadmin-routed';
 import { CompraViewRouted } from './component/compra/view-routed/compra-view';
 import { CompraDeleteAdminRouted } from './component/compra/delete-admin-routed/compra-delete';
+import { CarritoPlistTeamAdminRouted } from './component/carrito/plist-teamadmin-routed/carrito-plist-teamadmin-routed';
 import { RolusuarioPlist } from './component/rolusuario/plist-admin-routed/rolusuario-plist';
 import { TipoarticuloPlistAdminRouted } from './component/tipoarticulo/plist-admin-routed/tipoarticulo-plist';
 import { TipoarticuloPlistTeamAdminRouted } from './component/tipoarticulo/plist-teamadmin-routed/tipoarticulo-plist-teamadmin-routed';
@@ -24,6 +29,7 @@ import { TipoarticuloViewAdminRouted } from './component/tipoarticulo/view-admin
 import { TipoarticuloEditAdminRouted } from './component/tipoarticulo/edit-admin-routed/tipoarticulo-edit';
 import { TipoarticuloNewAdminRouted } from './component/tipoarticulo/new-admin-routed/tipoarticulo-new';
 import { JugadorPlist } from './component/jugador/plist-admin-routed/jugador-plist';
+import { JugadorPlistTeamAdminRouted } from './component/jugador/plist-teamadmin-routed/jugador-plist-teamadmin-routed';
 import { JugadorViewRouted } from './component/jugador/view-admin-routed/jugador-view';
 import { JugadorNewAdminRouted } from './component/jugador/new-admin-routed/jugador-new';
 import { LigaPlistAdminRouted } from './component/liga/plist-admin-routed/liga-plist';
@@ -31,6 +37,7 @@ import { LigaPlistTeamAdminRouted } from './component/liga/plist-teamadmin-route
 import { NoticiaPlistAdminRouted } from './component/noticia/plist-admin-routed/noticia-plist';
 import { NoticiaPlistTeamAdminRouted } from './component/noticia/plist-teamadmin-routed/noticia-plist-teamadmin-routed';
 import { ClubPlistAdminRouted } from './component/club/plist-admin-routed/club-plist';
+import { CuotaPlistTeamAdminRouted } from './component/cuota/plist-teamadmin-routed/cuota-plist-teamadmin-routed';
 import { CuotaPlistAdminRouted } from './component/cuota/plist-admin-routed/cuota-plist';
 import { CuotaNewAdminRouted } from './component/cuota/new-admin-routed/cuota-new';
 import { TipousuarioPlistAdminRouted } from './component/tipousario/plist-admin-routed/tipousuario-plist';
@@ -47,6 +54,7 @@ import { ComentarioPlistTeamAdminRouted } from './component/comentario/plist-tea
 import { ComentarioViewRouted } from './component/comentario/view-routed/comentario-view';
 import { ComentarioNewAdminRouted } from './component/comentario/new-admin-routed/comentario-new';
 import { PagoPlistComponent } from './component/pago/plist-admin-routed/pago-plist';
+import { PagoPlistTeamAdminRouted } from './component/pago/plist-teamadmin-routed/pago-plist-teamadmin-routed';
 import { PuntuacionPlistAdminRouted } from './component/puntuacion/plist-admin-routed/puntuacion-plist';
 import { PuntuacionViewRouted } from './component/puntuacion/view-routed/puntuacion-view';
 import { PuntuacionEditAdminRouted } from './component/puntuacion/edit-admin-routed/puntuacion-edit';
@@ -148,6 +156,7 @@ const protectedRoutes: Routes = [
 
   { path: 'liga/equipo/:id_equipo', component: LigaPlistAdminRouted, data: { allowClubAdmin: true } },
   { path: 'articulo', component: ArticuloPlistAdminRouted, data: { allowClubAdmin: true } },
+  { path: 'articulo/teamadmin', component: ArticuloPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'articulo/tipoarticulo/:id_tipoarticulo', component: ArticuloPlistAdminRouted, data: { allowClubAdmin: true } },
   { path: 'usuario/:id', component: UsuarioViewRouted },
   { path: 'articulo/new', component: ArticuloNewAdminRouted, data: { allowClubAdmin: true } },
@@ -166,6 +175,7 @@ const protectedRoutes: Routes = [
   { path: 'categoria/new', component: CategoriaNewAdminRouted, data: { allowClubAdmin: true } },
 
   { path: 'partido', component: PartidoPlistAdminRouted, data: { allowClubAdmin: true } },
+  { path: 'partido/teamadmin', component: PartidoPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'partido/liga/:id_liga', component: PartidoPlistAdminRouted, data: { allowClubAdmin: true } },
   { path: 'partido/new', component: PartidoNewAdminRouted, data: { allowClubAdmin: true } },
 
@@ -175,6 +185,7 @@ const protectedRoutes: Routes = [
   { path: 'partido/delete/:id', component: PartidoDeleteAdminRouted, data: { allowClubAdmin: true } },
 
   { path: 'factura', component: FacturaPlistAdminRouted, data: { allowClubAdmin: true } },
+  { path: 'factura/teamadmin', component: FacturaPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'factura/:usuario', component: FacturaPlistAdminRouted, data: { allowClubAdmin: true } },
   { path: 'factura/view/:id', component: FacturaViewAdminRouted, data: { allowClubAdmin: true } },
   { path: 'factura/usuario/:id_usuario', component: FacturaPlistAdminRouted, data: { allowClubAdmin: true } },
@@ -182,6 +193,7 @@ const protectedRoutes: Routes = [
   { path: 'factura/edit/:id', component: FacturaEditAdminRouted },
 
   { path: 'compra', component: CompraPlistAdminRouted, data: { allowClubAdmin: true } },
+  { path: 'compra/teamadmin', component: CompraPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'compra/articulo/:id_articulo', component: CompraPlistAdminRouted, data: { allowClubAdmin: true } },
   { path: 'compra/factura/:id_factura', component: CompraPlistAdminRouted, data: { allowClubAdmin: true } },
   { path: 'compra/view/:id', component: CompraViewRouted, data: { allowClubAdmin: true } },
@@ -204,6 +216,7 @@ const protectedRoutes: Routes = [
   { path: 'tipoarticulo/new', component: TipoarticuloNewAdminRouted, data: { allowClubAdmin: true } },
 
   { path: 'jugador', component: JugadorPlist, data: { allowClubAdmin: true } },
+  { path: 'jugador/teamadmin', component: JugadorPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'jugador/new', component: JugadorNewAdminRouted, data: { allowClubAdmin: true } },
   { path: 'jugador/usuario/:id_usuario', component: JugadorPlist, data: { allowClubAdmin: true } },
   { path: 'jugador/equipo/:id_equipo', component: JugadorPlist, data: { allowClubAdmin: true } },
@@ -249,6 +262,7 @@ const protectedRoutes: Routes = [
   { path: 'equipo/usuario/:id_usuario', component: PlistEquipo },
   { path: 'carrito/new', component: CarritoNewAdminRouted },
   { path: 'carrito', component: CarritoPlistAdminRouted },
+  { path: 'carrito/teamadmin', component: CarritoPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'carrito/usuario/:id_usuario', component: CarritoPlistAdminRouted },
   { path: 'carrito/articulo/:id_articulo', component: CarritoPlistAdminRouted },
   { path: 'carrito/view/:id', component: CarritoViewAdminRouted },
@@ -298,8 +312,16 @@ export const routes: Routes = [
   { path: 'categoria/teamadmin', component: CategoriaPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'equipo/teamadmin', component: EquipoPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'liga/teamadmin', component: LigaPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
+  { path: 'partido/teamadmin', component: PartidoPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'noticia/teamadmin', component: NoticiaPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
+  { path: 'articulo/teamadmin', component: ArticuloPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
+  { path: 'factura/teamadmin', component: FacturaPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
+  { path: 'cuota/teamadmin', component: CuotaPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
+  { path: 'jugador/teamadmin', component: JugadorPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
+  { path: 'pago/teamadmin', component: PagoPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
+  { path: 'compra/teamadmin', component: CompraPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
+  { path: 'carrito/teamadmin', component: CarritoPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'comentario/teamadmin', component: ComentarioPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'tipoarticulo/teamadmin', component: TipoarticuloPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
-  ...protectedRoutes.map((r) => ({ ...r, canActivate: [AdminGuard] })),
+  ...protectedRoutes.map((r) => ({ ...r, canActivate: [AdminGuard] })), 
 ];

@@ -51,9 +51,17 @@ export class SidebarComponent {
     const categoriaRoute = isClubAdmin ? '/categoria/teamadmin' : '/categoria';
     const equipoRoute = isClubAdmin ? '/equipo/teamadmin' : '/equipo';
     const ligaRoute = isClubAdmin ? '/liga/teamadmin' : '/liga';
+    const partidoRoute = isClubAdmin ? '/partido/teamadmin' : '/partido';
+    const jugadorRoute = isClubAdmin ? '/jugador/teamadmin' : '/jugador';
     const noticiaRoute = isClubAdmin ? '/noticia/teamadmin' : '/noticia';
     const comentarioRoute = isClubAdmin ? '/comentario/teamadmin' : '/comentario';
     const tipoarticuloRoute = isClubAdmin ? '/tipoarticulo/teamadmin' : '/tipoarticulo';
+    const articuloRoute = isClubAdmin ? '/articulo/teamadmin' : '/articulo';
+    const compraRoute = isClubAdmin ? '/compra/teamadmin' : '/compra';
+    const facturaRoute = isClubAdmin ? '/factura/teamadmin' : '/factura';
+    const cuotaRoute = isClubAdmin ? '/cuota/teamadmin' : '/cuota';
+    const carritoRoute = isClubAdmin ? '/carrito/teamadmin' : '/carrito';
+    const pagoRoute = isClubAdmin ? '/pago/teamadmin' : '/pago';
 
     items.push(
       {
@@ -72,22 +80,22 @@ export class SidebarComponent {
           { label: 'Temporadas', icon: 'calendar', route: temporadaRoute },
           { label: 'Categorías', icon: 'tags', route: categoriaRoute },
           { label: 'Equipos', icon: 'people-fill', route: equipoRoute },
-          { label: 'Ligas', icon: 'trophy', route: ligaRoute },          
-          { label: 'Partidos', icon: 'play-fill', route: '/partido' },
-          { label: 'Jugadores', icon: 'person-fill', route: '/jugador' },
-          { label: 'Cuotas', icon: 'credit-card', route: '/cuota' },
-          { label: 'Pagos', icon: 'cash-coin', route: '/pago' },
+          { label: 'Ligas', icon: 'trophy', route: ligaRoute },
+          { label: 'Partidos', icon: 'play-fill', route: partidoRoute },
+          { label: 'Jugadores', icon: 'person-fill', route: jugadorRoute },
+          { label: 'Cuotas', icon: 'credit-card', route: cuotaRoute },
+          { label: 'Pagos', icon: 'cash-coin', route: pagoRoute },
         ],
       },
       {
         label: 'Tienda',
         icon: 'shop',
-        children: [          
+        children: [
           { label: 'Tipos de Artículos', icon: 'bookmark-fill', route: tipoarticuloRoute },
-          { label: 'Artículos', icon: 'bag-fill', route: '/articulo' },
-          { label: 'Compras', icon: 'cart-fill', route: '/compra' },
-          { label: 'Facturas', icon: 'receipt', route: '/factura' },
-          { label: 'Carritos', icon: 'bag-check', route: '/carrito' },
+          { label: 'Artículos', icon: 'bag-fill', route: articuloRoute },
+          { label: 'Compras', icon: 'cart-fill', route: compraRoute },
+          { label: 'Facturas', icon: 'receipt', route: facturaRoute },
+          { label: 'Carritos', icon: 'bag-check', route: carritoRoute },
           { label: 'Comentarios de Artículos', icon: 'chat-dots', route: '/comentarioart' },
         ],
       },
