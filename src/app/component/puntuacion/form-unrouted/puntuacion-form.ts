@@ -19,7 +19,7 @@ import { UsuarioService } from '../../../service/usuarioService';
 import { IPuntuacion } from '../../../model/puntuacion';
 import { INoticia } from '../../../model/noticia';
 import { IUsuario } from '../../../model/usuario';
-import { NoticiaPlistAdminUnrouted } from '../../noticia/plist-admin-unrouted/noticia-plist-admin-unrouted';
+import { NoticiaAdminPlist } from '../../noticia/admin/plist/plist';
 import { UsuarioPlistAdminUnrouted } from '../../usuario/plist-admin-unrouted/usuario-plist-admin-unrouted';
 
 @Component({
@@ -226,7 +226,7 @@ export class PuntuacionFormAdminUnrouted implements OnInit {
   }
 
   openNoticiaFinderModal(): void {
-    const dialogRef = this.dialog.open(NoticiaPlistAdminUnrouted, {
+    const dialogRef = this.dialog.open(NoticiaAdminPlist, {
       height: '800px',
       width: '1100px',
       maxWidth: '95vw',

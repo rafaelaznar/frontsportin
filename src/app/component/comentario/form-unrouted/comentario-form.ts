@@ -11,7 +11,7 @@ import { IComentario } from '../../../model/comentario';
 import { IUsuario } from '../../../model/usuario';
 import { INoticia } from '../../../model/noticia';
 import { UsuarioPlistAdminUnrouted } from '../../usuario/plist-admin-unrouted/usuario-plist-admin-unrouted';
-import { NoticiaPlistAdminUnrouted } from '../../noticia/plist-admin-unrouted/noticia-plist-admin-unrouted';
+import { NoticiaAdminPlist } from '../../noticia/admin/plist/plist';
 
 @Component({
   selector: 'app-comentario-form-unrouted',
@@ -111,7 +111,7 @@ export class ComentarioFormAdminUnrouted implements OnInit {
   }
 
   openNoticiaFinderModal(): void {
-    const dialogRef = this.dialog.open(NoticiaPlistAdminUnrouted, {
+    const dialogRef = this.dialog.open(NoticiaAdminPlist, {
       height: '800px', width: '1300px', maxWidth: '95vw', panelClass: 'noticia-dialog',
       data: { title: 'Elegir noticia', message: 'Seleccione la noticia para el comentario' }
     });
