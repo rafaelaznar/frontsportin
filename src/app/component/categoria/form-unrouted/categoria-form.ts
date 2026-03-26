@@ -9,7 +9,7 @@ import { TemporadaService } from '../../../service/temporada';
 import { SessionService } from '../../../service/session';
 import { ICategoria } from '../../../model/categoria';
 import { ITemporada } from '../../../model/temporada';
-import { TemporadaPlistAdminUnrouted } from '../../temporada/plist-admin-unrouted/temporada-plist-admin-unrouted';
+import { TemporadaAdminPlist } from '../../temporada/admin/plist/plist';
 
 @Component({
   selector: 'app-categoria-form-unrouted',
@@ -92,7 +92,7 @@ export class CategoriaFormAdminUnrouted implements OnInit {
   }
 
   openTemporadaFinderModal(): void {
-    const dialogRef = this.dialog.open(TemporadaPlistAdminUnrouted, {
+    const dialogRef = this.dialog.open(TemporadaAdminPlist, {
       height: '800px',
       width: '1100px',
       maxWidth: '95vw',
