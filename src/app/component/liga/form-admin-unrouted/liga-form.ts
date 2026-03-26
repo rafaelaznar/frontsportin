@@ -17,7 +17,7 @@ import { LigaService } from '../../../service/liga';
 import { EquipoService } from '../../../service/equipo';
 import { ILiga } from '../../../model/liga';
 import { IEquipo } from '../../../model/equipo';
-import { EquipoPlistAdminUnrouted } from '../../equipo/plist-admin-unrouted/equipo-plist-admin-unrouted';
+import { EquipoAdminPlist } from '../../equipo/admin/plist/plist';
 
 @Component({
   selector: 'app-liga-form-unrouted',
@@ -103,7 +103,7 @@ export class LigaFormAdminUnrouted implements OnInit {
   }
 
   openEquipoFinderModal(): void {
-    const dialogRef = this.dialog.open(EquipoPlistAdminUnrouted, {
+    const dialogRef = this.dialog.open(EquipoAdminPlist, {
       height: '800px',
       width: '1000px',
       maxWidth: '95vw',

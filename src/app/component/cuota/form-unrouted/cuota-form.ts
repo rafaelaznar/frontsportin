@@ -9,7 +9,7 @@ import { CuotaService } from '../../../service/cuota';
 import { EquipoService } from '../../../service/equipo';
 import { ICuota } from '../../../model/cuota';
 import { IEquipo } from '../../../model/equipo';
-import { EquipoPlistAdminUnrouted } from '../../equipo/plist-admin-unrouted/equipo-plist-admin-unrouted';
+import { EquipoAdminPlist } from '../../equipo/admin/plist/plist';
 
 @Component({
   selector: 'app-cuota-form-unrouted',
@@ -108,7 +108,7 @@ export class CuotaFormAdminUnrouted implements OnInit {
   }
 
   openEquipoFinderModal(): void {
-    const dialogRef = this.dialog.open(EquipoPlistAdminUnrouted, {
+    const dialogRef = this.dialog.open(EquipoAdminPlist, {
       height: '800px',
       width: '1100px',
       maxWidth: '95vw',

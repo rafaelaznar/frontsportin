@@ -41,12 +41,12 @@ import { CuotaPlistTeamAdminRouted } from './component/cuota/plist-teamadmin-rou
 import { CuotaPlistAdminRouted } from './component/cuota/plist-admin-routed/cuota-plist';
 import { CuotaNewAdminRouted } from './component/cuota/new-admin-routed/cuota-new';
 import { TipousuarioPlistAdminRouted } from './component/tipousario/plist-admin-routed/tipousuario-plist';
-import { PlistEquipo } from './component/equipo/plist-admin-routed/equipo-plist';
-import { EquipoPlistTeamAdminRouted } from './component/equipo/plist-teamadmin-routed/equipo-plist-teamadmin-routed';
-import { EquipoViewRouted } from './component/equipo/view-admin-routed/equipo-view';
-import { EquipoDeleteAdminRouted } from './component/equipo/delete-admin-routed/equipo.delete';
-import { EquipoEditAdminRouted } from './component/equipo/edit-admin-routed/equipo-edit';
-import { EquipoNewAdminRouted } from './component/equipo/new-admin-routed/equipo-new';
+import { EquipoAdminPlistPage } from './page/equipo/admin/plist/plist';
+import { EquipoAdminViewPage } from './page/equipo/admin/view/view';
+import { EquipoAdminEditPage } from './page/equipo/admin/edit/edit';
+import { EquipoAdminNewPage } from './page/equipo/admin/new/new';
+import { EquipoAdminDeletePage } from './page/equipo/admin/delete/delete';
+import { EquipoTeamadminPlistPage } from './page/equipo/teamadmin/plist/plist';
 import { CarritoNewAdminRouted } from './component/carrito/new-admin-routed/carrito-new';
 import { CarritoPlistAdminRouted } from './component/carrito/plist-admin-routed/carrito-plist';
 import { ComentarioPlistAdminRouted } from './component/comentario/plist-admin-routed/comentario-plist';
@@ -250,18 +250,18 @@ const protectedRoutes: Routes = [
 
   { path: 'tipousuario', component: TipousuarioPlistAdminRouted },
   { path: 'tipousuario/view/:id', component: TipousuarioViewAdminRouted },
-  { path: 'equipo', component: PlistEquipo },
-  { path: 'equipo/teamadmin', component: EquipoPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
+  { path: 'equipo', component: EquipoAdminPlistPage },
+  { path: 'equipo/teamadmin', component: EquipoTeamadminPlistPage, canActivate: [ClubAdminGuard] },
 
-  { path: 'equipo/categoria/:id_categoria', component: PlistEquipo, data: { allowClubAdmin: true } },
-  { path: 'equipo/new', component: EquipoNewAdminRouted, data: { allowClubAdmin: true } },
+  { path: 'equipo/categoria/:id_categoria', component: EquipoAdminPlistPage, data: { allowClubAdmin: true } },
+  { path: 'equipo/new', component: EquipoAdminNewPage, data: { allowClubAdmin: true } },
 
-  { path: 'equipo/edit/:id', component: EquipoEditAdminRouted, data: { allowClubAdmin: true } },
+  { path: 'equipo/edit/:id', component: EquipoAdminEditPage, data: { allowClubAdmin: true } },
 
-  { path: 'equipo/view/:id', component: EquipoViewRouted, data: { allowClubAdmin: true } },
-  { path: 'equipo/delete/:id', component: EquipoDeleteAdminRouted, data: { allowClubAdmin: true } },
+  { path: 'equipo/view/:id', component: EquipoAdminViewPage, data: { allowClubAdmin: true } },
+  { path: 'equipo/delete/:id', component: EquipoAdminDeletePage, data: { allowClubAdmin: true } },
 
-  { path: 'equipo/usuario/:id_usuario', component: PlistEquipo },
+  { path: 'equipo/usuario/:id_usuario', component: EquipoAdminPlistPage },
   { path: 'carrito/new', component: CarritoNewAdminRouted },
   { path: 'carrito', component: CarritoPlistAdminRouted },
   { path: 'carrito/teamadmin', component: CarritoPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
@@ -312,7 +312,7 @@ export const routes: Routes = [
   { path: 'club/teamadmin', component: ClubPlistTeamadminPage, canActivate: [ClubAdminGuard] },
   { path: 'temporada/teamadmin', component: TemporadaTeamadminPlistPage, canActivate: [ClubAdminGuard] },
   { path: 'categoria/teamadmin', component: CategoriaTeamadminPlistPage, canActivate: [ClubAdminGuard] },
-  { path: 'equipo/teamadmin', component: EquipoPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
+  { path: 'equipo/teamadmin', component: EquipoTeamadminPlistPage, canActivate: [ClubAdminGuard] },
   { path: 'liga/teamadmin', component: LigaPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'partido/teamadmin', component: PartidoPlistTeamAdminRouted, canActivate: [ClubAdminGuard] },
   { path: 'noticia/teamadmin', component: NoticiaPlistTeamadminPage, canActivate: [ClubAdminGuard] },

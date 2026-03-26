@@ -11,7 +11,7 @@ import { IUsuario } from '../../../model/usuario';
 import { IJugador } from '../../../model/jugador';
 import { IEquipo } from '../../../model/equipo';
 import { UsuarioPlistAdminUnrouted } from '../../usuario/plist-admin-unrouted/usuario-plist-admin-unrouted';
-import { EquipoPlistAdminUnrouted } from '../../equipo/plist-admin-unrouted/equipo-plist-admin-unrouted';
+import { EquipoAdminPlist } from '../../equipo/admin/plist/plist';
 
 @Component({
   selector: 'app-jugador-form-unrouted',
@@ -139,7 +139,7 @@ export class JugadorFormAdminUnrouted implements OnInit {
   }
 
   openEquipoFinderModal(): void {
-    const dialogRef = this.dialog.open(EquipoPlistAdminUnrouted, {
+    const dialogRef = this.dialog.open(EquipoAdminPlist, {
       height: '800px',
       width: '1100px',
       maxWidth: '95vw',
