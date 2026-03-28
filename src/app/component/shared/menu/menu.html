@@ -11,6 +11,17 @@
         <span class="d-none d-lg-inline">Iniciar sesión</span>
       </a>
     } @else {
+      @if (isUser()) {
+        <a
+          [routerLink]="['/mi']"
+          class="btn btn-sm btn-outline-light d-inline-flex align-items-center nav-login-btn me-2"
+          [class.active]="activeRoute.startsWith('/mi')"
+          title="Mi inicio"
+        >
+          <i class="bi bi-house-fill me-1"></i>
+          <span class="d-none d-lg-inline">Inicio</span>
+        </a>
+      }
       <a class="user-info d-inline-flex align-items-center">
         <span class="d-none d-lg-inline text-light"
           ><i class="bi bi-person-circle me-2"></i> {{ userName() }}</span

@@ -1,0 +1,53 @@
+@if (loading()) {
+  <div class="cu-loading">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Cargando...</span></div>
+  </div>
+} @else if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+} @else if (equipos().length === 0) {
+  <div class="cu-empty">
+    <i class="bi bi-cash-coin"></i>
+    <p>Sin cuotas asociadas a tus equipos.</p>
+  </div>
+} @else {
+  <div class="cu-list">
+    @for (eq of equipos(); track eq.id) {
+      <div class="cu-equipo">
+        <div class="cu-equipo-header">
+          <div class="cu-equipo-meta">
+            <span class="cu-equipo-name"><i class="bi bi-shield-fill me-2"></i>{{ eq.nombre }}</span>
+            <span class="cu-equipo-sub">{{ eq.temporada }} — {{ eq.categoria }}</span>
+          </div>
+          @if (totalAdeudado(eq) > 0) {
+            <span class="cu-pending-badge">{{ totalAdeudado(eq) | currency:'EUR':'symbol':'1.2-2' }} pendiente</span>
+          } @else if (eq.cuotas.length > 0) {
+            <span class="cu-ok-badge"><i class="bi bi-check-circle me-1"></i>Al día</span>
+          }
+        </div>
+
+        @if (eq.cuotas.length === 0) {
+          <div class="cu-no-cuotas">Sin cuotas para este equipo</div>
+        } @else {
+          <div class="cu-cuotas">
+            @for (cr of eq.cuotas; track cr.cuota.id) {
+              <div class="cu-cuota-row" [class.cu-cuota-row--paid]="estaPagado(cr)" [class.cu-cuota-row--pending]="!estaPagado(cr)">
+                <div class="cu-cuota-info">
+                  <span class="cu-cuota-desc">{{ cr.cuota.descripcion }}</span>
+                  <span class="cu-cuota-fecha small text-muted">{{ cr.cuota.fecha | datetime }}</span>
+                </div>
+                <div class="cu-cuota-amount">{{ cr.cuota.cantidad | currency:'EUR':'symbol':'1.2-2' }}</div>
+                <div class="cu-cuota-status">
+                  @if (estaPagado(cr)) {
+                    <span class="badge bg-success"><i class="bi bi-check2 me-1"></i>Pagado</span>
+                  } @else {
+                    <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i>Pendiente</span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+}

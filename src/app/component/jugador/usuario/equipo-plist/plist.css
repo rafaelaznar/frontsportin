@@ -1,0 +1,136 @@
+.jp-loading {
+  text-align: center;
+  padding: 3rem;
+}
+
+.jp-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.jp-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  background: linear-gradient(135deg, #1a3a5c, #2e6da4);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.jp-header-icon {
+  font-size: 3rem;
+  opacity: 0.85;
+  line-height: 1;
+}
+
+.jp-header-info h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 0 0 0.3rem 0;
+}
+
+.jp-breadcrumb {
+  font-size: 0.82rem;
+  opacity: 0.75;
+  margin-bottom: 0.3rem;
+}
+
+.jp-subtitle {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.jp-table-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  margin-bottom: 1.25rem;
+}
+
+.jp-table {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.jp-table thead th {
+  background: #f8f9fa;
+  border-bottom: 2px solid #e5e7eb;
+  color: #374151;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.7rem 1rem;
+}
+
+.jp-th-dorsal {
+  width: 3.5rem;
+  text-align: center;
+}
+
+.jp-th-posicion {
+  width: 8rem;
+}
+
+.jp-row td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.jp-row:last-child td {
+  border-bottom: none;
+}
+
+.jp-dorsal {
+  width: 3.5rem;
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #2e6da4;
+}
+
+.jp-nombre {
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.jp-captain {
+  margin-left: 0.5rem;
+  color: #f59e0b;
+  font-size: 0.7rem;
+}
+
+.jp-pos-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.jp-empty {
+  text-align: center;
+  padding: 2.5rem;
+  color: #9ca3af;
+}
+
+.jp-empty i {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  opacity: 0.4;
+}
+
+.jp-back {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+}

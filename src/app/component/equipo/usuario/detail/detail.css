@@ -1,0 +1,116 @@
+.ed-loading {
+  text-align: center;
+  padding: 3rem;
+}
+
+.ed-wrapper {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.ed-equipo-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  background: linear-gradient(135deg, #1a3a5c, #2e6da4);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.ed-equipo-icon {
+  font-size: 3rem;
+  opacity: 0.85;
+  line-height: 1;
+}
+
+.ed-equipo-info h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 0.35rem 0;
+}
+
+.ed-breadcrumb {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 0.25rem;
+}
+
+.ed-entrenador {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.ed-liga {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.ed-liga-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1a3a5c;
+}
+
+.ed-liga-count {
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.ed-no-partidos {
+  padding: 0.75rem 1.25rem;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+.ed-partidos {
+  padding: 0.5rem 1.25rem;
+}
+
+.ed-table {
+  font-size: 0.875rem;
+}
+
+.ed-rival {
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.ed-resultado {
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
+  background: #f3f4f6;
+}
+
+.res-win   { background: #d1fae5; color: #065f46; }
+.res-loss  { background: #fee2e2; color: #991b1b; }
+.res-draw  { background: #fef3c7; color: #92400e; }
+
+.ed-empty {
+  text-align: center;
+  padding: 2.5rem;
+  color: #9ca3af;
+}
+
+.ed-empty i {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  opacity: 0.4;
+}
+
+.ed-back {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+}

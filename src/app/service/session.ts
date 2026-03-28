@@ -91,6 +91,14 @@ export class SessionService {
     return null;
   }
 
+  getUserId(): number | null {
+    if (this.isSessionActive()) {
+      const oJWT: IJWT = this.parseJWT(this.getToken()!);
+      return oJWT.userid ?? null;
+    }
+    return null;
+  }
+
   parseJWT(token: string): IJWT {
     if (!token) {
       //throw new Error('Token vacío o indefinido.');

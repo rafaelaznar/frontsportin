@@ -1,0 +1,105 @@
+<div class="ud-wrapper">
+  <header class="ud-hero">
+    <div class="ud-hero-content">
+      <div class="ud-avatar">
+        <i class="bi bi-person-circle"></i>
+      </div>
+      <div class="ud-welcome">
+        <h1>Bienvenido, <span class="ud-username">{{ userName() }}</span></h1>
+        <p>Área personal de tu club</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="ud-grid">
+
+    <!-- Noticias -->
+    <a [routerLink]="['/mi/noticias']" class="ud-card ud-card--news">
+      <div class="ud-card-icon">
+        <i class="bi bi-newspaper"></i>
+      </div>
+      <div class="ud-card-body">
+        <h3>Noticias</h3>
+        <p>Lee las últimas noticias de tu club, comenta y valora</p>
+      </div>
+      <div class="ud-card-arrow">
+        <i class="bi bi-arrow-right-circle"></i>
+      </div>
+    </a>
+
+    <!-- Mis Equipos -->
+    <a [routerLink]="['/mi/equipos']" class="ud-card ud-card--teams">
+      <div class="ud-card-icon">
+        <i class="bi bi-trophy"></i>
+      </div>
+      <div class="ud-card-body">
+        <h3>Mis Equipos</h3>
+        @if (equiposCount() > 0) {
+          <p>Estás inscrito en <strong>{{ equiposCount() }}</strong> equipo{{ equiposCount() > 1 ? 's' : '' }}</p>
+        } @else {
+          <p>Consulta las temporadas, categorías y resultados</p>
+        }
+      </div>
+      <div class="ud-card-arrow">
+        <i class="bi bi-arrow-right-circle"></i>
+      </div>
+    </a>
+
+    <!-- Cuotas y Pagos -->
+    <a [routerLink]="['/mi/cuotas']" class="ud-card ud-card--fees">
+      <div class="ud-card-icon">
+        <i class="bi bi-cash-coin"></i>
+      </div>
+      <div class="ud-card-body">
+        <h3>Cuotas y Pagos</h3>
+        <p>Consulta las cuotas de tus equipos y el estado de tus pagos</p>
+      </div>
+      <div class="ud-card-arrow">
+        <i class="bi bi-arrow-right-circle"></i>
+      </div>
+    </a>
+
+    <!-- Tienda Virtual -->
+    <a [routerLink]="['/mi/tienda']" class="ud-card ud-card--shop">
+      <div class="ud-card-icon">
+        <i class="bi bi-bag-heart"></i>
+        @if (carritoCount() > 0) {
+          <span class="ud-badge">{{ carritoCount() }}</span>
+        }
+      </div>
+      <div class="ud-card-body">
+        <h3>Tienda Virtual</h3>
+        @if (carritoCount() > 0) {
+          <p>Tienes <strong>{{ carritoCount() }}</strong> artículo{{ carritoCount() > 1 ? 's' : '' }} en el carrito</p>
+        } @else {
+          <p>Productos oficiales de tu club, organizado por categorías</p>
+        }
+      </div>
+      <div class="ud-card-arrow">
+        <i class="bi bi-arrow-right-circle"></i>
+      </div>
+    </a>
+
+    <!-- Mis Facturas -->
+    <a [routerLink]="['/mi/facturas']" class="ud-card ud-card--invoices">
+      <div class="ud-card-icon">
+        <i class="bi bi-receipt"></i>
+        @if (facturasCount() > 0) {
+          <span class="ud-badge">{{ facturasCount() }}</span>
+        }
+      </div>
+      <div class="ud-card-body">
+        <h3>Mis Facturas</h3>
+        @if (facturasCount() > 0) {
+          <p>Tienes <strong>{{ facturasCount() }}</strong> factura{{ facturasCount() > 1 ? 's' : '' }} de compras</p>
+        } @else {
+          <p>Historial completo de tus compras en la tienda</p>
+        }
+      </div>
+      <div class="ud-card-arrow">
+        <i class="bi bi-arrow-right-circle"></i>
+      </div>
+    </a>
+
+  </div>
+</div>

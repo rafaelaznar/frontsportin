@@ -1,0 +1,38 @@
+@if (loading()) {
+  <div class="news-loading">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Cargando...</span></div>
+  </div>
+} @else if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+} @else if (totalRecords() === 0) {
+  <div class="news-empty">
+    <i class="bi bi-newspaper"></i>
+    <p>No hay noticias disponibles aún.</p>
+  </div>
+} @else {
+  <div class="news-list">
+    @for (noticia of oPage()?.content; track noticia.id) {
+      <a [routerLink]="['/mi/noticias', noticia.id]" class="news-card">
+        <div class="news-card-body">
+          <div class="news-meta">
+            <span class="news-date"><i class="bi bi-calendar3 me-1"></i>{{ noticia.fecha | datetime }}</span>
+            @if (noticia.puntuaciones) {
+              <span class="news-rating"><i class="bi bi-star-fill me-1"></i>{{ noticia.puntuaciones }}</span>
+            }
+            @if (noticia.comentarios > 0) {
+              <span class="news-comments"><i class="bi bi-chat-dots me-1"></i>{{ noticia.comentarios }}</span>
+            }
+          </div>
+          <h3 class="news-title">{{ noticia.titulo }}</h3>
+          <p class="news-excerpt">{{ noticia.contenido | slice:0:160 }}@if ((noticia.contenido?.length ?? 0) > 160) {<span>...</span>}</p>
+        </div>
+        @if (noticia.imagen) {
+          <div class="news-card-img">
+            <img [src]="'data:image/jpeg;base64,' + noticia.imagen" [alt]="noticia.titulo" />
+          </div>
+        }
+        <div class="news-card-chevron"><i class="bi bi-chevron-right"></i></div>
+      </a>
+    }
+  </div>
+}

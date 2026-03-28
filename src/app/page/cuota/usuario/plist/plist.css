@@ -1,0 +1,18 @@
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.page-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 0.2rem 0;
+}

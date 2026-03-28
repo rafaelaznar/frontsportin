@@ -1,0 +1,79 @@
+@if (loading()) {
+  <div class="jp-loading">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Cargando...</span></div>
+  </div>
+} @else if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+} @else {
+  <div class="jp-wrapper">
+
+    <!-- Header del equipo -->
+    @if (equipo()) {
+      <div class="jp-header">
+        <div class="jp-header-icon"><i class="bi bi-shield-fill"></i></div>
+        <div class="jp-header-info">
+          <h2>{{ equipo()!.nombre }}</h2>
+          @if (equipo()!.categoria?.temporada) {
+            <div class="jp-breadcrumb">
+              <span>{{ equipo()!.categoria?.temporada?.descripcion }}</span>
+              <i class="bi bi-chevron-right mx-1 small"></i>
+              <span>{{ equipo()!.categoria?.nombre }}</span>
+            </div>
+          }
+          <div class="jp-subtitle">
+            <i class="bi bi-people-fill me-1"></i>Plantilla — {{ jugadores().length }} jugador{{ jugadores().length !== 1 ? 'es' : '' }}
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Lista de jugadores -->
+    @if (jugadores().length === 0) {
+      <div class="jp-empty">
+        <i class="bi bi-person-x"></i>
+        <p>No hay jugadores registrados en este equipo.</p>
+      </div>
+    } @else {
+      <div class="jp-table-card">
+        <table class="table jp-table">
+          <thead>
+            <tr>
+              <th class="jp-th-dorsal">#</th>
+              <th>Jugador</th>
+              <th class="jp-th-posicion">Posición</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (j of jugadores(); track j.id) {
+              <tr class="jp-row">
+                <td class="jp-dorsal">{{ j.dorsal }}</td>
+                <td class="jp-nombre">
+                  <span>{{ j.usuario?.nombre }} {{ j.usuario?.apellido1 }}</span>
+                  @if (j.capitan) {
+                    <span class="jp-captain" title="Capitán"><i class="bi bi-star-fill"></i></span>
+                  }
+                </td>
+                <td class="jp-posicion">
+                  @if (j.posicion) {
+                    <span class="jp-pos-badge">{{ j.posicion }}</span>
+                  } @else {
+                    <span class="text-muted">—</span>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+
+    <div class="jp-back">
+      <a [routerLink]="['/mi/equipos', id_equipo]" class="btn btn-outline-secondary btn-sm me-2">
+        <i class="bi bi-shield me-1"></i>Ver equipo
+      </a>
+      <a routerLink="/mi/equipos" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>Mis equipos
+      </a>
+    </div>
+  </div>
+}

@@ -5,6 +5,7 @@ export interface IToken {
 export interface IJWT{  
   "iss": string,
   "sub": string,
+  "userid": number,
   "username": string,
   "usertype": number,
   "club": number,

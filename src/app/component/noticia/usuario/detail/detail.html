@@ -1,0 +1,127 @@
+@if (loading()) {
+  <div class="nd-loading">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Cargando...</span></div>
+  </div>
+} @else if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+} @else if (noticia()) {
+  <article class="nd-article">
+
+    @if (message()) {
+      <div class="nd-message">{{ message() }}</div>
+    }
+
+    <!-- Imagen de cabecera -->
+    @if (noticia()!.imagen) {
+      <div class="nd-hero-img">
+        <img [src]="'data:image/jpeg;base64,' + noticia()!.imagen" [alt]="noticia()!.titulo" />
+      </div>
+    }
+
+    <!-- Cabecera -->
+    <header class="nd-header">
+      <h1 class="nd-title">{{ noticia()!.titulo }}</h1>
+      <div class="nd-meta">
+        <span><i class="bi bi-calendar3 me-1"></i>{{ noticia()!.fecha | datetime }}</span>
+        @if (puntuacionMedia() > 0) {
+          <span class="nd-rating-badge">
+            <i class="bi bi-star-fill me-1"></i>{{ puntuacionMedia() }}/5
+          </span>
+        }
+        <span><i class="bi bi-chat-dots me-1"></i>{{ comentarios().length }} comentarios</span>
+      </div>
+    </header>
+
+    <!-- Contenido -->
+    <div class="nd-body">
+      <p>{{ noticia()!.contenido }}</p>
+    </div>
+
+    <!-- Puntuación -->
+    <section class="nd-rating-section">
+      <h4><i class="bi bi-star me-2"></i>Tu valoración</h4>
+      <div class="nd-stars">
+        @for (star of [1,2,3,4,5]; track star) {
+          <button
+            class="nd-star"
+            [class.active]="star <= nuevaPuntuacion()"
+            (click)="setEstrella(star)"
+            [title]="star + ' estrella' + (star > 1 ? 's' : '')"
+          >★</button>
+        }
+      </div>
+      @if (nuevaPuntuacion() > 0) {
+        <button class="btn btn-primary btn-sm mt-2" (click)="puntuarNoticia()">
+          @if (miPuntuacion()) { Actualizar valoración } @else { Guardar valoración }
+        </button>
+      }
+      @if (miPuntuacion()) {
+        <p class="nd-rated-msg">Ya valoraste esta noticia con {{ miPuntuacion()!.puntuacion }} ★</p>
+      }
+    </section>
+
+    <!-- Comentarios -->
+    <section class="nd-comments">
+      <h4><i class="bi bi-chat-dots me-2"></i>Comentarios ({{ comentarios().length }})</h4>
+
+      <!-- Formulario nuevo comentario -->
+      <div class="nd-new-comment">
+        <textarea
+          class="form-control"
+          rows="3"
+          placeholder="Escribe un comentario..."
+          [value]="nuevoComentario()"
+          (input)="nuevoComentario.set($any($event.target).value)"
+          name="nuevoComentario"
+          maxlength="500"
+        ></textarea>
+        <div class="nd-new-comment-actions">
+          <small class="text-muted">{{ nuevoComentario().length }}/500</small>
+          <button class="btn btn-primary btn-sm" (click)="addComentario()" [disabled]="!nuevoComentario().trim()">
+            <i class="bi bi-send me-1"></i>Publicar
+          </button>
+        </div>
+      </div>
+
+      @if (loadingComentarios()) {
+        <div class="text-center py-3"><div class="spinner-border spinner-border-sm text-secondary" role="status"></div></div>
+      } @else if (comentarios().length === 0) {
+        <p class="nd-no-comments">Sin comentarios aún. ¡Sé el primero!</p>
+      } @else {
+        <div class="nd-comment-list">
+          @for (c of comentarios(); track c.id) {
+            <div class="nd-comment" [class.nd-comment--mine]="isMiComentario(c)">
+              <div class="nd-comment-avatar">
+                <i class="bi bi-person-circle"></i>
+              </div>
+              <div class="nd-comment-content">
+                <div class="nd-comment-meta">
+                  <strong>{{ c.usuario?.username }}</strong>
+                  @if (isMiComentario(c)) {
+                    <span class="nd-mine-badge">Tú</span>
+                  }
+                </div>
+                <p>{{ c.contenido }}</p>
+                @if (isMiComentario(c)) {
+                  <button
+                    class="btn btn-outline-danger btn-xs"
+                    (click)="deleteComentario(c.id)"
+                    [disabled]="deletingId() === c.id"
+                  >
+                    <i class="bi bi-trash me-1"></i>Eliminar
+                  </button>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </section>
+
+    <div class="nd-back">
+      <a routerLink="/mi/noticias" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>Volver a noticias
+      </a>
+    </div>
+  </article>
+}

@@ -1,0 +1,91 @@
+@if (loading()) {
+  <div class="ed-loading">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Cargando...</span></div>
+  </div>
+} @else if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+} @else if (equipo()) {
+  <div class="ed-wrapper">
+
+    <!-- Header del equipo -->
+    <div class="ed-equipo-header">
+      <div class="ed-equipo-icon"><i class="bi bi-shield-fill"></i></div>
+      <div class="ed-equipo-info">
+        <h2>{{ equipo()!.nombre }}</h2>
+        @if (equipo()!.categoria?.temporada) {
+          <div class="ed-breadcrumb">
+            <span>{{ equipo()!.categoria?.temporada?.descripcion }}</span>
+            <i class="bi bi-chevron-right mx-1 small"></i>
+            <span>{{ equipo()!.categoria?.nombre }}</span>
+          </div>
+        }
+        @if (equipo()!.entrenador) {
+          <div class="ed-entrenador">
+            <i class="bi bi-person-badge me-1"></i>
+            Entrenador: {{ equipo()!.entrenador?.nombre }} {{ equipo()!.entrenador?.apellido1 }}
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Ligas y partidos -->
+    @if (ligasConPartidos().length === 0) {
+      <div class="ed-empty">
+        <i class="bi bi-calendar-x"></i>
+        <p>Sin ligas registradas para este equipo.</p>
+      </div>
+    } @else {
+      @for (lcp of ligasConPartidos(); track lcp.liga.id) {
+        <div class="ed-liga">
+          <div class="ed-liga-header">
+            <i class="bi bi-trophy-fill me-2"></i>{{ lcp.liga.nombre }}
+            <span class="ed-liga-count ms-2 small">({{ lcp.partidos.length }} partido{{ lcp.partidos.length !== 1 ? 's' : '' }})</span>
+          </div>
+
+          @if (lcp.partidos.length === 0) {
+            <div class="ed-no-partidos">Sin partidos registrados</div>
+          } @else {
+            <div class="ed-partidos">
+              <table class="table table-sm ed-table">
+                <thead>
+                  <tr>
+                    <th>Rival</th>
+                    <th>Casa/Fuera</th>
+                    <th>Resultado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (p of lcp.partidos; track p.id) {
+                    <tr>
+                      <td class="ed-rival">{{ p.rival }}</td>
+                      <td>
+                        @if (p.local) {
+                          <span class="badge bg-success">Casa</span>
+                        } @else {
+                          <span class="badge bg-secondary">Fuera</span>
+                        }
+                      </td>
+                      <td>
+                        @if (p.resultado) {
+                          <span class="ed-resultado" [class]="resultadoClass(p.resultado)">{{ p.resultado }}</span>
+                        } @else {
+                          <span class="text-muted small">—</span>
+                        }
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+        </div>
+      }
+    }
+
+    <div class="ed-back">
+      <a routerLink="/mi/equipos" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left me-1"></i>Volver a mis equipos
+      </a>
+    </div>
+  </div>
+}

@@ -1,0 +1,127 @@
+.eq-loading, .eq-empty {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+}
+
+.eq-empty i {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.75rem;
+  opacity: 0.35;
+}
+
+.eq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.eq-season {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.eq-season-header {
+  background: linear-gradient(90deg, #1a3a5c, #2e6da4);
+  color: #fff;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.95rem;
+}
+
+.eq-category {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.eq-category-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+  margin-bottom: 0.6rem;
+}
+
+.eq-teams {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.eq-team-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.eq-team-card:hover {
+  background: #eff6ff;
+  box-shadow: 0 2px 10px rgba(59,130,246,0.12);
+}
+
+.eq-team-icon {
+  position: relative;
+  font-size: 2rem;
+  color: #2e6da4;
+  line-height: 1;
+}
+
+.eq-captain-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: #f59e0b;
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 800;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eq-team-info {
+  flex: 1;
+}
+
+.eq-team-info h5 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 0.2rem 0;
+  color: #1a1a2e;
+}
+
+.eq-team-meta {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.eq-dorsal {
+  font-weight: 700;
+  color: #2e6da4;
+}
+
+.eq-team-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.4rem;
+}
+
+.eq-team-actions .btn {
+  font-size: 0.78rem;
+  padding: 0.2rem 0.6rem;
+  white-space: nowrap;
+}

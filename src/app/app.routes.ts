@@ -124,6 +124,16 @@ import { UsuarioAdminEditPage } from './page/usuario/admin/edit/edit';
 import { UsuarioTeamadminPlistPage } from './page/usuario/teamadmin/plist/plist';
 import { AdminGuard } from './guards/admin.guard';
 import { ClubAdminGuard } from './guards/club-admin.guard';
+import { UsuarioGuard } from './guards/usuario.guard';
+import { MiHomePage } from './page/usuario/mi-home/mi-home';
+import { NoticiaUsuarioPlistPage } from './page/noticia/usuario/plist/plist';
+import { NoticiaUsuarioViewPage } from './page/noticia/usuario/view/view';
+import { EquipoUsuarioPlistPage } from './page/equipo/usuario/plist/plist';
+import { EquipoUsuarioViewPage } from './page/equipo/usuario/view/view';
+import { CuotaUsuarioPlistPage } from './page/cuota/usuario/plist/plist';
+import { CarritoUsuarioTiendaPage } from './page/carrito/usuario/tienda/tienda';
+import { FacturaUsuarioPlistPage } from './page/factura/usuario/plist/plist';
+import { JugadorUsuarioEquipoPlistPage } from './page/jugador/usuario/equipo-plist/plist';
 
 export const publicRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -322,5 +332,15 @@ export const routes: Routes = [
   { path: 'carrito/teamadmin', component: CarritoTeamadminPlistPage, canActivate: [ClubAdminGuard] },
   { path: 'comentario/teamadmin', component: ComentarioTeamadminPlistPage, canActivate: [ClubAdminGuard] },
   { path: 'tipoarticulo/teamadmin', component: TipoarticuloTeamadminPlistPage, canActivate: [ClubAdminGuard] },
+  // Usuario (perfil 3) routes
+  { path: 'mi', component: MiHomePage, canActivate: [UsuarioGuard] },
+  { path: 'mi/noticias', component: NoticiaUsuarioPlistPage, canActivate: [UsuarioGuard] },
+  { path: 'mi/noticias/:id', component: NoticiaUsuarioViewPage, canActivate: [UsuarioGuard] },
+  { path: 'mi/equipos', component: EquipoUsuarioPlistPage, canActivate: [UsuarioGuard] },
+  { path: 'mi/equipos/:id', component: EquipoUsuarioViewPage, canActivate: [UsuarioGuard] },
+  { path: 'mi/equipos/:id/jugadores', component: JugadorUsuarioEquipoPlistPage, canActivate: [UsuarioGuard] },
+  { path: 'mi/cuotas', component: CuotaUsuarioPlistPage, canActivate: [UsuarioGuard] },
+  { path: 'mi/tienda', component: CarritoUsuarioTiendaPage, canActivate: [UsuarioGuard] },
+  { path: 'mi/facturas', component: FacturaUsuarioPlistPage, canActivate: [UsuarioGuard] },
   ...protectedRoutes.map((r) => ({ ...r, canActivate: [AdminGuard] })), 
 ];

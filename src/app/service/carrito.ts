@@ -80,4 +80,8 @@ export class CarritoService {
     this.security.forbidClubAdminActions();
     return this.oHttp.delete<number>(`${this.carritoURL}/${id}`);
   }
+
+  comprar(): Observable<number> {
+    return this.oHttp.post<number>(`${this.carritoURL}/comprar`, {});
+  }
 }

@@ -1,0 +1,54 @@
+@if (loading()) {
+  <div class="eq-loading">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Cargando...</span></div>
+  </div>
+} @else if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+} @else if (totalEquipos() === 0) {
+  <div class="eq-empty">
+    <i class="bi bi-trophy"></i>
+    <p>Aún no estás inscrito en ningún equipo.</p>
+  </div>
+} @else {
+  <div class="eq-list">
+    @for (temporada of temporadas(); track temporada.id) {
+      <div class="eq-season">
+        <div class="eq-season-header">
+          <i class="bi bi-calendar2-week me-2"></i>
+          <span>Temporada: <strong>{{ temporada.descripcion }}</strong></span>
+        </div>
+
+        @for (categoria of temporada.categorias; track categoria.id) {
+          <div class="eq-category">
+            <div class="eq-category-label">{{ categoria.nombre }}</div>
+            <div class="eq-teams">
+              @for (equipo of categoria.equipos; track equipo.id) {
+                <div class="eq-team-card">
+                  <div class="eq-team-icon">
+                    <i class="bi bi-shield-fill"></i>
+                  </div>
+                  <div class="eq-team-info">
+                    <h5>{{ equipo.nombre }}</h5>
+                    <div class="eq-team-meta">
+                      @if (equipo.ligasCount > 0) {
+                        <span><i class="bi bi-list-stars me-1"></i>{{ equipo.ligasCount }} liga{{ equipo.ligasCount > 1 ? 's' : '' }}</span>
+                      }
+                    </div>
+                  </div>
+                  <div class="eq-team-actions">
+                    <a [routerLink]="['/mi/equipos', equipo.id]" class="btn btn-sm btn-outline-primary" title="Ver equipo">
+                      <i class="bi bi-shield me-1"></i>Equipo
+                    </a>
+                    <a [routerLink]="['/mi/equipos', equipo.id, 'jugadores']" class="btn btn-sm btn-outline-success" title="Ver jugadores">
+                      <i class="bi bi-people-fill me-1"></i>Jugadores
+                    </a>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+}

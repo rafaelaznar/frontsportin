@@ -79,7 +79,11 @@ export class LoginComponent implements OnInit {
               console.log('Login successful, token: ', data);
             }
             this.snackBar.open('Login successful', 'Close', { duration: 3000 });
-            this.router.navigate(['']);
+            if (this.oSessionService.isUser()) {
+              this.router.navigate(['/mi']);
+            } else {
+              this.router.navigate(['']);
+            }
           },
           error: (err: HttpErrorResponse) => {
             // actualizar estado mediante signals

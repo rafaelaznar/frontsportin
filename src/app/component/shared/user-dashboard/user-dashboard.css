@@ -1,0 +1,143 @@
+.ud-wrapper {
+  min-height: 100vh;
+  background: #f0f4f8;
+  padding: 0 0 3rem 0;
+}
+
+.ud-hero {
+  background: linear-gradient(135deg, #1a3a5c 0%, #2e6da4 60%, #4a9fd4 100%);
+  padding: 3rem 2rem 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.ud-hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ud-avatar {
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1;
+}
+
+.ud-welcome h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.25rem 0;
+}
+
+.ud-username {
+  color: #a8d8f0;
+}
+
+.ud-welcome p {
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.ud-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.ud-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ud-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
+  text-decoration: none;
+  color: inherit;
+}
+
+.ud-card--news:hover      { border-color: #2e86c1; }
+.ud-card--teams:hover     { border-color: #1e8449; }
+.ud-card--fees:hover      { border-color: #d4ac0d; }
+.ud-card--shop:hover      { border-color: #cb4335; }
+.ud-card--invoices:hover  { border-color: #7d3c98; }
+
+.ud-card-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+}
+
+.ud-card--news      .ud-card-icon { background: #eaf4fb; color: #2e86c1; }
+.ud-card--teams     .ud-card-icon { background: #eafaf1; color: #1e8449; }
+.ud-card--fees      .ud-card-icon { background: #fefbd8; color: #b7950b; }
+.ud-card--shop      .ud-card-icon { background: #fdedec; color: #cb4335; }
+.ud-card--invoices  .ud-card-icon { background: #f5eef8; color: #7d3c98; }
+
+.ud-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #e74c3c;
+  color: #fff;
+  border-radius: 50%;
+  width: 1.35rem;
+  height: 1.35rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ud-card-body {
+  flex: 1;
+}
+
+.ud-card-body h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: #1a1a2e;
+}
+
+.ud-card-body p {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.ud-card-arrow {
+  font-size: 1.5rem;
+  color: #d1d5db;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.ud-card:hover .ud-card-arrow {
+  transform: translateX(4px);
+  color: #6b7280;
+}

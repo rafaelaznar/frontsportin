@@ -15,6 +15,7 @@ export class Menu {
   activeRoute: string = '';
   // usar señales para evitar cambios tardíos durante CD
   isSessionActive: WritableSignal<boolean> = signal(false);
+  isUser: WritableSignal<boolean> = signal(false);
   oTokenJWT: IJWT | null = null;
   userName: WritableSignal<string> = signal('');
   private destroyRef = inject(DestroyRef);
@@ -34,7 +35,8 @@ export class Menu {
     this.isSessionActive.set(this.oSessionService.isSessionActive());
     if (this.isSessionActive()) {
       this.oTokenJWT = this.oSessionService.parseJWT(this.oSessionService.getToken()!);
-      this.userName.set(this.oTokenJWT.username || '');      
+      this.userName.set(this.oTokenJWT.username || '');
+      this.isUser.set(this.oSessionService.isUser());
     }
   }
 
@@ -48,6 +50,7 @@ export class Menu {
         this.oTokenJWT = this.oSessionService.parseJWT(this.oSessionService.getToken()!);
         // opcional, guardamos el nombre para usos futuros
         this.userName.set(this.oTokenJWT?.username || '');
+        this.isUser.set(this.oSessionService.isUser());
       });
     });
 
@@ -57,6 +60,7 @@ export class Menu {
         this.isSessionActive.set(false);
         this.oTokenJWT = null;
         this.userName.set('');
+        this.isUser.set(false);
       });
     });
   }

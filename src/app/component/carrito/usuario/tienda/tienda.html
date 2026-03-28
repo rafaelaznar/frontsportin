@@ -1,0 +1,120 @@
+@if (message()) {
+  <div class="td-message" [class]="'alert alert-' + messageType()">{{ message() }}</div>
+}
+
+<div class="td-layout">
+
+  <!-- TIENDA: Artículos por categoría -->
+  <section class="td-shop">
+    <h3 class="td-section-title"><i class="bi bi-grid me-2"></i>Artículos</h3>
+
+    @if (loadingTienda()) {
+      <div class="text-center p-5"><div class="spinner-border text-primary" role="status"></div></div>
+    } @else if (grupos().length === 0) {
+      <div class="td-empty"><i class="bi bi-bag-x"></i><p>Sin artículos disponibles en tu club.</p></div>
+    } @else {
+      @for (grupo of grupos(); track grupo.tipoarticulo.id) {
+        <div class="td-category">
+          <div class="td-category-header">
+            <span>{{ grupo.tipoarticulo.descripcion }}</span>
+            <span class="td-category-count">{{ grupo.articulos.length }}</span>
+          </div>
+          <div class="td-articles">
+            @for (a of grupo.articulos; track a.id) {
+              <div class="td-article-card">
+                @if (a.imagen) {
+                  <div class="td-article-img">
+                    <img [src]="'data:image/jpeg;base64,' + a.imagen" [alt]="a.descripcion" />
+                  </div>
+                } @else {
+                  <div class="td-article-img td-article-img--placeholder">
+                    <i class="bi bi-box"></i>
+                  </div>
+                }
+                <div class="td-article-info">
+                  <h5>{{ a.descripcion }}</h5>
+                  <div class="td-article-price">
+                    @if (a.descuento > 0) {
+                      <span class="td-original-price">{{ a.precio | currency:'EUR':'symbol':'1.2-2' }}</span>
+                      <span class="td-final-price">{{ precioFinal(a) | currency:'EUR':'symbol':'1.2-2' }}</span>
+                      <span class="td-discount-badge">-{{ a.descuento }}%</span>
+                    } @else {
+                      <span class="td-final-price">{{ a.precio | currency:'EUR':'symbol':'1.2-2' }}</span>
+                    }
+                  </div>
+                </div>
+                <div class="td-article-actions">
+                  <div class="td-qty-control">
+                    <button class="td-qty-btn" (click)="setCantidad(a.id, getCantidad(a.id) - 1)">−</button>
+                    <input
+                      type="number"
+                      class="td-qty-input"
+                      [value]="getCantidad(a.id)"
+                      (change)="setCantidad(a.id, +$any($event.target).value)"
+                      min="1"
+                    />
+                    <button class="td-qty-btn" (click)="setCantidad(a.id, getCantidad(a.id) + 1)">+</button>
+                  </div>
+                  <button class="btn btn-primary btn-sm td-add-btn" (click)="addToCart(a)">
+                    <i class="bi bi-cart-plus me-1"></i>Añadir
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    }
+  </section>
+
+  <!-- CARRITO -->
+  <aside class="td-cart">
+    <div class="td-cart-header">
+      <h3><i class="bi bi-cart3 me-2"></i>Carrito
+        @if (carritoItemCount() > 0) {
+          <span class="td-cart-badge">{{ carritoItemCount() }}</span>
+        }
+      </h3>
+    </div>
+
+    @if (loadingCarrito()) {
+      <div class="text-center p-3"><div class="spinner-border spinner-border-sm text-secondary" role="status"></div></div>
+    } @else if (carrito().length === 0) {
+      <div class="td-cart-empty"><i class="bi bi-cart-x"></i><p>Tu carrito está vacío</p></div>
+    } @else {
+      <div class="td-cart-items">
+        @for (item of carrito(); track item.id) {
+          <div class="td-cart-item">
+            <div class="td-cart-item-info">
+              <span class="td-cart-item-name">{{ item.articulo?.descripcion }}</span>
+              <span class="td-cart-item-price">{{ item.articulo ? (precioFinal(item.articulo) | currency:'EUR':'symbol':'1.2-2') : '' }} / ud.</span>
+            </div>
+            <div class="td-cart-item-controls">
+              <button class="td-qty-btn sm" (click)="updateCartCantidad(item, -1)">−</button>
+              <span class="td-cart-qty">{{ item.cantidad }}</span>
+              <button class="td-qty-btn sm" (click)="updateCartCantidad(item, +1)">+</button>
+              <button class="td-remove-btn" (click)="removeFromCart(item.id)" title="Eliminar">
+                <i class="bi bi-trash3"></i>
+              </button>
+            </div>
+            <div class="td-cart-item-total">
+              {{ item.articulo ? (precioFinal(item.articulo) * item.cantidad | currency:'EUR':'symbol':'1.2-2') : '' }}
+            </div>
+          </div>
+        }
+      </div>
+      <div class="td-cart-total">
+        <span>Total</span>
+        <strong>{{ totalCarrito() | currency:'EUR':'symbol':'1.2-2' }}</strong>
+      </div>
+      <button class="btn btn-success btn-sm td-buy-btn" (click)="comprar()" [disabled]="comprando()">
+        @if (comprando()) {
+          <span class="spinner-border spinner-border-sm me-2" role="status"></span>Procesando...
+        } @else {
+          <i class="bi bi-bag-check me-1"></i>Comprar ahora
+        }
+      </button>
+    }
+  </aside>
+
+</div>
